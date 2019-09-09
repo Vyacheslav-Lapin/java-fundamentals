@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset xmlns="http://mojo.codehaus.org/versions-maven-plugin/rule/2.0.0"
+         comparisonMethod="maven"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="
+          http://mojo.codehaus.org/versions-maven-plugin/rule/2.0.0
+          http://www.mojohaus.org/versions-maven-plugin/xsd/rule-2.0.0.xsd">
+
+  <rules>
+    <rule groupId="org.codehaus.mojo" artifactId="sonar-maven-plugin" comparisonMethod="maven">
+      <ignoreVersions>
+        <ignoreVersion type="regex">3.*</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+
+    <rule groupId="org.junit.jupiter"
+          artifactId="junit-jupiter-params"
+          comparisonMethod="maven">
+      <ignoreVersions>
+        <!--<ignoreVersion type="regex">5\.[54]\..+</ignoreVersion> -->
+        <ignoreVersion>5.5.1</ignoreVersion>
+        <ignoreVersion>5.5.0</ignoreVersion>
+        <ignoreVersion>5.5.0-RC2</ignoreVersion>
+        <ignoreVersion>5.5.0-RC1</ignoreVersion>
+        <ignoreVersion>5.4.2</ignoreVersion>
+        <ignoreVersion>5.5.0-M1</ignoreVersion>
+        <ignoreVersion>5.4.1</ignoreVersion>
+        <ignoreVersion>5.4.0</ignoreVersion>
+        <ignoreVersion>5.4.0-RC2</ignoreVersion>
+        <ignoreVersion>5.4.0-RC1</ignoreVersion>
+        <ignoreVersion>5.4.0-M1</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+
+  </rules>
+
+  <!-- <ignoreVersions> -->
+  <!--   <ignoreVersion type="regex">.*alpha.*</ignoreVersion> -->
+  <!--   <ignoreVersion type="regex">.*beta.*</ignoreVersion> -->
+  <!--   <ignoreVersion type="regex">.*\.M\d</ignoreVersion> -->
+  <!-- </ignoreVersions> -->
+
+</ruleset>
