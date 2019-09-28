@@ -1,16 +1,28 @@
 package com.epam.courses.java.fundamentals.intro.practice.task5;
 
+import org.w3c.dom.ls.LSOutput;
+
 public class CrossMatrix {
+  public static void main(String[] args) {
+    CrossMatrix cros = new CrossMatrix(50);
+    System.out.println(cros.toString());
+  }
 
   private int size;
 
   public CrossMatrix(int size) {
+    if (size <= 0) {
+      System.out.println("Ошибка ввода");
+      System.exit(0);
+    }
     this.size = size;
   }
 
   public boolean get(int x, int y) {
-    //todo: реализовать!
-    return false;
+    if (x < size && y < size) {
+      return x == y || (x == size - y - 1);
+    } else
+      return false;
   }
 
   @Override
