@@ -29,6 +29,15 @@ public class Table {
   public double[][] getTable() {
 
     //todo реализовать
-    return new double[0][0];
+   int resultTableSize = (int)(((end - start) / step));
+    double[][] resultTable = new double[resultTableSize + 1][];
+    int i = 0;
+    while (i < resultTable.length) {
+      for (double iterator = start; iterator <= end; iterator += step) {
+        resultTable[i] = getDataAndResultPair(iterator);
+        i++;
+      }
+    }
+    return resultTable; 
   }
 }
