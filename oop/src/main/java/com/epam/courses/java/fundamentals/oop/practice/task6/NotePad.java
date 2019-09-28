@@ -1,3 +1,65 @@
+/* По классике, вставлю кусочек своего говнокода =)
+  public class Task6 {
+    public static void main(String[] args) {
+        Note note = new Note();
+        note.addPage("Privet");
+        note.addPage("Kak dela?");
+        note.printAllPage();
+        note.editPage(1,"Good");
+        note.printAllPage();
+        note.deletePage(1);
+        note.printAllPage();
+    }
+}
+class Note {
+    NotePage[] notePages = new NotePage[10];
+    public void addPage(String pageText) {
+
+            for (int i=0;i<notePages.length;i++) {
+                if (notePages[i]==null) {
+                    notePages[i] = new NotePage(pageText);
+                    i=notePages.length; //можно использовать break
+                }
+            }
+
+    }
+    void deletePage(int pageNumber) {
+        notePages[pageNumber]=null;
+    }
+    void editPage (int pageNumber,String newText) {
+        notePages[pageNumber]=new NotePage(newText);
+    }
+    void printAllPage() {
+        for (NotePage page:notePages) {
+            if (page!=null) System.out.println(page);
+        }
+        System.out.println();
+    }
+}
+
+class NotePage {
+    String pageText;
+    NotePage(String pageText) {
+        this.pageText=pageText;
+    }
+
+    @Override
+    public String toString() {
+        return this.pageText;
+    }
+}
+
+ */
+/**
+ * Class NotePad. Хранит листы типа Note в массиве notes[].
+ * Создается конструктором с параметром int = количество страниц, либо пустым конструктором тогда кол-во страниц = 16.
+ * Метод addNote() добавляет новую страницу, предварительно проверяя наличие места в массиве, если места нет увеличивает массив
+ * либо при невозможности увеличения выкидывает ошибку.
+ * getNote(index) возвращает лист с номером index.
+ * printNotes(array) возвращает String из элементов типа Note массива array.
+ * deleteNote(index) заменяет titel и body листа с индексом index на "Deleted". Как удалиться лист совсем не придумал,
+ * при попытке notes[index]=null выкидывает ошибку.
+ */
 package com.epam.courses.java.fundamentals.oop.practice.task6;
 
 import java.util.Arrays;
@@ -52,7 +114,31 @@ public class NotePad {
     return notes[id];
   }
 
+  public String printNotes(Note[] nno) {
+    String str="";
+    for (Note nn:nno) {
+      str+=nn.toString()+" ";
+    }
+    return str;
+  }
+
+  public void deleteNote(int id) {
+    notes[id]=new Note(id).setTitle("Deleted").setBody("Deleted");
+  }
+
   public Note[] getNotes() {
     return Arrays.copyOf(notes, index); // better then clone for that case: result haven`t null`s at his tail
+  }
+
+  public static void main(String[] args) {
+    NotePad np = new NotePad();
+    np.addNote("Title 1", "Body1");
+    np.addNote("Title 2", "Body2");
+    np.addNote("Title 3", "Body3");
+    System.out.println(np.getNote(1));
+    System.out.println(np.printNotes(np.getNotes()));
+    np.deleteNote(1);
+    System.out.println(np.printNotes(np.getNotes()));
+
   }
 }

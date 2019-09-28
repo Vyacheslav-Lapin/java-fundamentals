@@ -12,6 +12,12 @@ public class TablePrinter {
     table = new Table(start, end, step);
   }
 
+  public static void main(String[] args) {
+    TablePrinter tPrinter = new TablePrinter(120.0,230.0,10.9);
+    tPrinter.printTable(20); //works correct for quantity > 12
+    //сделал quantity не для ширины заголовка, а для всей таблицы.
+  }
+
   public void printTable(int quantity) {
     printTable(quantity, out);
   }
@@ -27,12 +33,28 @@ public class TablePrinter {
   }
 
   private void printBottom(int quantity, PrintStream out) {
-    out.print("+-------------------------+");
+    out.print("+");
+    for (int i=0;i<quantity-2;i++) out.print("-");
+    out.print("+");
   }
 
   private void printTop(int quantity, PrintStream out) {
-    out.println("+-------------------------+"); // TODO: Сделать ширину каждого заголовка равной quantity
-    out.println("|     x     |     f(x)    |");
-    out.println("+-------------------------+");
+    out.print("+");
+    for (int i=0;i<quantity-2;i++) out.print("-");
+    out.print("+\n");
+
+    out.print("|");
+    for (int i=0;i<(quantity-8)/4;i++) out.print(" ");
+    out.print("x");
+    for (int i=0;i<(quantity-8)/4;i++) out.print(" ");
+    out.print("|");
+    for (int i=0;i<(quantity-8)/4;i++) out.print(" ");
+    out.print("f(x)");
+    for (int i=0;i<(quantity-8)/4;i++) out.print(" ");
+    out.print("|\n");
+
+    out.print("+");
+    for (int i=0;i<quantity-2;i++) out.print("-");
+    out.print("+\n");
   }
 }
