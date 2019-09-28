@@ -31,8 +31,25 @@ public class TablePrinter {
   }
 
   private void printTop(int quantity, PrintStream out) {
-    out.println("+-------------------------+"); // TODO: Сделать ширину каждого заголовка равной quantity
-    out.println("|     x     |     f(x)    |");
-    out.println("+-------------------------+");
+    // TODO: Сделать ширину каждого заголовка равной quantity
+    out.print("+");
+    for (int i = 0; i < 2 * quantity; i++)
+      out.print("-");
+    out.print("+\n|");
+
+    for (int i = 0; i < 2 * quantity; i++) {
+      if (i == quantity / 2)
+        out.print("x");
+      if (i == quantity)
+        out.print("|");
+      if (i ==  6 * quantity / 4)
+        out.print("f(x)");
+      out.print(" ");
+    }
+    out.print("|\n+");
+
+    for (int i = 0; i < 2 * quantity; i++)
+      out.print("-");
+    out.println("+");
   }
 }
