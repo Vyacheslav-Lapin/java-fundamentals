@@ -1,6 +1,7 @@
 package com.epam.courses.java.fundamentals.intro.practice.task2;
 
 import static java.lang.Math.pow;
+import static java.lang.System.in;
 import static java.lang.System.out;
 
 import org.jetbrains.annotations.Contract;
@@ -33,7 +34,11 @@ public class MinFinder {
   }
 
   private int findMin() {
-    //todo реализовать
-    return 0;
+    int index = 1;
+    while (!filter(getA(index))) {
+        out.println(getA(index));
+        index++;
+    }
+    return index;
   }
 }

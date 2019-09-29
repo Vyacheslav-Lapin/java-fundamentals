@@ -15,7 +15,10 @@ public class MaxFinder {
 
   public double getMaximum() {
     double max = 0;
-    for (int i = 0; i < as.length - 1; i++) {
+    if (as.length > 1) {
+      max = as[0] + as[1];
+    } else return as[0];
+    for (int i = 1; i < as.length - 1; i++) {
       double res = as[i] + as[i + 1];
       if (res > max) max = res;
     }

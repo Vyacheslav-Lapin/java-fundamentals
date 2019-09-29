@@ -14,4 +14,11 @@ class MaxFinderTest {
     assertThat(new MaxFinder(0.1, 0.5, 58, 34, 0.6, 20).getMaximum())
         .isEqualTo(92);
   }
+
+  @Test
+  @DisplayName("GetMaximum method works correctly with negative numbers")
+  void getMaximumWithNegativeNumbers() {
+    assertThat(new MaxFinder(-3, -5, -9, -15, -1).getMaximum())
+        .isEqualTo(-8);
+  }
 }
