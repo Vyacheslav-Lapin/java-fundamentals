@@ -9,9 +9,9 @@ public class MaxFinderTestDrive {
     Scanner scan = new Scanner(System.in);
     try {
       int number = scan.nextInt();
-      System.out.println("Array of " + number + " elements is created");
-
       double[] arr1 = new double[number];
+      System.out.println("Array of " + number + " elements is created");
+      
       initializeArray(arr1);
       printArray(arr1);
 
@@ -25,8 +25,10 @@ public class MaxFinderTestDrive {
   }
 
   private static void initializeArray(double[] arr) {
+  	double randNumber = 0.0;
+  	
     for (int i = 0; i < arr.length; i++) {
-      double randNumber = Math.random() * 100;
+      randNumber = Math.random() * 100;
       arr[i] = Math.round(randNumber);
     }
   }
