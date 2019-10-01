@@ -17,7 +17,7 @@ public class MaxFinder {
 		  double curr = as[i]+as[i+1];
 		  if(curr>max) max= curr;
 	  }
-    //todo реализовать!
+    
     return max;
   }
 }
