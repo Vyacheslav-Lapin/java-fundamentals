@@ -33,7 +33,19 @@ public class MinFinder {
   }
 
   private int findMin() {
-    //todo реализовать
-    return 0;
+	  int n =1;
+	  while(true) {
+		  
+		 
+		  double a = getA(n);
+		
+		 // out.println("n "+n);
+		  if(filter(a))return n;
+		  out.println(a);
+		  n++;
+	  }
+	  
+   
+   // return 0;
   }
 }
