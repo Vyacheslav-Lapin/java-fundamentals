@@ -2,29 +2,29 @@ package com.epam.courses.java.fundamentals.intro.practice.task5;
 
 public class CrossMatrix {
 
-  private int size;
+	private int size;
 
-  public CrossMatrix(int size) {
-    this.size = size;
-  }
+	public CrossMatrix(int size) {
+		this.size = size;
+	}
 
-  public boolean get(int x, int y) {
-	  if(x==y ||y==size-x-1 )return true;
-	  
-    //todo: реализовать!
-    return false;
-  }
+	public boolean get(int x, int y) {
+		if (x == y || y == size - x - 1)
+			return true;
 
-  @Override
-  public String toString() {
+		return false;
+	}
 
-    String result = "";
+	@Override
+	public String toString() {
 
-    for (int x = 0; x < size; x++) {
-      for (int y = 0; y < size; y++)
-        result += get(x, y) ? "1 " : "0 ";
-      result += "\n";
-    }
-    return result;
-  }
+		String result = "";
+
+		for (int x = 0; x < size; x++) {
+			for (int y = 0; y < size; y++)
+				result += get(x, y) ? "1 " : "0 ";
+			result += "\n";
+		}
+		return result;
+	}
 }
