@@ -38,14 +38,19 @@ public class Note {
     return this;
   }
 
-  @Override
-  public boolean equals(Object o) {
-    return this == o || !(o == null || getClass() != o.getClass()) && id == ((Note) o).id;
+ @Override
+  public boolean equals(Object o){
+    if(this == o)
+      return true;
+    if(this == null || this.getClass() != o.getClass())
+      return false;
+    Note note = (Note)o;
+    return this.id == note.id && this.title.equals(note.title) && this.body.equals(note.body);
   }
 
   @Override
-  public int hashCode() {
-    return id;
+  public int hashCode(){
+    return Objects.hash(id,title,body);
   }
 
   @Override
