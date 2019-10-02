@@ -12,7 +12,11 @@ public class MaxFinder {
   }
 
   public double getMaximum() {
-    //todo реализовать!
-    return 0;
+    double max = -1.0;
+    for(int i = 0; i < as.length - 2; i++){
+      double sum = as[i] + as[i+1];
+      max = Math.max(max,sum);
+    }
+    return max;
   }
 }
