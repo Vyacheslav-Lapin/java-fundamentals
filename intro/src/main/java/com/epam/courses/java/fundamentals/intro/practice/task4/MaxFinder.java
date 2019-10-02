@@ -13,6 +13,12 @@ public class MaxFinder {
 
   public double getMaximum() {
     //todo реализовать!
-    return 0;
+    double max = as[0] + as[1];
+
+    for (int i = 2; i < as.length; i++) {
+      if ((as[i - 1] + as[i]) > max)
+        max = as[i - 1] + as[i];
+    }
+    return max;
   }
 }

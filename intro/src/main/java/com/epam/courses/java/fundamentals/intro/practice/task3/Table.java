@@ -29,6 +29,13 @@ public class Table {
   public double[][] getTable() {
 
     //todo реализовать
-    return new double[0][0];
+    double[][] table = new double[ (int) ((end - start) / step) + 1 ][2];
+
+    for (int i = (int)start; i <= (int)end; i += (int)step) {
+      table[i][0] = i;
+      table[i][1] = function(table[i][0]);
+    }
+
+    return table;
   }
 }

@@ -2,6 +2,8 @@ package com.epam.courses.java.fundamentals.oop.practice.task6;
 
 import lombok.experimental.NonFinal;
 
+import java.util.Objects;
+
 public class Note {
 
   @NonFinal
@@ -37,7 +39,7 @@ public class Note {
     this.body = body;
     return this;
   }
-
+/*
   @Override
   public boolean equals(Object o) {
     return this == o || !(o == null || getClass() != o.getClass()) && id == ((Note) o).id;
@@ -46,6 +48,21 @@ public class Note {
   @Override
   public int hashCode() {
     return id;
+  }
+*/
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Note note = (Note) o;
+    return id == note.id &&
+        title.equals(note.title) &&
+        body.equals(note.body);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(title, body, id);
   }
 
   @Override

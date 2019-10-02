@@ -2,6 +2,7 @@ package com.epam.courses.java.fundamentals.oop.practice.task6;
 
 import java.util.Arrays;
 import lombok.experimental.NonFinal;
+import org.jetbrains.annotations.NotNull;
 
 public class NotePad {
 
@@ -54,5 +55,46 @@ public class NotePad {
 
   public Note[] getNotes() {
     return Arrays.copyOf(notes, index); // better then clone for that case: result haven`t null`s at his tail
+  }
+
+  public boolean deleteNote(int id) {
+    if (id >= 0 && id < index) {
+
+      if (notes[id] == null)
+        return false;
+
+      Note[] newNotes = new Note[notes.length - 1];
+
+      for (int i = 0; i < notes.length; i++) {
+        if (i == id)
+          continue;
+
+        newNotes[i] = notes[i];
+      }
+
+      notes = newNotes;
+      return true;
+    }
+
+    return false;
+  }
+
+  public boolean updateNote(int id, String title, String body) {
+    if (id >= 0 && id < index) {
+      notes[id].setTitle(title).setBody(body);
+
+      return true;
+    }
+    return false;
+  }
+
+  public boolean updateNote(@NotNull Note note) {
+    if (note.getId() >= 0 && note.getId() < index) {
+      notes[note.getId()] = note;
+
+      return true;
+    }
+
+    return false;
   }
 }
