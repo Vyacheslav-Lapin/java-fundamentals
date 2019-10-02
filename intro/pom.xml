@@ -13,4 +13,10 @@
     <assembly.skipAssembly>false</assembly.skipAssembly>
   </properties>
 
+  <build>
+
+    <defaultGoal>verify exec:exec</defaultGoal>
+
+  </build>
+
 </project>
