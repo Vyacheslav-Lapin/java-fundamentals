@@ -16,5 +16,4 @@ public class SinchronizedSingleton {
     return instance;
   }
 
-  public native int loadCrypto(int num);
 }
