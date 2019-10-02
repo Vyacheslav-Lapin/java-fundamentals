@@ -61,6 +61,11 @@
     <!--<argLine>&#45;&#45;enable-preview -Xplugin:Manifold</argLine>-->
     <argLine>--enable-preview</argLine>
 
+    <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+    <origSourceDir>${project.basedir}/src/main/java</origSourceDir>
+    <sourceDir>${origSourceDir}</sourceDir>
+    <delombokedSourceDir>${project.build.directory}/delombok</delombokedSourceDir>
+
     <maven-assembly-plugin.version>3.1.1</maven-assembly-plugin.version>
     <maven-assembly-plugin.descriptorRef>jar-with-dependencies</maven-assembly-plugin.descriptorRef>
     <maven-assembly-plugin.mainClass>ru.vlapin.courses.java.fundamentals.intro.Hello</maven-assembly-plugin.mainClass>
@@ -84,6 +89,15 @@
     <!--endregion-->
 
   </properties>
+
+  <profiles>
+    <profile>
+      <id>build</id>
+      <properties>
+        <sourceDir>${delombokedSourceDir}</sourceDir>
+      </properties>
+    </profile>
+  </profiles>
 
   <dependencyManagement>
     <dependencies>
@@ -297,6 +311,18 @@
           </executions>
         </plugin>
         <plugin>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>${maven-source-plugin.version}</version>
+          <executions>
+            <execution>
+              <id>attach-sources</id>
+              <goals>
+                <goal>jar</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
           <artifactId>maven-enforcer-plugin</artifactId>
           <version>${maven-enforcer-plugin.version}</version>
           <executions>
@@ -475,6 +501,9 @@
 
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <artifactId>maven-source-plugin</artifactId>
       </plugin>
       <plugin>
         <artifactId>maven-enforcer-plugin</artifactId>
