@@ -33,7 +33,12 @@ public class MinFinder {
   }
 
   private int findMin() {
-    //todo реализовать
-    return 0;
+    for (int i = 0; ; i++) {
+      getA(i);
+      out.println(getA(i));
+      if (getA(i) < e) {
+        return i;
+      }
+    }
   }
 }
