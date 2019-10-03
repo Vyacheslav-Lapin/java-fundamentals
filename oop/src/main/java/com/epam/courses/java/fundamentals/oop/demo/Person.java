@@ -1,7 +1,20 @@
 package com.epam.courses.java.fundamentals.oop.demo;
 
+import static lombok.AccessLevel.PUBLIC;
+
 import java.util.List;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Builder.Default;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Singular;
+import lombok.ToString;
 import lombok.Value;
+import lombok.experimental.FieldDefaults;
+import lombok.experimental.NonFinal;
 
 //@Getter
 //@ToString
@@ -9,12 +22,23 @@ import lombok.Value;
 //@AllArgsConstructor
 //@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Value
+//@Data
+@Builder
+//@AllArgsConstructor(access = PUBLIC)
+@NonFinal
 public class Person {
 
+//  @NonFinal
   /*private final*/ String name;
-  /*private final*/ int age;
-  /*private final*/ List<String> contacts;
+//  @NonFinal
+  @Default
+  /*private final*/ int age = 16;
+//  @NonFinal
   /*private final*/ double height;
+
+    @Singular
+//  @NonFinal
+  /*private final*/ List<String> contacts;
 
 //  public Person(String name, int age, List<String> contacts, double height) {
 //    this.name = name;

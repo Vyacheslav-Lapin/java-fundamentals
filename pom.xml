@@ -34,7 +34,7 @@
     <!--endregion-->
 
     <!--region BOMs -->
-    <spring-boot.version>2.1.8.RELEASE</spring-boot.version>
+    <spring-boot.version>2.1.9.RELEASE</spring-boot.version>
     <!--endregion-->
 
     <!--region Libs -->
@@ -42,7 +42,7 @@
     <manifold-version>2019.1.14</manifold-version>
     <vavr.version>1.0.0-alpha-3</vavr.version>
 
-    <checker.version>2.11.0</checker.version>
+    <checker.version>2.11.1</checker.version>
     <annotations.version>17.0.0</annotations.version>
     <jcip-annotations.version>1.0</jcip-annotations.version>
     <spotbugs.version>4.0.0-beta4</spotbugs.version>
@@ -63,7 +63,7 @@
     <!--<argLine>&#45;&#45;enable-preview -Xplugin:Manifold</argLine>-->
     <argLine>--enable-preview</argLine>
 
-    <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+    <maven-source-plugin.version>3.1.0</maven-source-plugin.version>
     <origSourceDir>${project.basedir}/src/main/java</origSourceDir>
     <sourceDir>${origSourceDir}</sourceDir>
     <delombokedSourceDir>${project.build.directory}/delombok</delombokedSourceDir>
