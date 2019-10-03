@@ -11,7 +11,7 @@ public class Table {
   public Table(double start, double end, double step) {
 
     if (end <= start)
-      throw new RuntimeException("End value shoult be bigger then start, but it's not.");
+      throw new RuntimeException("End value should be bigger then start, but it's not.");
 
     this.start = start;
     this.end = end;
@@ -27,8 +27,15 @@ public class Table {
   }
 
   public double[][] getTable() {
-
-    //todo реализовать
-    return new double[0][0];
+    int rows = (int) (((end - start) + 1) / step);
+    double[][] result = new double[rows][2];
+    double data = start;
+    int i = 0;
+    while (data <= end){
+      result[i][0] = getDataAndResultPair(data)[0];
+      result[i++][1]= getDataAndResultPair(data)[1];
+        data+=step;
+    }
+    return result;
   }
 }
