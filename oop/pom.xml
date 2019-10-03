@@ -8,7 +8,13 @@
   </parent>
   <artifactId>oop</artifactId>
   <properties>
-    <!--<maven-assembly-plugin.mainClass>ru.vlapin.courses.java.fundamentals.intro.Hello</maven-assembly-plugin.mainClass>-->
-    <!--<assembly.skipAssembly>false</assembly.skipAssembly>-->
+    <maven-assembly-plugin.mainClass>com.epam.courses.java.fundamentals.oop.demo.First</maven-assembly-plugin.mainClass>
+    <assembly.skipAssembly>false</assembly.skipAssembly>
   </properties>
+
+  <build>
+
+    <defaultGoal>verify exec:exec</defaultGoal>
+
+  </build>
 </project>
