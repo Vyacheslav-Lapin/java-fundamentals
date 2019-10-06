@@ -21,7 +21,7 @@ public class TablePrinter {
     printTop(quantity, out);
 
     for (double[] functionResultPair : table.getTable())
-      out.printf("| %3.9f|% 3.9f|\n", functionResultPair[0], functionResultPair[1]);
+      out.printf("|% 3.9f|% 3.9f|\n", functionResultPair[0], functionResultPair[1]);
 
     printBottom(quantity, out);
   }
