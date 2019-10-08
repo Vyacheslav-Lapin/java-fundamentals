@@ -5,6 +5,9 @@ import static java.lang.System.out;
 
 import org.jetbrains.annotations.Contract;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MinFinder {
 
   private double e;
@@ -33,7 +36,15 @@ public class MinFinder {
   }
 
   private int findMin() {
-    //todo реализовать
-    return 0;
+    if(this.e >1) return 0;
+    int n = 0;
+    for (int i = 1; i < Integer.MAX_VALUE; i++){
+      if (this.filter(getA(i))){
+        n = i;
+        break;
+      }
+      out.print(getA(i)+"\n");
+    }
+    return n;
   }
 }
