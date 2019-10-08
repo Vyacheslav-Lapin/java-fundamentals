@@ -13,9 +13,9 @@ public class TablePrinter {
   }
 
   public static void main(String[] args) {
-    TablePrinter tPrinter = new TablePrinter(120.0,230.0,10.9);
-    tPrinter.printTable(20); //works correct for quantity > 12
-    //сделал quantity не для ширины заголовка, а для всей таблицы.
+    TablePrinter tPrinter = new TablePrinter(0.0,10.0,1.0);
+    tPrinter.printTable(11); //works correct for quantity >= 4
+
   }
 
   public void printTable(int quantity) {
@@ -33,28 +33,14 @@ public class TablePrinter {
   }
 
   private void printBottom(int quantity, PrintStream out) {
-    out.print("+");
-    for (int i=0;i<quantity-2;i++) out.print("-");
-    out.print("+");
+    out.printf("+%."+(quantity*2+3)+"s+", "-------------------------------------------------------------------------------");
   }
 
   private void printTop(int quantity, PrintStream out) {
-    out.print("+");
-    for (int i=0;i<quantity-2;i++) out.print("-");
-    out.print("+\n");
-
-    out.print("|");
-    for (int i=0;i<(quantity-8)/4;i++) out.print(" ");
-    out.print("x");
-    for (int i=0;i<(quantity-8)/4;i++) out.print(" ");
-    out.print("|");
-    for (int i=0;i<(quantity-8)/4;i++) out.print(" ");
-    out.print("f(x)");
-    for (int i=0;i<(quantity-8)/4;i++) out.print(" ");
-    out.print("|\n");
-
-    out.print("+");
-    for (int i=0;i<quantity-2;i++) out.print("-");
-    out.print("+\n");
-  }
+    out.printf("+%."+(quantity*2+3)+"s+%n", "-------------------------------------------------------------------------------");
+    out.printf("| %."+(quantity-1)/2+"sx%."+(quantity-1)/2+"s| %."+(quantity-4)/2+"sf(x)%."+(quantity-4)/2+"s |%n",
+        "                           ", "                     ", "                            ", "                           ");
+   // out.printf("|%"+(quantity/2+2)+"s%"+(quantity/2+1)+"s%"+(quantity/2+3)+"s%"+(quantity/2)+"s%n","x", "|", "f(x)", "|");
+    out.printf("+%."+(quantity*2+3)+"s+%n", "-------------------------------------------------------------------------------");
+  } //Подгонял под реультат из теста.
 }
