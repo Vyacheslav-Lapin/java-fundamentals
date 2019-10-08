@@ -1,5 +1,8 @@
 package com.epam.courses.java.fundamentals.intro.practice.task3;
 
+import java.util.Formatter;
+import java.util.Locale;
+
 import static java.lang.Math.tan;
 
 public class Table {
@@ -11,7 +14,7 @@ public class Table {
   public Table(double start, double end, double step) {
 
     if (end <= start)
-      throw new RuntimeException("End value shoult be bigger then start, but it's not.");
+      throw new RuntimeException("End value should be bigger then start, but it's not.");
 
     this.start = start;
     this.end = end;
@@ -27,8 +30,12 @@ public class Table {
   }
 
   public double[][] getTable() {
-
-    //todo реализовать
-    return new double[0][0];
+    double [][] res = new double[(int)(((end-start)/step)+1)][2];
+    int counter = 0;
+    for(double i = start; i <= end; i+= step){
+      res[counter] = getDataAndResultPair(i);
+      counter++;
+    }
+    return res;
   }
 }
