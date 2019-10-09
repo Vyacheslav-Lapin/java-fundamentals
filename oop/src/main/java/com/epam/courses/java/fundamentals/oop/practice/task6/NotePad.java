@@ -57,8 +57,7 @@ class NotePage {
  * либо при невозможности увеличения выкидывает ошибку.
  * getNote(index) возвращает лист с номером index.
  * printNotes(array) возвращает String из элементов типа Note массива array.
- * deleteNote(index) заменяет titel и body листа с индексом index на "Deleted". Как удалиться лист совсем не придумал,
- * при попытке notes[index]=null выкидывает ошибку.
+ * deleteNote(index) удаляет элемент массива.
  */
 package com.epam.courses.java.fundamentals.oop.practice.task6;
 
@@ -123,7 +122,15 @@ public class NotePad {
   }
 
   public void deleteNote(int id) {
-    notes[id]=new Note(id).setTitle("Deleted").setBody("Deleted");
+
+    Note[] tempNotes1 = Arrays.copyOf(getNotes(), id);
+    Note[] tempNotes2 = Arrays.copyOfRange(getNotes(),id+1,getNotes().length);
+    notes = new Note[getNotes().length-1];
+    int tempIndex=0;
+    for(Note nn:tempNotes1) notes[tempIndex++]=nn;
+    for(Note nn:tempNotes2) notes[tempIndex++]=nn;
+    index--;
+
   }
 
   public Note[] getNotes() {
@@ -135,6 +142,8 @@ public class NotePad {
     np.addNote("Title 1", "Body1");
     np.addNote("Title 2", "Body2");
     np.addNote("Title 3", "Body3");
+    np.addNote("Title 4", "Body4");
+    np.addNote("Title 5", "Body 5");
     System.out.println(np.getNote(1));
     System.out.println(np.printNotes(np.getNotes()));
     np.deleteNote(1);

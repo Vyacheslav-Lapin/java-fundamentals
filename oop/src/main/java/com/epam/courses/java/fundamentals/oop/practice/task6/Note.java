@@ -1,6 +1,5 @@
 /**
  * Class Note имеет поля, id, title, body. Геттеры и сеттеры для title и body.
- * Не понял только, зачем setTitle и setBody возвращают тип Note...
  * Переопределен метод toString(). Конструктор принимающий id.
  */
 package com.epam.courses.java.fundamentals.oop.practice.task6;
