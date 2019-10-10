@@ -9,8 +9,10 @@ public class CrossMatrix {
   }
 
   public boolean get(int x, int y) {
-    //todo: реализовать!
-    return false;
+    if (x == y || (size - 1) == (x + y) ) {
+      return true;
+    }
+    return  false;
   }
 
   @Override
@@ -24,5 +26,10 @@ public class CrossMatrix {
       result += "\n";
     }
     return result;
+  }
+
+  public static void main(String[] args) {
+    CrossMatrix matrix = new CrossMatrix(7);
+    System.out.print(matrix.toString());
   }
 }

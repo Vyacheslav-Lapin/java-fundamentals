@@ -27,12 +27,44 @@ public class TablePrinter {
   }
 
   private void printBottom(int quantity, PrintStream out) {
-    out.print("+-------------------------+");
-  }
+      out.print("+");
+      for (int i = 0; i < 2 * quantity + 3; i++){
+        out.print("-");
+      }
+      out.print("+");
+    }
 
   private void printTop(int quantity, PrintStream out) {
-    out.println("+-------------------------+"); // TODO: Сделать ширину каждого заголовка равной quantity
-    out.println("|     x     |     f(x)    |");
-    out.println("+-------------------------+");
+    out.print("+");
+    for (int i = 0; i < 2 * quantity + 3; i++)
+      out.print("-");
+    out.print("+\n|");
+
+    for (int i = 0; i < 2 * quantity; i++){
+      if (i == quantity / 2){
+        out.print("x");
+        continue;
+      }
+      else if (i == quantity){
+        out.print("|");
+        continue;
+      }
+      else if (i == quantity + quantity / 2){
+        out.print("f(x)");
+        continue;
+      }
+      else out.print(" ");
+    }
+    out.print("|\n+");
+
+    for (int i = 0; i < 2 * quantity + 3; i++)
+      out.print("-");
+    out.println("+");
   }
+
+  public static void main(String[] args) {
+    TablePrinter tp= new TablePrinter(0,10, 1);
+    tp.printTable(11);
+  }
+
 }
