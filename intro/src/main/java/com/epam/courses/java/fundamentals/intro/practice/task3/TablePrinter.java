@@ -21,7 +21,7 @@ public class TablePrinter {
     printTop(quantity, out);
 
     for (double[] functionResultPair : table.getTable())
-      out.printf("|% 3.9f|% 3.9f|\n", functionResultPair[0], functionResultPair[1]);
+      out.printf(Locale.ENGLISH,"|% 3.9f|% 3.9f|\n", functionResultPair[0], functionResultPair[1]);
 
     printBottom(quantity, out);
   }
@@ -32,24 +32,9 @@ public class TablePrinter {
 
   private void printTop(int quantity, PrintStream out) {
     // TODO: Сделать ширину каждого заголовка равной quantity
-    out.print("+");
-    for (int i = 0; i < 2 * quantity; i++)
-      out.print("-");
-    out.print("+\n|");
-
-    for (int i = 0; i < 2 * quantity; i++) {
-      if (i == quantity / 2)
-        out.print("x");
-      if (i == quantity)
-        out.print("|");
-      if (i ==  6 * quantity / 4)
-        out.print("f(x)");
-      out.print(" ");
-    }
-    out.print("|\n+");
-
-    for (int i = 0; i < 2 * quantity; i++)
-      out.print("-");
-    out.println("+");
+    out.println("+-------------------------+");
+    String format = "|%1$-" + quantity + "s|%2$-" + quantity + "s|\n";
+    System.out.format(format, "x","f(x)");
+    out.println("+-------------------------+");
   }
 }
