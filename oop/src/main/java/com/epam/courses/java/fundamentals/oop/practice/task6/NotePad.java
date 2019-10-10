@@ -73,9 +73,9 @@ public class NotePad {
     return true;
   }
   /**
-   * @param id
-   * @param newTitle
-   * @param newBody
+   * @param id        required to select certain note
+   * @param newTitle  string new title for note
+   * @param newBody   string new body for note
    */
   public Note editNote(int id, String newTitle, String newBody){
     return getNote(id).setTitle(newTitle).setBody(newBody);
@@ -103,7 +103,7 @@ public class NotePad {
     }
   }
   /**
-   * @param id
+   * @param id   required to select certain note
    */
   public void deleteNote(int id) {
     for (int i = id; i < (index-1); i++){
