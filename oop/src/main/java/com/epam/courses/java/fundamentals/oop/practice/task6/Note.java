@@ -2,6 +2,9 @@ package com.epam.courses.java.fundamentals.oop.practice.task6;
 
 import lombok.experimental.NonFinal;
 
+/**
+ * independent Object Note
+ */
 public class Note {
 
   @NonFinal
@@ -51,8 +54,8 @@ public class Note {
   @Override
   public String toString() {
     return "Note{" + "title='" + title + '\'' +
-               ", body='" + body + '\'' +
-               ", id=" + id +
-               '}';
+        ", body='" + body + '\'' +
+        ", id=" + id +
+        '}';
   }
 }
