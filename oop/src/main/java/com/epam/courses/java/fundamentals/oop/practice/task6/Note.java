@@ -1,3 +1,7 @@
+/**
+ * Class Note имеет поля, id, title, body. Геттеры и сеттеры для title и body.
+ * Переопределен метод toString(). Конструктор принимающий id.
+ */
 package com.epam.courses.java.fundamentals.oop.practice.task6;
 
 import lombok.experimental.NonFinal;
