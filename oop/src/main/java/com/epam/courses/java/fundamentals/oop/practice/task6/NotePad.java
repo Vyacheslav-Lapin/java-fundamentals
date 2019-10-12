@@ -50,6 +50,8 @@ public class NotePad {
   }
 
   /**
+   * Adds new object of <code>Note</code> in <code>notes</code>
+   * with <code>id</code> field matching position of object in array
    * @param title  string value for <code>title</code>
    * @param body   string value for <code>body</code>
    * @return new instance of <code>Note</code> and adds this instance in <code>notes</code>
@@ -59,23 +61,23 @@ public class NotePad {
    */
   public Note addNote(String title, String body) {
     Note note = new Note(index++).setTitle(title).setBody(body);
-    if (isPossibleToAdd()) {
-      return notes[note.getId()] = note;
-    }
-    else {
-      throw new RuntimeException("It`s impossible to add the Note - array already have a maximum size!");
-    }
+    if (isPossibleToAdd()) return notes[note.getId()] = note;
+    else throw new RuntimeException("It`s impossible to add the Note - array already have a maximum size!");
   }
 
   /**
-   *
+   * Checks if <code>notes</code> has free slots to add new object
+   * or, otherwise, calls {@link NotePad#hasGrew()}
+   * @return <code>true</code> if after method completion <code>notes</code> has free space for new object
+   * and no if array has reached maximum size
    */
   private boolean isPossibleToAdd() {
     return index < notes.length || hasGrew();
   }
 
   /**
-   *
+   * @return <code>true</code> if length of <code>notes</code> has been increased successfully
+   * and no if array has reached maximum size
    */
   private boolean hasGrew() {
     int capacity = notes.length << 1; // * 2 with overflow insurance
@@ -89,17 +91,20 @@ public class NotePad {
   }
 
   /**
+   * Sets new values of string parameters in <code>Note</code> specified by <code>id</code>
    * @param id        required to select certain note
    * @param newTitle  string new title for note
    * @param newBody   string new body for note
+   * @return object of <code>Note</code> with edited fields <code>title</code> and <code>body</code>
    */
   public Note editNote(int id, String newTitle, String newBody){
     return getNote(id).setTitle(newTitle).setBody(newBody);
   }
 
   /**
-   * @param id
-   * @exception RuntimeException
+   * @param id required to return certain note
+   * @return <code>Note</code> from <code>notes</code> specified by <code>id</code>
+   * @exception RuntimeException is thrown when <code>id</code> is invalid for this <code>NotePad</code>
    */
   public Note getNote(int id) {
     if (id < 0) throw new RuntimeException("Invalid note id: id must be greater then 0!");
@@ -108,14 +113,14 @@ public class NotePad {
   }
 
   /**
-   * @return
+   * @return <code>notes</code>
    */
   public Note[] getNotes() {
     return Arrays.copyOf(notes, index); // better then clone for that case: result haven`t null`s at his tail
   }
 
   /**
-   *
+   * Sends string representation of oll <code>Note</code> in this <code>NotePad</code> to console
    */
   public void viewAllNotes(){
     for (Note a : getNotes()){
@@ -124,6 +129,9 @@ public class NotePad {
   }
 
   /**
+   * Deletes one <code>Note</code> in <code>notes</code>
+   * After method completion all <code>id</code> values keep matching to array positions
+   * and order of objects remains the same
    * @param id   required to select certain note
    */
   public void deleteNote(int id) {
