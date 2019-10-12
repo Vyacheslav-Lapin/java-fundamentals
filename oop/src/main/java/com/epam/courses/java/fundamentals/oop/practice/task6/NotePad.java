@@ -123,13 +123,15 @@ public class NotePad {
 
   public void deleteNote(int id) {
 
-    Note[] tempNotes1 = Arrays.copyOf(getNotes(), id);
-    Note[] tempNotes2 = Arrays.copyOfRange(getNotes(),id+1,getNotes().length);
-    notes = new Note[getNotes().length-1];
-    int tempIndex=0;
-    for(Note nn:tempNotes1) notes[tempIndex++]=nn;
-    for(Note nn:tempNotes2) notes[tempIndex++]=nn;
-    index--;
+    if (id>=0&&id<getNotes().length) {
+      Note[] tempNotes1 = Arrays.copyOf(getNotes(), id);
+      Note[] tempNotes2 = Arrays.copyOfRange(getNotes(), id + 1, getNotes().length);
+      notes = new Note[getNotes().length - 1];
+      int tempIndex = 0;
+      for (Note nn : tempNotes1) notes[tempIndex++] = nn;
+      for (Note nn : tempNotes2) notes[tempIndex++] = nn;
+      index--;
+    } else System.out.println("No such element!");
 
   }
 
@@ -146,7 +148,7 @@ public class NotePad {
     np.addNote("Title 5", "Body 5");
     System.out.println(np.getNote(1));
     System.out.println(np.printNotes(np.getNotes()));
-    np.deleteNote(1);
+    np.deleteNote(2);
     System.out.println(np.printNotes(np.getNotes()));
 
   }
