@@ -19,10 +19,7 @@ public class CrossMatrix {
   }
 
   public boolean get(int x, int y) {
-    if (x < size && y < size) {
-      return x == y || (x == size - y - 1);
-    } else
-      return false;
+    return x == y || (x == size - y - 1);
   }
 
   @Override

@@ -21,7 +21,7 @@ public class MaxFinder {
     }
     return max;
   }
-  // for test 
+  // for test
  // public static void main(String[] args) {
  //   MaxFinder maxFinder = new MaxFinder(0.2, 0.7, 10, 83, 3.0, 0.9);
  //   System.out.println(maxFinder.getMaximum());

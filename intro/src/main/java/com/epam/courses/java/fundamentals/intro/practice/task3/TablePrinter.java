@@ -4,6 +4,7 @@ import static java.lang.System.out;
 
 import java.io.PrintStream;
 
+
 public class TablePrinter {
 
   private final Table table;
@@ -26,8 +27,7 @@ public class TablePrinter {
     printBottom(quantity, out);
   }
 
-  private void printBottom(int quantity, PrintStream out) {
-    out.print("+-------------------------+");
+  private void printBottom(int quantity, PrintStream out) { out.print("+-------------------------+");
   }
 
   private void printTop(int quantity, PrintStream out) {
