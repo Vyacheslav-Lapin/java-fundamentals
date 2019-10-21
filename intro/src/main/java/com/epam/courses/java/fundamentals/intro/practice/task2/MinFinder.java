@@ -24,7 +24,7 @@ public class MinFinder {
   }
 
   public static void main(String... __) {
-    out.println("Минимальный индекс: " + findMin(0.005));
+    out.println("Минимальный индекс: " + findMin(0.1));
   }
 
   @Contract(pure = true)
