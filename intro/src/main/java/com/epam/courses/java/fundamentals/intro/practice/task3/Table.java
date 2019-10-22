@@ -27,14 +27,16 @@ public class Table {
   }
 
   public double[][] getTable() {
-    int countOfSteps = (int) ((end - start)/step);
+
+
+    int iterations = (int)((end-start)/step);
+    double[][] mas = new double[iterations+1][2];
     int counter = 0;
-    double[][] resultTable = new double[countOfSteps][2];
-    for (double i = start; i < end; i += step) {
-      resultTable[counter][0] = getDataAndResultPair(i)[0];
-      resultTable[counter][1] = getDataAndResultPair(i)[1];
-      counter++;
+    for (double i = start; i <= end; i += step) {
+         mas[counter][0] = getDataAndResultPair(i)[0];
+         mas[counter][1] = getDataAndResultPair(i)[1];
+         counter++;
     }
-    return resultTable;
+    return mas;
   }
 }
