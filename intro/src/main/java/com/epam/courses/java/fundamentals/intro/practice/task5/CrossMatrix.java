@@ -9,8 +9,11 @@ public class CrossMatrix {
   }
 
   public boolean get(int x, int y) {
-    //todo: реализовать!
-    return false;
+     if ((y == x) || (y == (size-1)-x))
+       return true;  else
+      return false;
+
+
   }
 
   @Override
