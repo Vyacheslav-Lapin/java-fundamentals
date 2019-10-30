@@ -58,14 +58,14 @@ public class NotePad {
    * @return true if the the number of the note is less than the size of the array, so it is still possible to add a note, or calls the tryToGrow() method.
    */
   private boolean isPossibleToAdd() {
-    return index < notes.length || tryToGrow();
+    return index < notes.length || hasGrown();
   }
 
   /**
    * Causes the array to increase its capacity, returns true or false depending on whether the operation was successful.
    * @return true if the array has increased its capacity, false otherwise
    */
-  private boolean tryToGrow() {
+  private boolean hasGrown() {
 
     int capacity = notes.length << 1; // * 2 with overflow insurance
 
