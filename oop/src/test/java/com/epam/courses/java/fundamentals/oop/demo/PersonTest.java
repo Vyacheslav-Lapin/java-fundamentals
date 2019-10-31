@@ -19,6 +19,5 @@ class PersonTest {
     assertThat(vasya.getAge())
         .isEqualTo(16);
 
-//    Employee.builder().
   }
 }

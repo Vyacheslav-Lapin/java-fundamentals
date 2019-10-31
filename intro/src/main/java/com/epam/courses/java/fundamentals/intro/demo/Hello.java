@@ -11,6 +11,7 @@ public class Hello {
   public void main(String... __) {
     //noinspection unused
     val s = "world!";
-    log.info("Hello, {}", s); // log.info("Hello, $s");
+    log.info("Hello, {}", s);
+    log.info("Hello, $s");
   }
 }

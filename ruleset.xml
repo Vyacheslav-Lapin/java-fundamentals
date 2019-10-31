@@ -17,7 +17,7 @@
           artifactId="junit-jupiter-params"
           comparisonMethod="maven">
       <ignoreVersions>
-        <ignoreVersion type="regex">5\.[54]\..+</ignoreVersion>
+        <ignoreVersion type="regex">5\.[4-9]\..+</ignoreVersion>
         <!--<ignoreVersion>5.5.2</ignoreVersion>-->
         <!--<ignoreVersion>5.5.1</ignoreVersion>-->
         <!--<ignoreVersion>5.5.0</ignoreVersion>-->
