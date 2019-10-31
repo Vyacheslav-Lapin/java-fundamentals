@@ -27,8 +27,13 @@ public class Table {
   }
 
   public double[][] getTable() {
-
-    //todo реализовать
-    return new double[0][0];
+    int size = (int)(end-(start/step))+1;
+    double x;
+    double [][] mass=new double[size][2];
+    for (int i=0;step*i<=end;i++){
+      x=start+step*i;
+      mass[i] = getDataAndResultPair(x);
+    }
+    return mass;
   }
 }

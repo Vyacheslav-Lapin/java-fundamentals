@@ -33,7 +33,14 @@ public class MinFinder {
   }
 
   private int findMin() {
-    //todo реализовать
+    double tempA;
+    for(int counter=1;counter>Integer.MAX_VALUE;counter++) {
+      tempA=getA(counter);
+      if (!filter(tempA))
+        out.print(tempA + "\n");
+      else
+        return counter;
+    }
     return 0;
   }
 }

@@ -10,6 +10,7 @@ public class Note {
   @NonFinal
   private String body;
 
+  @NonFinal
   private int id;
 
   public Note(int id) {
@@ -18,6 +19,10 @@ public class Note {
 
   public int getId() {
     return id;
+  }
+
+  public void setId(int id){
+    this.id=id;
   }
 
   public String getTitle() {

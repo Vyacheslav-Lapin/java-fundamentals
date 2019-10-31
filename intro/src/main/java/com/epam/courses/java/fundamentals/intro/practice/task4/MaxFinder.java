@@ -12,7 +12,12 @@ public class MaxFinder {
   }
 
   public double getMaximum() {
-    //todo реализовать!
-    return 0;
+    if (as.length==1)
+      new RuntimeException("Array is too small");
+    double max=as[0]+as[1];
+    for(int i=1;i<as.length-1;i++)
+      if (as[i]+as[i+1]>max)
+        max=as[i]+as[i+1];
+    return max;
   }
 }
