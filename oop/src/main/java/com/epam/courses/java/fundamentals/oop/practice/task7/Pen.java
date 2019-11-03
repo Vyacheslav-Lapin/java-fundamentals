@@ -36,5 +36,4 @@ public class Pen {
         ", type='" + type + '\'' +
         '}';
   }
-  
 }

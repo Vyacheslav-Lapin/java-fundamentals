@@ -2,3 +2,19 @@
 
 /**/target/
 /**/pom.xml.versionsBackup
+.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_10_1.xml
+.idea/libraries/Maven__net_bytebuddy_byte_buddy_agent_1_10_1.xml
+.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_0.xml
+.idea/libraries/Maven__org_assertj_assertj_core_3_13_2.xml
+.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_5_2.xml
+.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_5_2.xml
+.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_5_2.xml
+.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_5_2.xml
+.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_5_2.xml
+.idea/libraries/Maven__org_mockito_mockito_core_3_1_0.xml
+.idea/libraries/Maven__org_mockito_mockito_junit_jupiter_3_1_0.xml
+.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml
+.idea/libraries/Maven__systems_manifold_manifold_all_2019_1_23.xml
+io/io.iml
+strings/strings.iml
+threads/threads.iml
