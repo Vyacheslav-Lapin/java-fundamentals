@@ -13,9 +13,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="13">
-      <module name="intro" target="13" />
+      <module name="intro" target="12" />
       <module name="java-fundamentals" target="13" />
-      <module name="oop" target="13" />
+      <module name="oop" target="12" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
