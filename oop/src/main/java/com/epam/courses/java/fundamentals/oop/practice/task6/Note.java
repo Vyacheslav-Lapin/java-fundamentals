@@ -3,7 +3,7 @@ package com.epam.courses.java.fundamentals.oop.practice.task6;
 import lombok.Data;
 import lombok.experimental.NonFinal;
 
-@Data
+
 public class Note {
 
   @NonFinal
@@ -13,7 +13,7 @@ public class Note {
   private String body;
 
   private int id;
- /*
+
   public Note( int id){
     this.id = id;
   }
@@ -57,5 +57,4 @@ public class Note {
         ", id=" + id +
         '}';
   }
-  */
 }

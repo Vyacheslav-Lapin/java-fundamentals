@@ -14,11 +14,11 @@
         <module name="intro" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="13">
-      <module name="intro" target="12" />
+    <bytecodeTargetLevel>
+      <module name="intro" target="13" />
       <module name="io" target="13" />
       <module name="java-fundamentals" target="13" />
-      <module name="oop" target="12" />
+      <module name="oop" target="13" />
       <module name="strings" target="13" />
       <module name="threads" target="13" />
     </bytecodeTargetLevel>
@@ -26,7 +26,6 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="intro" options="--enable-preview" />
-      <module name="io" options="--enable-preview" />
       <module name="oop" options="--enable-preview" />
       <module name="strings" options="--enable-preview" />
       <module name="threads" options="--enable-preview" />
