@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.epam.courses.java.fundamentals</groupId>
@@ -12,7 +11,9 @@
   <modules>
     <module>intro</module>
     <module>oop</module>
-  </modules>
+    <module>strings</module>
+    <module>io</module>
+  <module>threads</module></modules>
 
   <developers>
     <developer>
@@ -27,26 +28,26 @@
     <java.version>13</java.version>
     <revision>0.0.1-SNAPSHOT</revision>
     <minimal.maven.version>3.6.1</minimal.maven.version>
+    <exec.mainClass>com.epam.courses.java.fundamentals.intro.Hello</exec.mainClass>
+    <jar.name>${project.name}-${revision}</jar.name>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <!--endregion-->
 
     <!--region BOMs -->
-    <spring-boot.version>2.1.8.RELEASE</spring-boot.version>
+    <spring-boot.version>2.2.0.RELEASE</spring-boot.version>
     <!--endregion-->
 
     <!--region Libs -->
-    <lombok.version>1.18.10</lombok.version>
-    <manifold-version>2019.1.14</manifold-version>
+    <manifold-version>2019.1.23</manifold-version>
     <vavr.version>1.0.0-alpha-3</vavr.version>
+    <lombok.version>1.18.10</lombok.version>
 
-    <checker.version>2.11.0</checker.version>
+    <checker.version>2.11.1</checker.version>
     <annotations.version>17.0.0</annotations.version>
     <jcip-annotations.version>1.0</jcip-annotations.version>
     <spotbugs.version>4.0.0-beta4</spotbugs.version>
     <error_prone_annotations.version>2.3.3</error_prone_annotations.version>
-
-    <junit-jupiter.version>5.3.2</junit-jupiter.version>
     <!--endregion-->
 
     <!--region Plugins-->
@@ -57,13 +58,17 @@
     <maven.compiler.failOnError>false</maven.compiler.failOnError>
 
     <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
-    <!--<maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>-->
-    <!--<argLine>&#45;&#45;enable-preview -Xplugin:Manifold</argLine>-->
-    <argLine>--enable-preview</argLine>
+    <argLine>--enable-preview -Xplugin:Manifold</argLine>
+    <!--<argLine>&#45;&#45;enable-preview</argLine>-->
+
+    <maven-source-plugin.version>3.1.0</maven-source-plugin.version>
+    <origSourceDir>${project.basedir}/src/main/java</origSourceDir>
+    <sourceDir>${origSourceDir}</sourceDir>
+    <delombokedSourceDir>${project.build.directory}/delombok</delombokedSourceDir>
 
     <maven-assembly-plugin.version>3.1.1</maven-assembly-plugin.version>
-    <maven-assembly-plugin.descriptorRef>jar-with-dependencies</maven-assembly-plugin.descriptorRef>
-    <maven-assembly-plugin.mainClass>ru.vlapin.courses.java.fundamentals.intro.Hello</maven-assembly-plugin.mainClass>
+    <maven-assembly-plugin.descriptorSuffix>jar-with-dependencies</maven-assembly-plugin.descriptorSuffix>
+    <maven-assembly-plugin.mainClass>${exec.mainClass}</maven-assembly-plugin.mainClass>
     <maven-enforcer-plugin.version>3.0.0-M2</maven-enforcer-plugin.version>
     <assembly.skipAssembly>true</assembly.skipAssembly>
 
@@ -81,9 +86,21 @@
     <lombok.addOutputDirectory>false</lombok.addOutputDirectory>
     <lombok.sourceDirectory>${project.basedir}/src/main/java</lombok.sourceDirectory>
     <lombok.testSourceDirectory>${project.basedir}/src/test/java</lombok.testSourceDirectory>
+
+    <exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
+    <exec.executable>java</exec.executable>
     <!--endregion-->
 
   </properties>
+
+  <profiles>
+    <profile>
+      <id>build</id>
+      <properties>
+        <sourceDir>${delombokedSourceDir}</sourceDir>
+      </properties>
+    </profile>
+  </profiles>
 
   <dependencyManagement>
     <dependencies>
@@ -97,19 +114,10 @@
       </dependency>
 
       <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-        <version>${lombok.version}</version>
-        <scope>provided</scope>
-        <optional>true</optional>
-      </dependency>
-      <!--region systems.manifold:manifold-all:${manifold-version}-->
-      <!--<dependency>-->
-      <!--  <groupId>systems.manifold</groupId>-->
-      <!--  <artifactId>manifold-all</artifactId>-->
-      <!--  <version>${manifold-version}</version>-->
-      <!-- </dependency>-->
-      <!--endregion </dependency>-->
+        <groupId>systems.manifold</groupId>
+        <artifactId>manifold-all</artifactId>
+        <version>${manifold-version}</version>
+       </dependency>
       <dependency>
         <groupId>io.vavr</groupId>
         <artifactId>vavr</artifactId>
@@ -149,21 +157,6 @@
       </dependency>
       <!--endregion-->
 
-      <!--region Test (JUnit-Jupiter)-->
-      <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-params</artifactId>
-        <version>${junit-jupiter.version}</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-engine</artifactId>
-        <version>${junit-jupiter.version}</version>
-        <scope>test</scope>
-      </dependency>
-      <!--endregion-->
-
     </dependencies>
   </dependencyManagement>
 
@@ -172,13 +165,16 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
+      <scope>provided</scope>
+      <optional>true</optional>
     </dependency>
     <!--region systems.manifold:manifold-all -->
-    <!--<dependency> -->
-    <!--  <groupId>systems.manifold</groupId>-->
-    <!--  <artifactId>manifold-all</artifactId>-->
-    <!--</dependency>-->
-    <!--endregion </dependency>-->
+    <dependency>
+      <groupId>systems.manifold</groupId>
+      <artifactId>manifold-all</artifactId>
+    </dependency>
+    <!--endregion-->
+
     <dependency>
       <groupId>io.vavr</groupId>
       <artifactId>vavr</artifactId>
@@ -248,24 +244,24 @@
           <configuration>
             <compilerArgs>
               <arg>--enable-preview</arg>
-              <arg>-Xlint:preview</arg>
+              <!--<arg>-Xlint:preview</arg>-->
               <!--<arg>-Xplugin:Manifold</arg>-->
             </compilerArgs>
-            <annotationProcessorPaths>
-              <!--<processorPath>-->
+            <!--<annotationProcessorPaths>-->
+              <!--<path>-->
               <!--  <groupId>systems.manifold</groupId>-->
               <!--  <artifactId>manifold-all</artifactId>-->
               <!--  <version>${manifold-version}</version>-->
-              <!--</processorPath>-->
-              <processorPath>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
-              </processorPath>
-            </annotationProcessorPaths>
-            <annotationProcessors>
-              <annotationProcessor>lombok.launch.AnnotationProcessorHider$AnnotationProcessor</annotationProcessor>
-            </annotationProcessors>
+              <!--</path>-->
+              <!--<path>-->
+              <!--  <groupId>org.projectlombok</groupId>-->
+              <!--  <artifactId>lombok</artifactId>-->
+              <!--  <version>${lombok.version}</version>-->
+              <!--</path>-->
+            <!--</annotationProcessorPaths>-->
+            <!--<annotationProcessors>-->
+            <!--  <annotationProcessor>lombok.launch.AnnotationProcessorHider$AnnotationProcessor</annotationProcessor>-->
+            <!--</annotationProcessors>-->
           </configuration>
         </plugin>
         <plugin>
@@ -283,7 +279,7 @@
               </manifest>
             </archive>
             <descriptorRefs>
-              <descriptorRef>${maven-assembly-plugin.descriptorRef}</descriptorRef>
+              <descriptorRef>${maven-assembly-plugin.descriptorSuffix}</descriptorRef>
             </descriptorRefs>
           </configuration>
           <executions>
@@ -292,6 +288,18 @@
               <phase>package</phase>
               <goals>
                 <goal>single</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>${maven-source-plugin.version}</version>
+          <executions>
+            <execution>
+              <id>attach-sources</id>
+              <goals>
+                <goal>jar</goal>
               </goals>
             </execution>
           </executions>
@@ -467,6 +475,18 @@
             </execution>
           </executions>
         </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>${exec-maven-plugin.version}</version>
+          <configuration>
+            <arguments>
+              <argument>-jar</argument>
+              <argument>--enable-preview</argument>
+              <argument>target/${jar.name}-${maven-assembly-plugin.descriptorSuffix}.jar</argument>
+            </arguments>
+          </configuration>
+        </plugin>
 
       </plugins>
     </pluginManagement>
@@ -476,6 +496,10 @@
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
       </plugin>
+      <plugin>
+        <artifactId>maven-source-plugin</artifactId>
+      </plugin>
+
       <plugin>
         <artifactId>maven-enforcer-plugin</artifactId>
       </plugin>

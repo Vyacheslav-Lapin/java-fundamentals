@@ -3,7 +3,6 @@ package com.epam.courses.java.fundamentals.intro.practice.task3;
 import static java.lang.System.out;
 
 import java.io.PrintStream;
-import java.util.Locale;
 
 public class TablePrinter {
 
@@ -22,7 +21,8 @@ public class TablePrinter {
     printTop(quantity, out);
 
     for (double[] functionResultPair : table.getTable())
-      out.printf(Locale.US, "|% 3.9f|% 3.9f|\n", functionResultPair[0], functionResultPair[1]);
+      out.printf("|% 3.9f|% 3.9f|\n", functionResultPair[0], functionResultPair[1]);
+
     printBottom(quantity, out);
   }
 
