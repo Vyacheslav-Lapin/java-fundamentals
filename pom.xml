@@ -39,11 +39,11 @@
     <!--endregion-->
 
     <!--region Libs -->
-    <manifold-version>2019.1.23</manifold-version>
+    <manifold-version>2019.1.26</manifold-version>
     <vavr.version>1.0.0-alpha-3</vavr.version>
     <lombok.version>1.18.10</lombok.version>
 
-    <checker.version>2.11.1</checker.version>
+    <checker.version>3.0.0</checker.version>
     <annotations.version>17.0.0</annotations.version>
     <jcip-annotations.version>1.0</jcip-annotations.version>
     <spotbugs.version>4.0.0-beta4</spotbugs.version>

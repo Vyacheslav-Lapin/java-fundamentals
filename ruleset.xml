@@ -12,27 +12,6 @@
         <ignoreVersion type="regex">3.*</ignoreVersion>
       </ignoreVersions>
     </rule>
-
-    <rule groupId="org.junit.jupiter"
-          artifactId="junit-jupiter-params"
-          comparisonMethod="maven">
-      <ignoreVersions>
-        <ignoreVersion type="regex">5\.[4-9]\..+</ignoreVersion>
-        <!--<ignoreVersion>5.5.2</ignoreVersion>-->
-        <!--<ignoreVersion>5.5.1</ignoreVersion>-->
-        <!--<ignoreVersion>5.5.0</ignoreVersion>-->
-        <!--<ignoreVersion>5.5.0-RC2</ignoreVersion>-->
-        <!--<ignoreVersion>5.5.0-RC1</ignoreVersion>-->
-        <!--<ignoreVersion>5.4.2</ignoreVersion>-->
-        <!--<ignoreVersion>5.5.0-M1</ignoreVersion>-->
-        <!--<ignoreVersion>5.4.1</ignoreVersion>-->
-        <!--<ignoreVersion>5.4.0</ignoreVersion>-->
-        <!--<ignoreVersion>5.4.0-RC2</ignoreVersion>-->
-        <!--<ignoreVersion>5.4.0-RC1</ignoreVersion>-->
-        <!--<ignoreVersion>5.4.0-M1</ignoreVersion>-->
-      </ignoreVersions>
-    </rule>
-
   </rules>
 
   <!-- <ignoreVersions> -->
