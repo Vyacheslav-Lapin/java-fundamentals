@@ -1,4 +1,4 @@
-package com.epam.courses.java.fundamentals.oop.practice.task6;
+package com.epam.courses.java.fundamentals.oop.practice.task1;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -71,6 +71,7 @@ public class NotePad {
     notes[id] = note;
   }
 
+/* For Test
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
     NotePad np = new NotePad();
@@ -101,4 +102,6 @@ public class NotePad {
       System.out.println(i + "  " + np.getNote(i));
     }
   }
+
+ */
 }

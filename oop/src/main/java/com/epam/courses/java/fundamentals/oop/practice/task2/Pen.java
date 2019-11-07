@@ -1,16 +1,18 @@
-package com.epam.courses.java.fundamentals.oop.practice.task7;
+package com.epam.courses.java.fundamentals.oop.practice.task2;
 
 import java.util.Objects;
 
 public class Pen {
   private Color colorInk;
-  private String mark;
-  private String type;
+  private Type type;
+  private Mark mark;
+  private Integer price;
 
-  public Pen(Color colorInk, String mark, String type) {
+  public Pen(Color colorInk, Type type, Mark mark, Integer price) {
     this.colorInk = colorInk;
-    this.mark = mark;
     this.type = type;
+    this.mark = mark;
+    this.price = price;
   }
 
   @Override
@@ -19,21 +21,23 @@ public class Pen {
     if (o == null || getClass() != o.getClass()) return false;
     Pen pen = (Pen) o;
     return colorInk == pen.colorInk &&
+        type == pen.type &&
         Objects.equals(mark, pen.mark) &&
-        Objects.equals(type, pen.type);
+        Objects.equals(price, pen.price);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(colorInk, mark, type);
+    return Objects.hash(colorInk, type, mark, price);
   }
 
   @Override
   public String toString() {
     return "Pen{" +
         "colorInk=" + colorInk +
+        ", type=" + type +
         ", mark='" + mark + '\'' +
-        ", type='" + type + '\'' +
+        ", price=" + price +
         '}';
   }
 }
