@@ -30,10 +30,10 @@ public class Table {
 
     //todo реализовать
     double[][] table = new double[ (int) ((end - start) / step) + 1 ][2];
-
-    for (int i = (int)start; i <= (int)end; i += (int)step) {
-      table[i][0] = i;
-      table[i][1] = function(table[i][0]);
+    int i = 0;
+    for (double iterator = start ; iterator <= end; iterator += step) {
+      table[i] = getDataAndResultPair(iterator);
+      i++;
     }
 
     return table;

@@ -32,8 +32,16 @@ public class TablePrinter {
   }
 
   private void printTop(int quantity, PrintStream out) {
+    /*
     out.println("+-------------------------+"); // TODO: Сделать ширину каждого заголовка равной quantity
     out.println("|     x     |     f(x)    |");
+     out.println("+-------------------------+");
+    */
+
     out.println("+-------------------------+");
+    String format = "|%1$-" + quantity + "s|%2$-" + quantity + "s|\n";
+    System.out.format(format, "x","f(x)");
+    out.println("+-------------------------+");
+
   }
 }

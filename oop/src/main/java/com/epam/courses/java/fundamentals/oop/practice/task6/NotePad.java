@@ -48,6 +48,32 @@ public class NotePad {
     return true;
   }
 
+  public void deleteNote(int id) {
+    if (id < 0 || id > notes.length - 1)
+      System.out.print("You wrote wrong index.");
+
+    notes[id] = null;
+    swapNodes(id);
+  }
+
+  public void deleteNote(String title) {
+    for (int i = 0; i < notes.length; i++)
+      if (notes[i] != null) {
+        if (notes[i].getTitle().equals(title)) {
+          notes[i] = null;
+          swapNodes(i);
+        }
+      }
+  }
+
+  public void swapNodes(int id){
+    for (int i = id; i < notes.length - 1; i++)
+      if (notes[i] == null && notes[i + 1] != null) {
+        notes[i] = notes[i + 1];
+        notes[i + 1] = null;
+      }
+  }
+
   public Note getNote(int id) {
     assert id >= 0 && id < index;
     return notes[id];
@@ -57,27 +83,7 @@ public class NotePad {
     return Arrays.copyOf(notes, index); // better then clone for that case: result haven`t null`s at his tail
   }
 
-  public boolean deleteNote(int id) {
-    if (id >= 0 && id < index) {
 
-      if (notes[id] == null)
-        return false;
-
-      Note[] newNotes = new Note[notes.length - 1];
-
-      for (int i = 0; i < notes.length; i++) {
-        if (i == id)
-          continue;
-
-        newNotes[i] = notes[i];
-      }
-
-      notes = newNotes;
-      return true;
-    }
-
-    return false;
-  }
 
   public boolean updateNote(int id, String title, String body) {
     if (id >= 0 && id < index) {
@@ -88,7 +94,7 @@ public class NotePad {
     return false;
   }
 
-  public boolean updateNote(@NotNull Note note) {
+  public boolean updateNote(Note note) {
     if (note.getId() >= 0 && note.getId() < index) {
       notes[note.getId()] = note;
 
@@ -96,5 +102,17 @@ public class NotePad {
     }
 
     return false;
+  }
+
+  public void updateTitle(int id , String newTitle){
+    if(id < 0 || id > notes.length)
+      System.out.print("Element not found. Incorrect index!");
+    notes[id].setTitle(newTitle);
+  }
+
+  public void updateBody(int id, String newBody){
+    if(id < 0 || id > notes.length)
+      System.out.print("Element not found. Incorrect index!");
+    notes[id].setBody(newBody);
   }
 }
