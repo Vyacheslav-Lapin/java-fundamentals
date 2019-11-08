@@ -4,6 +4,11 @@ import java.util.Arrays;
 import lombok.experimental.NonFinal;
 import org.jetbrains.annotations.Contract;
 
+/**
+ * The class NotePadImpl is used for storing array of notes and processing them
+ *
+ * @author Irina Panova
+ */
 public class NotePadImpl implements NotePad {
 
   private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;
@@ -25,12 +30,19 @@ public class NotePadImpl implements NotePad {
     this(16);
   }
 
+  /**
+   * add notes is array according to their sequence
+   *
+   * @param title
+   * @param body
+   * @return object of a Note class
+   */
   @Override
   public Note addNote(String title, String body) {
 
     var note = new Note(index++)
-                   .setTitle(title)
-                   .setBody(body);
+        .setTitle(title)
+        .setBody(body);
 
     if (isPossibleToAdd())
       return notes[note.getId()] = note;
@@ -58,6 +70,12 @@ public class NotePadImpl implements NotePad {
     return true;
   }
 
+  /**
+   * check if the the particular record exists
+   *
+   * @param id
+   * @return object of a Note class according its id
+   */
   @Override
   public Note getNote(int id) {
     if (id < 0 || id >= index)
@@ -71,8 +89,42 @@ public class NotePadImpl implements NotePad {
     return Arrays.copyOf(notes, index); // better then clone for that case: result haven`t null`s at his tail
   }
 
+  /**
+   * remove note from array and shift the elements
+   *
+   * @param id
+   * @return null
+   */
   @Override
   public Note remove(int id) {
+    getNote(id);
+
+    for (int i = 0; i <= index; i++) {
+      if (notes[i].getId() == id) {
+        for (int j = i; j <= index - 1; j++)
+          notes[j] = notes[j+1];
+        break;
+      }
+    }
+
     return null;
+  }
+
+  /**
+   * edit note title and body according to its id
+   *
+   * @param id
+   * @param title
+   * @param body
+   * @return modified object of a Note class
+   */
+  @Override
+  public Note editNote(int id, String title, String body) {
+    getNote(id);
+    return notes[id].setTitle(title).setBody(body);
+  }
+
+  public int getIndex() {
+    return index - 1;
   }
 }
