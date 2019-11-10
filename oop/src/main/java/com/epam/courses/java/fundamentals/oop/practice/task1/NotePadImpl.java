@@ -97,17 +97,10 @@ public class NotePadImpl implements NotePad {
    */
   @Override
   public Note remove(int id) {
-    getNote(id);
+    if (id < 0 || id >= index)
+      throw new AssertionError();
 
-    for (int i = 0; i <= index; i++) {
-      if (notes[i].getId() == id) {
-        for (int j = i; j <= index - 1; j++)
-          notes[j] = notes[j+1];
-        break;
-      }
-    }
-
-    return null;
+    return notes[id] = null;
   }
 
   /**
@@ -120,8 +113,7 @@ public class NotePadImpl implements NotePad {
    */
   @Override
   public Note editNote(int id, String title, String body) {
-    getNote(id);
-    return notes[id].setTitle(title).setBody(body);
+    return getNote(id).setTitle(title).setBody(body);
   }
 
   public int getIndex() {
