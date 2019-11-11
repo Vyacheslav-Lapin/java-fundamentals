@@ -1,15 +1,20 @@
 package com.epam.courses.java.fundamentals.oop.practice.task3;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class Employee {
+  private int id;
   private String name;
   private String position;
 
-  public Employee(String name, String position) {
+  public Employee(int id, String name, String position) {
+    this.id = id;
     this.name = name;
     this.position = position;
+  }
+
+  public int getId() {
+    return id;
   }
 
   public String getName() {
@@ -37,9 +42,10 @@ public class Employee {
 
   @Override
   public String toString() {
-    return "Employee{" +
+    return "Employee :" +
+        "id=" + id +
         ", name='" + name + '\'' +
         ", position='" + position + '\'' +
-        '}';
+        '}' + "\n";
   }
 }
