@@ -1,26 +1,0 @@
-
-Esquid:S4274"(Replace this assert with a proper check.(:8 ¸ı„ã-
-Ksquid:S4274:"(Replace this assert with a proper check.(ºÂ€Åşÿÿÿÿ8 ¸ı„ã-
-hsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(şÅ¤s8 ¸ı„ã-
-V
-squid:S106_"9Replace this use of System.out or System.err by a logger.(ÔÂİÜ8 ¸ı„ã-
-dsquid:S1192M"FDefine a constant instead of duplicating this literal "Hello" 4 times.(ìÖê…8 ¸ı„ã-
-j$squid:AssignmentInSubExpressionCheck".Extract the assignment out of this expression.(Á€¦şüÿÿÿÿ8 ¸ı„ã-
-V
-squid:S106T"9Replace this use of System.out or System.err by a logger.(»Ç¡«8 ¸ı„ã-
-V
-squid:S106b"9Replace this use of System.out or System.err by a logger.(»Ç¡«8 ¸ı„ã-
-Tsquid:S52611"1Add explicit curly braces to avoid dangling else.(„¶áìøÿÿÿÿ8 ¸ı„ã-
-V
-squid:S106`"9Replace this use of System.out or System.err by a logger.(ÔÂİÜ8 ¸ı„ã-
-[
-squid:S106e"9Replace this use of System.out or System.err by a logger.(Õ ©™ıÿÿÿÿ8 ¸ı„ã-
-zsquid:S1192T"\Define a constant instead of duplicating this literal "Ğ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ğ¸Ğ½Ğ´ĞµĞºÑ" 3 times.(»Ç¡«8 ¸ı„ã-
-[
-squid:S106W"9Replace this use of System.out or System.err by a logger.(Õ ©™ıÿÿÿÿ8 ¸ı„ã-
-V
-squid:S106Y"9Replace this use of System.out or System.err by a logger.(»Ç¡«8 ¸ı„ã-
-[
-squid:S106R"9Replace this use of System.out or System.err by a logger.(Õ ©™ıÿÿÿÿ8 ¸ı„ã-
-[
-squid:S106\"9Replace this use of System.out or System.err by a logger.(Õ ©™ıÿÿÿÿ8 ¸ı„ã-
