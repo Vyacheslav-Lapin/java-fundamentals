@@ -91,7 +91,7 @@ OS name: "mac os x", version: "10.14.6", arch: "x86_64", family: "mac"
 ### Install
 #### On Mac
 ```sh
-$ brew install mvn
+$ brew install maven
 ```  
 #### On Debian Linux
 ```sh
