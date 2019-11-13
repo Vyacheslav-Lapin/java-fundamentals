@@ -26,7 +26,7 @@ public class NotePad {
   public Note addNote(String title, String body) {
     Note note = new Note(index++).setTitle(title).setBody(body);
     return isPossibleToAdd() ? notes[note.getId()] = note :
-               null; // throw new RuntimeException("It`s impossible to add the Note - array already have a maximum size!");
+        null; // throw new RuntimeException("It`s impossible to add the Note - array already have a maximum size!");
   }
 
   private boolean isPossibleToAdd() {
