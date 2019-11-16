@@ -1,11 +1,14 @@
 package com.epam.courses.java.fundamentals.io.practice.task1;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-class ByteReader {
+public class SymbolReader {
 
   private static long count;
   private static final List<String> keywords = List.of("abstract", "assert", "boolean", "break", "byte",
@@ -17,38 +20,42 @@ class ByteReader {
   private static List<String> keywordsToOutput = new ArrayList<>();
 
   private static String[] readFile() throws IOException {
-    File file = new File("C:\\Users\\Алексей\\IdeaProjects\\input.txt");
-    try (InputStream is = new FileInputStream(file);
-        InputStreamReader isr = new InputStreamReader(is)) {
-      char[] charArray = new char[(int) file.length()];
-      isr.read(charArray);
-      return new String(charArray).split("[\\s+{();]");
+    File file  = new File("C:\\Users\\Алексей\\IdeaProjects\\input.txt");
+    char[] chars = new char[(int) file.length()];
+    try (FileReader fr = new FileReader(file)) {
+      while ((fr.read()) != -1) {
+        fr.read(chars);
+      }
     }
+    return new String(chars).split("[\\s+{();]");
   }
 
   private static void filter() throws IOException {
     String[] list = readFile();
     count = Arrays.stream(list)
-        .filter(ByteReader::isKeyword)
+        .filter(SymbolReader::isKeyword)
         .count();
     Arrays.stream(list)
-        .filter(ByteReader::isKeyword)
+        .filter(SymbolReader::isKeyword)
         .forEach(keywordsToOutput::add);
-  }
-
-  private static void writeToFile() throws IOException {
-    filter();
-    File file = new File("C:\\Users\\Алексей\\IdeaProjects\\output.txt");
-    try(OutputStream os = new FileOutputStream(file);
-    OutputStreamWriter osw = new OutputStreamWriter(os)) {
-      osw.write((int)count);
-      for (String s : keywordsToOutput) {
-        osw.write(s + ' ');
-      }
-    }
   }
 
   private static boolean isKeyword(String word) {
     return keywords.contains(word);
+  }
+
+  private static void writeFile() throws IOException {
+    filter();
+    File file = new File("C:\\Users\\Алексей\\IdeaProjects\\output.txt");
+    try (FileWriter fw = new FileWriter(file)) {
+      fw.write(String.valueOf(count) + " ");
+      for (String s : keywordsToOutput) {
+        fw.write(s + " \n");
+      }
+    }
+  }
+
+  public static void main(String[] args) throws IOException {
+    writeFile();
   }
 }
