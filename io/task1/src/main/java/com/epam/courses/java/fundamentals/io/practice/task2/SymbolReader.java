@@ -1,4 +1,4 @@
-package com.epam.courses.java.fundamentals.io.practice.task1;
+package com.epam.courses.java.fundamentals.io.practice.task2;
 
 import java.io.File;
 import java.io.FileReader;
@@ -53,9 +53,5 @@ public class SymbolReader {
         fw.write(s + " \n");
       }
     }
-  }
-
-  public static void main(String[] args) throws IOException {
-    writeFile();
   }
 }
