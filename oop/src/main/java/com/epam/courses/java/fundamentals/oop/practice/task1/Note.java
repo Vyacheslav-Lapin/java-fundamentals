@@ -6,7 +6,7 @@ import lombok.experimental.NonFinal;
 /**Task1 has been committed together with Intro homework
  * */
 
-@Data
+//@Data
 public class Note {
 
   @NonFinal
@@ -15,5 +15,6 @@ public class Note {
   @NonFinal
   String body;
 
+  @NonFinal
   int id;
 }
