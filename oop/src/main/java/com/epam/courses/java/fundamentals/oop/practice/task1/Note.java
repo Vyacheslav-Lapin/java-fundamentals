@@ -3,7 +3,6 @@ package com.epam.courses.java.fundamentals.oop.practice.task1;
 import lombok.Data;
 import lombok.experimental.NonFinal;
 
-@Data
 public class Note {
 
   @NonFinal
@@ -13,4 +12,16 @@ public class Note {
   String body;
 
   int id;
+
+  public String getTitle() {
+    return title;
+  }
+
+  public String getBody() {
+    return body;
+  }
+
+  public int getId() {
+    return id;
+  }
 }
