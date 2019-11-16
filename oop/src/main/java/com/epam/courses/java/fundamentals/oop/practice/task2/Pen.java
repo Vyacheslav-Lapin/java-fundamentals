@@ -1,28 +1,37 @@
 package com.epam.courses.java.fundamentals.oop.practice.task2;
 
+import lombok.experimental.NonFinal;
 import org.jetbrains.annotations.Contract;
 
-public class Pen {
-
-  //todo 20.10.2019: fields
-
+class Pen {
+  @NonFinal
+  String brand;
+  @NonFinal
+  String colour;
+  @NonFinal
+  String inkType;
+  @NonFinal
+  long price;
 
   @Override
   public int hashCode() {
-    //todo 20.10.2019: realize!
-    return 0;
+    return (int) (31 + ((brand == null) ? 0 : brand.hashCode()) + ((colour == null) ? 0 : colour.hashCode()) +
+        ((inkType == null) ? 0 : inkType.hashCode()) + price * 17);
   }
 
   @Override
   @Contract(value = "null -> false", pure = true)
   public boolean equals(Object obj) {
-    //todo 20.10.2019: realize!
-    return false;
+    if (this == obj) return true;
+    if (obj == null || obj.getClass() != this.getClass()){
+      return false;
+    }
+    Pen pen = (Pen) obj;
+    return (price == pen.price) && brand.equals(pen.brand) && colour.equals(pen.colour) && inkType.equals(pen.inkType);
   }
 
   @Override
   public String toString() {
-    //todo 20.10.2019: realize!
-    return "";
+    return colour + " " + inkType + " " + brand + " pen, price = " + price;
   }
 }
