@@ -12,9 +12,7 @@ import lombok.experimental.SuperBuilder;
 //@EqualsAndHashCode
 //@AllArgsConstructor
 //@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-@Value(staticConstructor = "of")
 //@Data
-@SuperBuilder
 @NonFinal
 public class Person {
 
