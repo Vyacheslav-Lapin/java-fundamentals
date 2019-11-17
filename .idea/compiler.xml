@@ -6,14 +6,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="io" />
-        <module name="threads" />
-        <module name="strings" />
+        <module name="collections" />
         <module name="oop" />
+        <module name="strings" />
         <module name="intro" />
+        <module name="threads" />
+        <module name="io" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="collections" target="13" />
       <module name="intro" target="13" />
       <module name="io" target="13" />
       <module name="java-fundamentals" target="13" />
@@ -24,6 +26,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="collections" options="--enable-preview" />
       <module name="intro" options="--enable-preview" />
       <module name="io" options="--enable-preview" />
       <module name="oop" options="--enable-preview" />
