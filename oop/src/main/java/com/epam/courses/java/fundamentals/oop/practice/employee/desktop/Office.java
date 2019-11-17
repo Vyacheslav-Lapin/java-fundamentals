@@ -2,7 +2,6 @@ package com.epam.courses.java.fundamentals.oop.practice.employee.desktop;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.stream.Stream;
 
 public class Office {
@@ -22,19 +21,21 @@ public class Office {
 
   }
 
-  public void addStationery(int id, Stationery ... newStationeries){
+  public void addStationery(int id, Stationery... newStationeries) {
     ArrayList<Stationery> oldStationeries = empStat.get(id);
     Stream.of(newStationeries).forEach(oldStationeries::add);
   }
 
-  public ArrayList<Stationery> createStarterKit(){
+  public ArrayList<Stationery> createStarterKit() {
     ArrayList<Stationery> starterKit = new ArrayList<>();
-    starterKit.add( new BallPen());
     starterKit.add(new BallPen());
+    starterKit.add(new GelPen());
+    starterKit.add(new InkPen());
     starterKit.add(new Notebook());
     starterKit.add(new Eraser());
     starterKit.add(new Pencil());
     return starterKit;
   }
+
 
 }

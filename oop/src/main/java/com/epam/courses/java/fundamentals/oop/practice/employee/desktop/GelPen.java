@@ -5,4 +5,9 @@ public class GelPen extends Pen {
   public double price(){
     return 17;
   }
+
+  @Override
+  public String name() {
+    return "GelPen";
+  }
 }
