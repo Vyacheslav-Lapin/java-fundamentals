@@ -1,0 +1,17 @@
+
+V
+squid:S106$"9Replace this use of System.out or System.err by a logger.( œòÃ8ª¥×‚æ-
+V
+squid:S106 "9Replace this use of System.out or System.err by a logger.(ÿÆöİ8œ–ô‚æ-
+[
+squid:S106"9Replace this use of System.out or System.err by a logger.(ô„óçøÿÿÿÿ8º‘ˆ„æ-
+squid:S1319	"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(Î¼¾‰8¾ÚÔ„æ-
+V
+squid:S106"9Replace this use of System.out or System.err by a logger.(¦é¥Å8ª¥×‚æ-
+rsquid:S00100#"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œ‡åŒùÿÿÿÿ8ª¥×‚æ-
+V
+squid:S106&"9Replace this use of System.out or System.err by a logger.(ÿÆöİ8œ–ô‚æ-
+V
+squid:S106,"9Replace this use of System.out or System.err by a logger.(ÿÆöİ8ºªÿ„æ-
+rsquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ò§¥ùÿÿÿÿ8ª¥×‚æ-
+Dsquid:S1481*"&Remove this unused "s" local variable.(ãÅ¹¹8†Ï¿„æ-

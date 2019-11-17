@@ -28,6 +28,8 @@
     <java.version>13</java.version>
     <revision>0.0.1-SNAPSHOT</revision>
     <minimal.maven.version>3.6.1</minimal.maven.version>
+    <exec.mainClass>com.epam.courses.java.fundamentals.intro.Hello</exec.mainClass>
+    <jar.name>${project.name}-${revision}</jar.name>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <!--endregion-->
@@ -65,8 +67,8 @@
     <delombokedSourceDir>${project.build.directory}/delombok</delombokedSourceDir>
 
     <maven-assembly-plugin.version>3.1.1</maven-assembly-plugin.version>
-    <maven-assembly-plugin.descriptorRef>jar-with-dependencies</maven-assembly-plugin.descriptorRef>
-    <maven-assembly-plugin.mainClass>ru.vlapin.courses.java.fundamentals.intro.Hello</maven-assembly-plugin.mainClass>
+    <maven-assembly-plugin.descriptorSuffix>jar-with-dependencies</maven-assembly-plugin.descriptorSuffix>
+    <maven-assembly-plugin.mainClass>${exec.mainClass}</maven-assembly-plugin.mainClass>
     <maven-enforcer-plugin.version>3.0.0-M2</maven-enforcer-plugin.version>
     <assembly.skipAssembly>true</assembly.skipAssembly>
 
@@ -84,9 +86,21 @@
     <lombok.addOutputDirectory>false</lombok.addOutputDirectory>
     <lombok.sourceDirectory>${project.basedir}/src/main/java</lombok.sourceDirectory>
     <lombok.testSourceDirectory>${project.basedir}/src/test/java</lombok.testSourceDirectory>
+
+    <exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
+    <exec.executable>java</exec.executable>
     <!--endregion-->
 
   </properties>
+
+  <profiles>
+    <profile>
+      <id>build</id>
+      <properties>
+        <sourceDir>${delombokedSourceDir}</sourceDir>
+      </properties>
+    </profile>
+  </profiles>
 
   <dependencyManagement>
     <dependencies>
@@ -140,6 +154,21 @@
         <artifactId>error_prone_annotations</artifactId>
         <version>${error_prone_annotations.version}</version>
         <scope>provided</scope>
+      </dependency>
+      <!--endregion-->
+
+      <!--region Test (JUnit-Jupiter)-->
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-params</artifactId>
+        <version>${junit-jupiter.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>${junit-jupiter.version}</version>
+        <scope>test</scope>
       </dependency>
       <!--endregion-->
 
@@ -265,7 +294,7 @@
               </manifest>
             </archive>
             <descriptorRefs>
-              <descriptorRef>${maven-assembly-plugin.descriptorRef}</descriptorRef>
+              <descriptorRef>${maven-assembly-plugin.descriptorSuffix}</descriptorRef>
             </descriptorRefs>
           </configuration>
           <executions>
@@ -274,6 +303,18 @@
               <phase>package</phase>
               <goals>
                 <goal>single</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>${maven-source-plugin.version}</version>
+          <executions>
+            <execution>
+              <id>attach-sources</id>
+              <goals>
+                <goal>jar</goal>
               </goals>
             </execution>
           </executions>
@@ -449,6 +490,18 @@
             </execution>
           </executions>
         </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>${exec-maven-plugin.version}</version>
+          <configuration>
+            <arguments>
+              <argument>-jar</argument>
+              <argument>--enable-preview</argument>
+              <argument>target/${jar.name}-${maven-assembly-plugin.descriptorSuffix}.jar</argument>
+            </arguments>
+          </configuration>
+        </plugin>
 
       </plugins>
     </pluginManagement>
@@ -458,6 +511,10 @@
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
       </plugin>
+      <plugin>
+        <artifactId>maven-source-plugin</artifactId>
+      </plugin>
+
       <plugin>
         <artifactId>maven-enforcer-plugin</artifactId>
       </plugin>

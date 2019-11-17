@@ -1,0 +1,7 @@
+
+usquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŠÉïıùÿÿÿÿ8£ÃñÇç-
+tsquid:S3457"Q%n should be used in place of \n to produce the platform-specific line separator.(ÁËÁ±ÿÿÿÿÿ8£ÃñÇç-
+[
+squid:S106"9Replace this use of System.out or System.err by a logger.(ÁËÁ±ÿÿÿÿÿ8£ÃñÇç-
+[
+squid:S106"9Replace this use of System.out or System.err by a logger.(®¢Â¸üÿÿÿÿ8£ÃñÇç-
