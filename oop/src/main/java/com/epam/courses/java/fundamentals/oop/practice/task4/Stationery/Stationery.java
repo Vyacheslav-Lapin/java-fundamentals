@@ -13,4 +13,8 @@ public abstract class Stationery {
     this.price = price;
     this.brand = brand;
   }
+
+  public double getPrice() {
+    return price;
+  }
 }
