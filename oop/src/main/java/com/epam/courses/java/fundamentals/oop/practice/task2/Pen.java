@@ -3,6 +3,13 @@ package com.epam.courses.java.fundamentals.oop.practice.task2;
 import lombok.experimental.NonFinal;
 import org.jetbrains.annotations.Contract;
 
+/**
+ * Разработайте спецификацию и создайте класс Ручка (Pen). Определите в этом классе
+ * Методы:
+ * · equals(),
+ * · hashCode() и
+ * · toString().
+ */
 class Pen {
   @NonFinal
   String brand;
@@ -23,7 +30,7 @@ class Pen {
   @Contract(value = "null -> false", pure = true)
   public boolean equals(Object obj) {
     if (this == obj) return true;
-    if (obj == null || obj.getClass() != this.getClass()){
+    if (obj == null || obj.getClass() != this.getClass()) {
       return false;
     }
     Pen pen = (Pen) obj;
