@@ -6,4 +6,5 @@ package com.epam.courses.java.fundamentals.IO.practice.task1;
  */
 
 public class ByteReaderWriter {
+  
 }

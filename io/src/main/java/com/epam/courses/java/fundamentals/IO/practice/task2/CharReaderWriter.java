@@ -6,4 +6,5 @@ package com.epam.courses.java.fundamentals.IO.practice.task2;
  */
 
 public class CharReaderWriter {
+
 }
