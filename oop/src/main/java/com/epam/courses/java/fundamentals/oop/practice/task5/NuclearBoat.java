@@ -1,5 +1,9 @@
 package com.epam.courses.java.fundamentals.oop.practice.task5;
 
+
+import com.epam.courses.java.fundamentals.oop.practice.task6.NuclearBoatAnnotation;
+
+@NuclearBoatAnnotation(material = "iron")
 public class NuclearBoat {
   public class EngineNuclearBoat  {
     public void start() {
