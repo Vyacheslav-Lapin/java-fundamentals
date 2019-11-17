@@ -13,6 +13,7 @@ public class PrintPaper extends PapersNotes {
 
   public PrintPaper(double price, String brand) {
     super(price, brand, "A4", 500);
+    this.density = 80;
   }
 
   public PrintPaper(double price, String brand, String format, long sheets, int density) {

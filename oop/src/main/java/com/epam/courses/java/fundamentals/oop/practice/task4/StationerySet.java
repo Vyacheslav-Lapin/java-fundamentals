@@ -2,6 +2,8 @@ package com.epam.courses.java.fundamentals.oop.practice.task4;
 
 import com.epam.courses.java.fundamentals.oop.practice.task4.Stationery.Stationery;
 import lombok.experimental.NonFinal;
+import org.jetbrains.annotations.NotNull;
+
 import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -15,7 +17,7 @@ import java.util.stream.Stream;
  * Разработайте иерархию канцелярских товаров. Создайте “набор новичка”, используя созданную иерархию.
  */
 
-public class StationerySet {
+public class StationerySet{
   @NonFinal
   private ArrayList<ArrayList<Stationery>> newbySet;
 
@@ -42,27 +44,27 @@ public class StationerySet {
     }
   }
 
-  public ArrayList<Stationery> getFullNewbySet (){
+  public static ArrayList<Stationery> getFullNewbySet (){
+    StationerySet set = new StationerySet();
     ArrayList<Stationery> result = new ArrayList<>();
-    for(ArrayList<Stationery> arr: newbySet){
-      for (Stationery stat : arr) result.add(stat);
+    for(ArrayList<Stationery> arr: set.newbySet){
+      result.addAll(arr);
     }
     return result;
   }
 
-  public String printNewbySet(){
+  public static String printNewbySet(){
+    StationerySet set = new StationerySet();
     StringBuilder s = new StringBuilder();
-    for(ArrayList<Stationery> arr: newbySet){
+    for(ArrayList<Stationery> arr: set.newbySet){
       s.append(arr.get(0).getClass().getSimpleName()).
-          append(": ").
-          append(arr.size()).
-          append(" items.\n");
+          append(": ").append(arr.size()).append(" items.\n");
       for (Stationery stat : arr) s.append(stat).append(",\n");
     }
     return s.toString();
   }
 
   public static void main(String[] args) {
-    System.out.println(new StationerySet().printNewbySet());
+    System.out.println(printNewbySet());
   }
 }

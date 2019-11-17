@@ -2,6 +2,8 @@ package com.epam.courses.java.fundamentals.oop.practice.task4.Stationery;
 
 import lombok.ToString;
 import lombok.experimental.NonFinal;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 @ToString
@@ -40,4 +42,5 @@ public class Clips extends Stationery {
     set.add(new Clips(80, TYPE.STAPLES));
     return set;
   }
+
 }
