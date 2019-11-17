@@ -13,6 +13,10 @@ public class Note {
 
   int id;
 
+  public Note(int id) {
+    this.id = id;
+  }
+
   public String getTitle() {
     return title;
   }
@@ -23,5 +27,17 @@ public class Note {
 
   public int getId() {
     return id;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
+  }
+
+  public void setBody(String body) {
+    this.body = body;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 }
