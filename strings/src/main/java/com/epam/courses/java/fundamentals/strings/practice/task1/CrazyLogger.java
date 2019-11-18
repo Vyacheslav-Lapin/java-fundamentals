@@ -5,12 +5,14 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class CrazyLogger {
+
   StringBuilder stringBuilder;
   SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-YYYY : hh-mm");
 
   public CrazyLogger() {
     stringBuilder = new StringBuilder();
   }
+
   //For test
   public void addWithDate(String message) {
     Date notToday = new Date(100, Calendar.NOVEMBER, 10);
@@ -36,6 +38,7 @@ public class CrazyLogger {
       System.out.println("Message does not found");
     }
   }
+
   public void byDate(Date date) {
     System.out.println("By Date");
     String[] messages = stringBuilder.toString().split("\n");
@@ -50,6 +53,7 @@ public class CrazyLogger {
       System.out.println("Message does not found");
     }
   }
+
   public void byDateAndMessage(Date date, String message) {
     System.out.println("By Date and Message ");
     String[] messages = stringBuilder.toString().split("\n");
@@ -64,7 +68,8 @@ public class CrazyLogger {
       System.out.println("Message does not found");
     }
   }
+
   public void printCrazyLogger() {
-    System.out.print(stringBuilder);
+    System.out.println(stringBuilder);
   }
 }

@@ -1,12 +1,15 @@
 package com.epam.courses.java.fundamentals.strings.practice.task1;
 
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class Main {
-  public static void main(String[] args) {
+
+  public static void main(String[] args) throws IOException {
 
     CrazyLogger logger = new CrazyLogger();
     logger.add("Hello");
@@ -30,5 +33,6 @@ public class Main {
     logger.byMessage("Hello");
 
     logger.byDateAndMessage(notToday, "Hello");
+
   }
 }
