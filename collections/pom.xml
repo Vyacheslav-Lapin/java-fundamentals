@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.epam.courses.java.fundamentals</groupId>
+    <artifactId>java-fundamentals</artifactId>
+    <version>${revision}</version>
+  </parent>
+  <artifactId>collections</artifactId>
+  <properties>
+    <!--<maven-assembly-plugin.mainClass>ru.vlapin.courses.java.fundamentals.intro.Hello</maven-assembly-plugin.mainClass>-->
+    <!--<assembly.skipAssembly>false</assembly.skipAssembly>-->
+  </properties>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>com.epam.courses.java.fundamentals</groupId>
+      <artifactId>fp</artifactId>
+      <version>${revision}</version>
+    </dependency>
+
+  </dependencies>
+</project>

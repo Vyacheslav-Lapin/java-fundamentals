@@ -11,4 +11,14 @@
     <!--<maven-assembly-plugin.mainClass>ru.vlapin.courses.java.fundamentals.intro.Hello</maven-assembly-plugin.mainClass>-->
     <!--<assembly.skipAssembly>false</assembly.skipAssembly>-->
   </properties>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>com.epam.courses.java.fundamentals</groupId>
+      <artifactId>strings</artifactId>
+      <version>${revision}</version>
+    </dependency>
+
+  </dependencies>
 </project>

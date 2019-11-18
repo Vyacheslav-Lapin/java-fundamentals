@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.epam.courses.java.fundamentals</groupId>
@@ -13,7 +14,12 @@
     <module>oop</module>
     <module>strings</module>
     <module>io</module>
-  <module>threads</module></modules>
+    <module>exceptions</module>
+    <module>collections</module>
+    <module>threads</module>
+    <module>fp</module>
+    <module>jdbc</module>
+  </modules>
 
   <developers>
     <developer>
@@ -35,16 +41,16 @@
     <!--endregion-->
 
     <!--region BOMs -->
-    <spring-boot.version>2.2.0.RELEASE</spring-boot.version>
+    <spring-boot.version>2.2.1.RELEASE</spring-boot.version>
     <!--endregion-->
 
     <!--region Libs -->
     <manifold-version>2019.1.26</manifold-version>
-    <vavr.version>1.0.0-alpha-3</vavr.version>
+    <vavr.version>0.10.2</vavr.version>
     <lombok.version>1.18.10</lombok.version>
 
     <checker.version>3.0.0</checker.version>
-    <annotations.version>17.0.0</annotations.version>
+    <annotations.version>18.0.0</annotations.version>
     <jcip-annotations.version>1.0</jcip-annotations.version>
     <spotbugs.version>4.0.0-beta4</spotbugs.version>
     <error_prone_annotations.version>2.3.3</error_prone_annotations.version>
@@ -58,8 +64,8 @@
     <maven.compiler.failOnError>false</maven.compiler.failOnError>
 
     <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
-    <argLine>--enable-preview -Xplugin:Manifold</argLine>
-    <!--<argLine>&#45;&#45;enable-preview</argLine>-->
+    <!--<argLine>&#45;&#45;enable-preview -Xplugin:Manifold</argLine>-->
+    <argLine>--enable-preview</argLine>
 
     <maven-source-plugin.version>3.1.0</maven-source-plugin.version>
     <origSourceDir>${project.basedir}/src/main/java</origSourceDir>
@@ -81,7 +87,7 @@
     <sonar-maven-plugin.version>2.7.1</sonar-maven-plugin.version>
     <jacoco-maven-plugin.version>0.8.4</jacoco-maven-plugin.version>
 
-    <lombok-maven-plugin.version>1.18.8.1</lombok-maven-plugin.version>
+    <lombok-maven-plugin.version>${lombok.version}.0</lombok-maven-plugin.version>
     <lombok.verbose>true</lombok.verbose>
     <lombok.addOutputDirectory>false</lombok.addOutputDirectory>
     <lombok.sourceDirectory>${project.basedir}/src/main/java</lombok.sourceDirectory>
@@ -113,11 +119,11 @@
         <scope>import</scope>
       </dependency>
 
-      <dependency>
-        <groupId>systems.manifold</groupId>
-        <artifactId>manifold-all</artifactId>
-        <version>${manifold-version}</version>
-       </dependency>
+      <!--<dependency>-->
+      <!--  <groupId>systems.manifold</groupId>-->
+      <!--  <artifactId>manifold-all</artifactId>-->
+      <!--  <version>${manifold-version}</version>-->
+      <!--</dependency>-->
       <dependency>
         <groupId>io.vavr</groupId>
         <artifactId>vavr</artifactId>
@@ -169,10 +175,10 @@
       <optional>true</optional>
     </dependency>
     <!--region systems.manifold:manifold-all -->
-    <dependency>
-      <groupId>systems.manifold</groupId>
-      <artifactId>manifold-all</artifactId>
-    </dependency>
+    <!--<dependency>-->
+    <!--  <groupId>systems.manifold</groupId>-->
+    <!--  <artifactId>manifold-all</artifactId>-->
+    <!--</dependency>-->
     <!--endregion-->
 
     <dependency>
@@ -248,16 +254,16 @@
               <!--<arg>-Xplugin:Manifold</arg>-->
             </compilerArgs>
             <!--<annotationProcessorPaths>-->
-              <!--<path>-->
-              <!--  <groupId>systems.manifold</groupId>-->
-              <!--  <artifactId>manifold-all</artifactId>-->
-              <!--  <version>${manifold-version}</version>-->
-              <!--</path>-->
-              <!--<path>-->
-              <!--  <groupId>org.projectlombok</groupId>-->
-              <!--  <artifactId>lombok</artifactId>-->
-              <!--  <version>${lombok.version}</version>-->
-              <!--</path>-->
+            <!--<path>-->
+            <!--  <groupId>systems.manifold</groupId>-->
+            <!--  <artifactId>manifold-all</artifactId>-->
+            <!--  <version>${manifold-version}</version>-->
+            <!--</path>-->
+            <!--<path>-->
+            <!--  <groupId>org.projectlombok</groupId>-->
+            <!--  <artifactId>lombok</artifactId>-->
+            <!--  <version>${lombok.version}</version>-->
+            <!--</path>-->
             <!--</annotationProcessorPaths>-->
             <!--<annotationProcessors>-->
             <!--  <annotationProcessor>lombok.launch.AnnotationProcessorHider$AnnotationProcessor</annotationProcessor>-->
@@ -451,13 +457,6 @@
           <groupId>org.projectlombok</groupId>
           <artifactId>lombok-maven-plugin</artifactId>
           <version>${lombok-maven-plugin.version}</version>
-          <dependencies>
-            <dependency>
-              <groupId>org.projectlombok</groupId>
-              <artifactId>lombok</artifactId>
-              <version>${lombok.version}</version>
-            </dependency>
-          </dependencies>
           <executions>
             <execution>
               <id>delombok</id>
@@ -535,4 +534,5 @@
     </plugins>
 
   </build>
+
 </project>
