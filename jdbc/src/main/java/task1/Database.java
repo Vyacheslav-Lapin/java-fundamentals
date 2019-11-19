@@ -1,3 +1,5 @@
+package task1;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -5,7 +7,7 @@ import java.sql.Statement;
 
 public class Database {
 
-  private static final String DATABASE_URL = "jdbc:mysql://localhost/";
+  private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/users";
 
   private static final String USER = "alex";
   private static final String PASSWORD = "alex";
