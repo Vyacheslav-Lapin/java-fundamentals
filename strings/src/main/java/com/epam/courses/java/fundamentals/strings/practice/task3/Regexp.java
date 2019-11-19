@@ -1,5 +1,9 @@
 package com.epam.courses.java.fundamentals.strings.practice.task3;
 
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Необходимо определить в тексте статьи* (html-файл), ссылается ли автор на рисунки последовательно или нет,
  * а также выделить все предложения, в которых встречаются ссылки на рисунки.
@@ -7,4 +11,11 @@ package com.epam.courses.java.fundamentals.strings.practice.task3;
  */
 
 public class Regexp {
+  ArrayList<String> allWords = new ArrayList<>();
+  Pattern pattern = Pattern.compile("[a-z][A-Z]*");
+  Matcher matcher = pattern.matcher(new String("aaa"));
+  /*while(matcher.f)
+  {
+    allWords.add(matcher.group());
+  }*/
 }

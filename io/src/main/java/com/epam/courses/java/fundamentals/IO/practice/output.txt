@@ -1,0 +1,12 @@
+boolean
+class
+if
+import
+int
+long
+package
+public
+return
+this
+
+Totally 10 Java key words in class Pen
