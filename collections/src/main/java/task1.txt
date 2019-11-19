@@ -1,0 +1,11 @@
+Collection       Ordering   Random   Key-Value   Allows       Allows   Thread Safe
+                            Access               Duplicate     Null
+-----------------------------------------------------------------------------------------
+ArrayList         No        Yes       No          Yes           Yes       No
+LinkedList        No        No        No          Yes           Yes       No
+HashSet           No        Yes       No          No            Yes       No
+LinkedHashSet     Yes       No        No          No            No        No
+TreeSet           Yes       No        No          Yes           No        No
+HashMap           No        Yes       Yes         No            Yes       No
+LinkedHashMap     Yes       No        Yes         No            No        No
+TreeMap           Yes       No        Yes         Yes           No        No
