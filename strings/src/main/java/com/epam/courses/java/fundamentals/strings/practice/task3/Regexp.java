@@ -11,11 +11,12 @@ import java.util.regex.Pattern;
  */
 
 public class Regexp {
-  ArrayList<String> allWords = new ArrayList<>();
-  Pattern pattern = Pattern.compile("[a-z][A-Z]*");
-  Matcher matcher = pattern.matcher(new String("aaa"));
-  /*while(matcher.f)
-  {
-    allWords.add(matcher.group());
-  }*/
+  public static void main(String[] args) {
+    ArrayList<String> allWords = new ArrayList<>();
+    Pattern pattern = Pattern.compile("[a-z][A-Z]*");
+    Matcher matcher = pattern.matcher(new String("aaa"));
+    while (matcher.find()) {
+      allWords.add(matcher.group());
+    }
+  }
 }

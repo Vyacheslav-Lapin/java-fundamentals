@@ -13,7 +13,6 @@ public class CharReaderWriter implements StringParser {
          BufferedReader templateReader = new BufferedReader(new FileReader(StringParser.templ));
          BufferedWriter writer = new BufferedWriter(new FileWriter(StringParser.output, false))){
 
-      CharReaderWriter charRW = new CharReaderWriter();
       StringBuilder source = new StringBuilder();
       StringBuilder templ = new StringBuilder();
       String line;
@@ -23,7 +22,7 @@ public class CharReaderWriter implements StringParser {
       while ((line = templateReader.readLine()) != null) {
         templ.append(line).append("\n");
       }
-      String result = charRW.parse(source.toString(), templ.toString());
+      String result = new CharReaderWriter().parse(source.toString(), templ.toString());
       writer.write(result.toCharArray());
     }
 

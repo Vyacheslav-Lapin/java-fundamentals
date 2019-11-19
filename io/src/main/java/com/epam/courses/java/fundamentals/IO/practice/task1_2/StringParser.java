@@ -8,9 +8,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public interface StringParser {
-  File source = new File("io/src/main/java/com/epam/courses/java/fundamentals/IO/practice/Pen.java");
-  File templ = new File("io/src/main/java/com/epam/courses/java/fundamentals/IO/practice/keywords.txt");
-  File output = new File("io/src/main/java/com/epam/courses/java/fundamentals/IO/practice/output.txt");
+  File source = new File("io/src/main/java/com/epam/courses/java/fundamentals/IO/practice/task1_2/Pen.java");
+  File templ = new File("io/src/main/java/com/epam/courses/java/fundamentals/IO/practice/task1_2/keywords.txt");
+  File output = new File("io/src/main/java/com/epam/courses/java/fundamentals/IO/practice/task1_2/output.txt");
 
   default String parse(String source, String template) {
     Set<String> keys = Arrays.stream(template.split("\n")).

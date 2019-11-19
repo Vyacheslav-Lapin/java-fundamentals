@@ -1,4 +1,4 @@
-package com.epam.courses.java.fundamentals.IO.practice;
+package com.epam.courses.java.fundamentals.IO.practice.task1_2;
 
 import lombok.experimental.NonFinal;
 import org.jetbrains.annotations.Contract;

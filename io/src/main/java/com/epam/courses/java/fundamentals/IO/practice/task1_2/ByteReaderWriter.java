@@ -13,8 +13,8 @@ public class ByteReaderWriter implements StringParser{
          BufferedInputStream templateReader = new BufferedInputStream(new FileInputStream(StringParser.templ));
          BufferedOutputStream writer = new BufferedOutputStream(new FileOutputStream(StringParser.output, false))){
 
-      ByteReaderWriter byteRW = new ByteReaderWriter();
-      String result = byteRW.parse(new String(sourceReader.readAllBytes()), new String(templateReader.readAllBytes()));
+      String result = new ByteReaderWriter().
+          parse(new String(sourceReader.readAllBytes()), new String(templateReader.readAllBytes()));
       writer.write(result.getBytes());
     }
 
