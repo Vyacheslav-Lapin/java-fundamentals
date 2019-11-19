@@ -13,7 +13,9 @@
     <module>oop</module>
     <module>strings</module>
     <module>io</module>
-  <module>threads</module></modules>
+  <module>threads</module>
+    <module>jdbc</module>
+  </modules>
 
   <developers>
     <developer>
