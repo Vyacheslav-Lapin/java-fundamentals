@@ -26,10 +26,7 @@ public class AtomicSubmarine implements Submarine {
   }
 
   public String printMessage() {
-    if (engine.isEngineWorking())
-      return "in navigation";
-    else
-      return "stop navigation";
+    return engine.isEngineWorking() ? "in navigation" : "stop navigation";
   }
 
   public static void main(String... __) throws InterruptedException {
