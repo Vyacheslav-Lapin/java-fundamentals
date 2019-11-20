@@ -34,6 +34,15 @@ public class MinFinder {
 
   private int findMin() {
     //todo реализовать
-    return 0;
+    int ai = 1;
+    while (true) {
+      double na = getA(ai);
+      if (filter(na)) {
+        return ai;
+      } else {
+        System.out.println(na);
+        ai++;
+      }
+    }
   }
 }
