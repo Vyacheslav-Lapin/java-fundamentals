@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="collections" />
+        <module name="oop" />
+        <module name="strings" />
+        <module name="fp" />
+        <module name="exceptions" />
+        <module name="intro" />
+        <module name="jdbc" />
+        <module name="threads" />
+        <module name="io" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="collections" target="13" />
+      <module name="exceptions" target="13" />
+      <module name="fp" target="13" />
+      <module name="intro" target="13" />
+      <module name="io" target="13" />
+      <module name="java-fundamentals" target="13" />
+      <module name="jdbc" target="13" />
+      <module name="oop" target="13" />
+      <module name="strings" target="13" />
+      <module name="threads" target="13" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="collections" options="--enable-preview" />
+      <module name="exceptions" options="--enable-preview" />
+      <module name="fp" options="--enable-preview" />
+      <module name="intro" options="--enable-preview" />
+      <module name="io" options="--enable-preview" />
+      <module name="jdbc" options="--enable-preview" />
+      <module name="oop" options="--enable-preview" />
+      <module name="strings" options="--enable-preview" />
+      <module name="threads" options="--enable-preview" />
+    </option>
+  </component>
+</project>

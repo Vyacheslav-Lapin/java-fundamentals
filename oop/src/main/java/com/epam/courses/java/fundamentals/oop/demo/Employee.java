@@ -21,6 +21,7 @@ public class Employee extends Person{
   public Employee(String name, int age, double height, int salary){
     super(name, age, height);
     this.salary = salary;
+    listOfStuff = new ArrayList<>();
   }
 
   @Override
@@ -65,6 +66,10 @@ public class Employee extends Person{
   public void addRuler(Ruler ruler){
     listOfStuff.add(ruler);
     System.out.println("Ruler is added");
+  }
+
+  public void addPack(List<Stuff> pack){
+    listOfStuff.addAll(pack);
   }
 
   public void showAllStuf(){
