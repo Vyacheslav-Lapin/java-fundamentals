@@ -1,6 +1,6 @@
-package com.epam.courses.java.fundamentals.oop.practice.task4.Stationery.PapersNotes;
+package com.epam.courses.java.fundamentals.oop.practice.task3.Stationery.PapersNotes;
 
-import com.epam.courses.java.fundamentals.oop.practice.task4.Stationery.Stationery;
+import com.epam.courses.java.fundamentals.oop.practice.task3.Stationery.Stationery;
 import lombok.experimental.NonFinal;
 
 public abstract class PapersNotes extends Stationery {

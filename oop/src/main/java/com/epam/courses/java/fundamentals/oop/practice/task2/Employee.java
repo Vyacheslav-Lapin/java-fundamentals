@@ -1,6 +1,6 @@
-package com.epam.courses.java.fundamentals.oop.practice.task3;
+package com.epam.courses.java.fundamentals.oop.practice.task2;
 
-import com.epam.courses.java.fundamentals.oop.practice.task4.Stationery.Stationery;
+import com.epam.courses.java.fundamentals.oop.practice.task3.Stationery.Stationery;
 import lombok.Data;
 import lombok.experimental.NonFinal;
 
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**Напишите приложение, позволяющее вести учет канцелярских товаров на рабочем месте сотрудника.
  Определите полную стоимость канцтоваров у определенного сотрудника.*/
-@Data
+
 public class Employee {
   @NonFinal
   String fullname;

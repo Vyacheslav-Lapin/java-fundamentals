@@ -1,7 +1,7 @@
-package com.epam.courses.java.fundamentals.oop.practice.task5;
+package com.epam.courses.java.fundamentals.oop.practice.task4;
 
-import com.epam.courses.java.fundamentals.oop.practice.task4.Stationery.Stationery;
-import com.epam.courses.java.fundamentals.oop.practice.task4.StationerySet;
+import com.epam.courses.java.fundamentals.oop.practice.task3.Stationery.Stationery;
+import com.epam.courses.java.fundamentals.oop.practice.task3.StationerySet;
 import lombok.experimental.NonFinal;
 
 import java.util.ArrayList;

@@ -8,4 +8,5 @@ package com.epam.courses.java.fundamentals.strings.practice.task1;
  */
 
 public class CrazyLogger {
+
 }

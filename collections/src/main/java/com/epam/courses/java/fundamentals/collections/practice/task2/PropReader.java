@@ -8,4 +8,7 @@ package com.epam.courses.java.fundamentals.collections.practice.task2;
  */
 
 public class PropReader {
+
+  
+
 }

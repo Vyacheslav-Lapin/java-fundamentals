@@ -1,4 +1,4 @@
-package com.epam.courses.java.fundamentals.oop.practice.task4.Stationery;
+package com.epam.courses.java.fundamentals.oop.practice.task3.Stationery;
 
 import lombok.experimental.NonFinal;
 import org.jetbrains.annotations.NotNull;

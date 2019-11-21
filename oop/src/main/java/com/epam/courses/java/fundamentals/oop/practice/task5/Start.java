@@ -1,4 +1,4 @@
-package com.epam.courses.java.fundamentals.oop.practice.task6;
+package com.epam.courses.java.fundamentals.oop.practice.task5;
 
 public class Start {
   public static void main(String[] args) {

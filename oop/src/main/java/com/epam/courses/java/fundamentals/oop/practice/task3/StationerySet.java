@@ -1,8 +1,7 @@
-package com.epam.courses.java.fundamentals.oop.practice.task4;
+package com.epam.courses.java.fundamentals.oop.practice.task3;
 
-import com.epam.courses.java.fundamentals.oop.practice.task4.Stationery.Stationery;
+import com.epam.courses.java.fundamentals.oop.practice.task3.Stationery.Stationery;
 import lombok.experimental.NonFinal;
-import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Method;
 import java.nio.file.Files;
@@ -23,7 +22,7 @@ public class StationerySet{
 
   private StationerySet() {
     this.newbySet = new ArrayList<>();
-    String path = "oop/src/main/java/com/epam/courses/java/fundamentals/oop/practice/task4/Stationery";
+    String path = "oop/src/main/java/com/epam/courses/java/fundamentals/oop/practice/task3/Stationery";
     try (Stream<Path> walk = Files.walk(Paths.get(path))) {
       List<String> result = walk.map(Path::toString).filter(f -> f.endsWith(".java")).
           collect(Collectors.toList());

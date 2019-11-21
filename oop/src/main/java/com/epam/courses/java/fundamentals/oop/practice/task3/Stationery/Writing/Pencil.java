@@ -1,6 +1,6 @@
-package com.epam.courses.java.fundamentals.oop.practice.task4.Stationery.Writing;
+package com.epam.courses.java.fundamentals.oop.practice.task3.Stationery.Writing;
 
-import com.epam.courses.java.fundamentals.oop.practice.task4.Stationery.Stationery;
+import com.epam.courses.java.fundamentals.oop.practice.task3.Stationery.Stationery;
 import lombok.ToString;
 import lombok.experimental.NonFinal;
 import java.util.ArrayList;

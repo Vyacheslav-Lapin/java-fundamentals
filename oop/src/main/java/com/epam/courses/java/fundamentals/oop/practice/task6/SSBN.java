@@ -1,11 +1,11 @@
-package com.epam.courses.java.fundamentals.oop.practice.task7;
+package com.epam.courses.java.fundamentals.oop.practice.task6;
 
 import lombok.SneakyThrows;
 import lombok.experimental.NonFinal;
 
 /**
- * Разработайте для класса АтомнаяЛодка из задания 6 (или любого другого класса) аннотацию,
- * которая могла бы обрабатываться утилитой Javadoc. Аннотируйте класс.
+ * Разработайте класс АтомнаяЛодка, создайте внутренний класс – ДвигательДляАтомнойЛодки.
+ * Создайте объект АтомнаяЛодка и “запустите его в плавание”.
  */
 
 public class SSBN implements Runnable {
