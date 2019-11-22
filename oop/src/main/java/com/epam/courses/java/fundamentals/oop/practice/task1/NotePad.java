@@ -6,11 +6,11 @@ public interface NotePad {
 
   Note addNote(String title, String body);
 
-  default Note addNote(Note note) {
+  default Note addNote(@NotNull Note note) {
     return addNote(note.getTitle(), note.getBody());
   }
 
-  default Note replace(Note note) {
+  default Note replace(@NotNull Note note) {
     return note.getId() == 0 ?
                addNote(note) :
                addNote(remove(note.getId()));
@@ -26,5 +26,5 @@ public interface NotePad {
     return remove(note.getId());
   }
 
-
+  Note editNote(int id, String title, String body);
 }
