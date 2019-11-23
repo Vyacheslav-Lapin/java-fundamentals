@@ -15,7 +15,7 @@
 PG=`cat pom.xml | xml sel -N pom=http://maven.apache.org/POM/4.0.0 -t -v /pom:project/pom:groupId`
 
 # Main package
-MP=`cat pom.xml | xml sel -N pom=http://maven.apache.org/POM/4.0.0 -t -v /pom:project/pom:groupId`
+MP=`cat pom.xml | xml sel -N pom=http://maven.apache.org/POM/4.0.0 -t -v /pom:project/pom:groupId | tr '.' '/'`
 
 # Project Artifact id
 PA=`cat pom.xml | xml sel -N pom=http://maven.apache.org/POM/4.0.0 -t -v /pom:project/pom:artifactId`
@@ -41,7 +41,7 @@ init:
 	echo "\n/.mvn\n/mvnw*\n" >> .git/info/exclude
 
 #	jenv
-	jenv local $(JV).0
+	jenv local openjdk64-$(JV)
 	echo "\n/.java-version\n" >> .git/info/exclude
 
 #	CheckStyler
@@ -71,8 +71,12 @@ reboot-idea: uninit-idea init
 #	git add src .editorconfig .gitignore Makefile pom.xml README.md
 	idea pom.xml
 
+# usage: $ make module-jshell A=module-name
+module-jshell: module-delombok
+	jshell --enable-preview --start PRINTING --start JAVASE --class-path `mvn dependency:build-classpath | grep -m2 -A1 'Dependencies classpath' | head -n2 | tail -1`:$(A)/target/generated-sources/delombok
+
 jshell:
-	jshell --enable-preview --start PRINTING --start JAVASE --class-path `mvn dependency:build-classpath | grep -A1 'Dependencies classpath' | tail -1`:$(MA)/target/generated-sources/delombok
+	jshell --enable-preview --start PRINTING --start JAVASE --class-path `mvn dependency:build-classpath | grep -m2 -A1 'Dependencies classpath' | head -n2 | tail -1`
 
 build:
 	./mvnw verify
