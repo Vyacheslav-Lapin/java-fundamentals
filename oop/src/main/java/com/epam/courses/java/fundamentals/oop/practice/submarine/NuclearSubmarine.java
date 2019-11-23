@@ -1,18 +1,21 @@
 package com.epam.courses.java.fundamentals.oop.practice.submarine;
 
-public class NuclearSubmarine {
+@Size(length = 100, width =50 )
+class NuclearSubmarine {
   private Engine engine;
-  public NuclearSubmarine(){
+
+  NuclearSubmarine(){
     this.engine = new Engine();
   }
-  public void embarkShip(){
+
+  void embarkShip(){
     engine.start();
   }
   private void printMessage(String message){
     System.out.print(message);
   }
   private class Engine{
-    public void start(){
+    void start(){
       printMessage("The submarine is floating");
     }
   }
