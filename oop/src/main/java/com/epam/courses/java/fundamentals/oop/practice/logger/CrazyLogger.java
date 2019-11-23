@@ -20,7 +20,9 @@ public class CrazyLogger {
 
   public List<String> search(String pattern) {
     Stream<String> entries = Arrays.stream(logStore.toString().split("\n"));
-    return entries.filter(entry -> entry.contains(pattern)).collect(Collectors.toList());
+    List<String> list = entries.filter(entry -> entry.contains(pattern)).collect(Collectors.toList());
+    list.forEach(System.out::println);
+    return list;
 
   }
 }
