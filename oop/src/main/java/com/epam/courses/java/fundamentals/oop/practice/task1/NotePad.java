@@ -3,7 +3,7 @@ package com.epam.courses.java.fundamentals.oop.practice.task1;
 import org.jetbrains.annotations.NotNull;
 
 public interface NotePad {
-
+/*
   Note addNote(String title, String body);
 
   default Note addNote(Note note) {
@@ -26,5 +26,5 @@ public interface NotePad {
     return remove(note.getId());
   }
 
-
+*/
 }

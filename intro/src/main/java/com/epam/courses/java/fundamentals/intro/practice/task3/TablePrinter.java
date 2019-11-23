@@ -3,6 +3,7 @@ package com.epam.courses.java.fundamentals.intro.practice.task3;
 import static java.lang.System.out;
 
 import java.io.PrintStream;
+import java.util.Locale;
 
 public class TablePrinter {
 
@@ -21,7 +22,7 @@ public class TablePrinter {
     printTop(quantity, out);
 
     for (double[] functionResultPair : table.getTable())
-      out.printf("|% 3.9f|% 3.9f|\n", functionResultPair[0], functionResultPair[1]);
+      out.printf(Locale.ROOT, "|% 3.9f|% 3.9f|\n", functionResultPair[0], functionResultPair[1]);
 
     printBottom(quantity, out);
   }
@@ -31,8 +32,16 @@ public class TablePrinter {
   }
 
   private void printTop(int quantity, PrintStream out) {
+    /*
     out.println("+-------------------------+"); // TODO: Сделать ширину каждого заголовка равной quantity
     out.println("|     x     |     f(x)    |");
+     out.println("+-------------------------+");
+    */
+
     out.println("+-------------------------+");
+    String format = "|%1$-" + quantity + "s|%2$-" + quantity + "s|\n";
+    System.out.format(format, "x","f(x)");
+    out.println("+-------------------------+");
+
   }
 }
