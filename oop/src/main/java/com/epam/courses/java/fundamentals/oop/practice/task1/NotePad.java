@@ -22,6 +22,10 @@ public interface NotePad {
 
   Note remove(int id);
 
+  Note editTitle(int id, String title);
+
+  Note editBody(int id, String body);
+
   default Note remove(@NotNull Note note) {
     return remove(note.getId());
   }
