@@ -30,9 +30,9 @@ public class StationeryApp {
     Pencil pencil = new Pencil(12);
 
     while (true) {
-      System.out.println(anna.toString());
-      System.out.println(anton.toString());
-      System.out.println(kirill.toString());
+      System.out.println(anna);
+      System.out.println(anton);
+      System.out.println(kirill);
 
       System.out.print("Enter add, remove ");
       System.out.print("or calculate and id of employee: ");
