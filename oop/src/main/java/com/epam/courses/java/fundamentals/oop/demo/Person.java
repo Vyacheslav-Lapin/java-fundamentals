@@ -14,7 +14,7 @@ import lombok.experimental.SuperBuilder;
 //@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Value//(staticConstructor = "of")
 //@Data
-@SuperBuilder
+@SuperBuilder(toBuilder = true)
 @NonFinal
 public class Person {
 
