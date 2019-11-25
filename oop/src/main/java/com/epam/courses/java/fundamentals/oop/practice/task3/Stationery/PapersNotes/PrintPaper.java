@@ -5,18 +5,16 @@ import lombok.ToString;
 import lombok.experimental.NonFinal;
 import java.util.ArrayList;
 
-@ToString
 public class PrintPaper extends PapersNotes {
 
-  @NonFinal
   int density;
 
-  public PrintPaper(double price, String brand) {
+  private PrintPaper(double price, String brand) {
     super(price, brand, "A4", 500);
     this.density = 80;
   }
 
-  public PrintPaper(double price, String brand, String format, long sheets, int density) {
+  private PrintPaper(double price, String brand, String format, long sheets, int density) {
     super(price, brand, format, sheets);
     this.density = density;
   }
@@ -26,5 +24,10 @@ public class PrintPaper extends PapersNotes {
     result.add(new PrintPaper(250, "Svetocopy"));
     result.add(new PrintPaper(750, "Svetocopy", "A3", 500, 80));
     return result;
+  }
+
+  @Override
+  public String toString() {
+    return super.toString() + ", "+ density+ " gr/m2";
   }
 }

@@ -1,5 +1,6 @@
 package com.epam.courses.java.fundamentals.oop.practice.task1;
 
+import lombok.AllArgsConstructor;
 import lombok.experimental.NonFinal;
 import org.jetbrains.annotations.Contract;
 
@@ -10,14 +11,15 @@ import org.jetbrains.annotations.Contract;
  * · hashCode() и
  * · toString().
  */
+@AllArgsConstructor
 class Pen {
-  @NonFinal
+
   String brand;
-  @NonFinal
+
   String colour;
-  @NonFinal
+
   String inkType;
-  @NonFinal
+
   long price;
 
   @Override
@@ -30,9 +32,7 @@ class Pen {
   @Contract(value = "null -> false", pure = true)
   public boolean equals(Object obj) {
     if (this == obj) return true;
-    if (obj == null || obj.getClass() != this.getClass()) {
-      return false;
-    }
+    if (!(obj instanceof Pen)) return false;
     Pen pen = (Pen) obj;
     return (price == pen.price) && brand.equals(pen.brand) && colour.equals(pen.colour) && inkType.equals(pen.inkType);
   }

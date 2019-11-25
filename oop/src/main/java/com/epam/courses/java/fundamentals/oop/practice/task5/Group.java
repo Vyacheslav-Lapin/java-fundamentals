@@ -1,8 +1,6 @@
 package com.epam.courses.java.fundamentals.oop.practice.task5;
 
 import lombok.Getter;
-import lombok.experimental.NonFinal;
-
 import java.util.*;
 
 @Getter
@@ -12,17 +10,12 @@ class Group {
 
   enum Tutor {IVANOFF, PETROFF, SMIRNOFF, KOUZNETSOFF}
 
-
-  @NonFinal
   Group.Discipline discipline;
 
-  @NonFinal
   Group.Tutor tutor;
 
-  @NonFinal
   Map<Student, ArrayList<Double>> marks;
 
-  @NonFinal
   boolean markIsInteger;
 
   Group(Discipline discipline, Tutor tutor, boolean markIsInteger) {

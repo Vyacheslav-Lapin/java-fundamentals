@@ -1,33 +1,30 @@
 package com.epam.courses.java.fundamentals.oop.practice.task6;
 
+import com.epam.courses.java.fundamentals.oop.practice.task7.FloatSound;
 import lombok.SneakyThrows;
-import lombok.experimental.NonFinal;
 
 /**
  * Разработайте класс АтомнаяЛодка, создайте внутренний класс – ДвигательДляАтомнойЛодки.
  * Создайте объект АтомнаяЛодка и “запустите его в плавание”.
  */
-
+@FloatSound(sound = "Vzzzz-Dr-Dr-Dr-bl-bl-bl")
 public class SSBN implements Runnable {
 
-  @NonFinal
   String name;
 
-  @NonFinal
   private SSBN_PowerSupply engine;
 
-  @NonFinal
   Type type;
 
   public enum Type {MISSILE, ATTACKING;}
 
   static class SSBN_PowerSupply {
-    @NonFinal
+
     long totalPower;
-    @NonFinal
+
     int numberOfReactors;
 
-    public SSBN_PowerSupply(long totalPower, int numberOfReactors) {
+    SSBN_PowerSupply(long totalPower, int numberOfReactors) {
       this.totalPower = totalPower;
       this.numberOfReactors = numberOfReactors;
     }
@@ -43,7 +40,8 @@ public class SSBN implements Runnable {
   @Override
   public void run() {
     for (int i = 60; i > 0; i--) {
-      System.out.println("Vzzzz-Dr-Dr-Dr-bl-bl-bl");
+      String sound = this.getClass().getAnnotation(FloatSound.class).sound();
+      System.out.println(sound);
       Thread.sleep(500);
     }
   }

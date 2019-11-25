@@ -16,10 +16,9 @@ public class SortedNewbySet {
 
   private static ArrayList<Stationery> basicList = StationerySet.getFullNewbySet();
 
-  @NonFinal
   private ArrayList<Stationery> sortedList;
 
-  public enum SORTBY {PRICE, NAME, NAME_PRICE}
+  enum SORTBY {PRICE, NAME, NAME_PRICE}
 
   private SortedNewbySet(SORTBY sortOrder) {
     this.sortedList = new ArrayList<>();
@@ -33,18 +32,16 @@ public class SortedNewbySet {
         sorted(Stationery::compareTo).forEach(sortedList::add);
   }
 
-  public ArrayList<Stationery> getSortedList() {
-    return this.sortedList;
+  private String getSortedList() {
+    StringBuilder s = new StringBuilder();
+    for (Stationery stat : sortedList) s.append(stat).append("\n");
+    return s.toString();
   }
 
   public static void main(String[] args) {
-    ArrayList<Stationery> newArrPrice = new SortedNewbySet(SORTBY.PRICE).getSortedList();
-    newArrPrice.stream().map(Stationery::getPrice).forEach(System.out::println);
-
-    ArrayList<Stationery> newArrName = new SortedNewbySet(SORTBY.NAME).getSortedList();
-    newArrName.stream().map((e) -> e.getClass().getSimpleName()).forEach(System.out::println);
-
-    ArrayList<Stationery> newArrNamePrice = new SortedNewbySet(SORTBY.NAME_PRICE).getSortedList();
-    newArrNamePrice.stream().map(Stationery::getPrice).forEach(System.out::println);
+    SortedNewbySet byPrice = new SortedNewbySet(SORTBY.PRICE);
+    SortedNewbySet byName = new SortedNewbySet(SORTBY.NAME);
+    SortedNewbySet byNamePrice = new SortedNewbySet(SORTBY.NAME_PRICE);
+    System.out.println(byNamePrice.getSortedList());
   }
 }

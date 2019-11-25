@@ -1,18 +1,16 @@
 package com.epam.courses.java.fundamentals.strings.practice.task2;
 
 import lombok.SneakyThrows;
-import lombok.experimental.NonFinal;
 import java.io.*;
 import java.util.*;
 
 class ResourceBundle implements Runnable {
 
-  static File rusFile = new File("strings/src/main/java/com/epam/courses/java/fundamentals/strings/practice/task2/FileRus.txt");
-  static File engFile = new File("strings/src/main/java/com/epam/courses/java/fundamentals/strings/practice/task2/FileEng.txt");
-  static File ansFile = new File("strings/src/main/java/com/epam/courses/java/fundamentals/strings/practice/task2/Answers.txt");
+  private static File rusFile = new File("strings/src/main/java/com/epam/courses/java/fundamentals/strings/practice/task2/FileRus.txt");
+  private static File engFile = new File("strings/src/main/java/com/epam/courses/java/fundamentals/strings/practice/task2/FileEng.txt");
+  private static File ansFile = new File("strings/src/main/java/com/epam/courses/java/fundamentals/strings/practice/task2/Answers.txt");
   private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-  @NonFinal
   HashMap<Integer, Question> questions;
 
   boolean isRussian = isLangRussian();

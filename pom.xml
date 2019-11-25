@@ -14,7 +14,8 @@
     <module>strings</module>
     <module>io</module>
     <module>threads</module>
-    <module>collections</module>
+    <module>jdbc</module>
+    <module>exeptions</module>
   </modules>
 
   <developers>

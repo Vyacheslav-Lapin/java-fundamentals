@@ -16,14 +16,12 @@ import java.util.Map;
  */
 
 class Student {
-  @NonFinal
+
   private String fullname;
 
-  @NonFinal
   private String courseGroup;
 
-  @NonFinal
-  public Map<Group, List<Double>> allMarks;
+  Map<Group, List<Double>> allMarks;
 
   Student(String fullname, String courseGroup) {
     this.fullname = fullname;

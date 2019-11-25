@@ -10,11 +10,10 @@ import java.util.ArrayList;
  Определите полную стоимость канцтоваров у определенного сотрудника.*/
 
 public class Employee {
-  @NonFinal
   String fullname;
-  @NonFinal
+
   long id;
-  @NonFinal
+
   ArrayList<Stationery> allStuff;
 
   public Employee(String fullname, long id) {

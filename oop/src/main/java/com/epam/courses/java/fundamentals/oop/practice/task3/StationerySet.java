@@ -52,7 +52,7 @@ public class StationerySet{
     return result;
   }
 
-  public static String printNewbySet(){
+  private static String printNewbySet(){
     StationerySet set = new StationerySet();
     StringBuilder s = new StringBuilder();
     for(ArrayList<Stationery> arr: set.newbySet){

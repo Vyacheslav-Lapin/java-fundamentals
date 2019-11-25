@@ -1,22 +1,20 @@
 package com.epam.courses.java.fundamentals.oop.practice.task3.Stationery;
 
-import lombok.ToString;
-import lombok.experimental.NonFinal;
 import java.util.ArrayList;
 
-@ToString
 public class Instruments extends Stationery {
-  @NonFinal
+
   TYPE type;
 
   SIZE size;
 
-  public Instruments(double price, String brand, TYPE type, SIZE size) {
+  private Instruments(double price, String brand, TYPE type, SIZE size) {
     super(price, brand);
     this.type = type;
     this.size = size;
   }
-  public Instruments(double price, TYPE type) {
+
+  private Instruments(double price, TYPE type) {
     super(price, "n/a");
     this.type = type;
     this.size = SIZE.REGULAR;
@@ -32,5 +30,10 @@ public class Instruments extends Stationery {
     set.add(new Instruments(250, TYPE.STAPLER));
     set.add(new Instruments(400, "n/a", TYPE.STAPLER, SIZE.BIG));
     return set;
+  }
+
+  @Override
+  public String toString() {
+    return super.toString() + ", "  + size + " " + type;
   }
 }

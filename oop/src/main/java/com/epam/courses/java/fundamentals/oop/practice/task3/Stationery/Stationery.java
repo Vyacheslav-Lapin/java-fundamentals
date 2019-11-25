@@ -1,13 +1,11 @@
 package com.epam.courses.java.fundamentals.oop.practice.task3.Stationery;
 
-import lombok.experimental.NonFinal;
 import org.jetbrains.annotations.NotNull;
 
 public abstract class Stationery{
-  @NonFinal
-  double price = 0;
 
-  @NonFinal
+  double price;
+
   String brand;
 
   public Stationery(double price, String brand) {
@@ -23,5 +21,11 @@ public abstract class Stationery{
 
   public double getPrice() {
     return price;
+  }
+
+  @Override
+  public String toString() {
+    return this.brand.equals("n/a") ? this.getClass().getSimpleName() + ": " + "price = " + price:
+        this.getClass().getSimpleName() + ": " + brand + ", price = " + price;
   }
 }
