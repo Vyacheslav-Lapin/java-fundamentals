@@ -117,5 +117,8 @@ module-test-delombok: module-delombok
 		lombok.launch.Main delombok $(A)/src/test/java \
 		-d $(A)/target/generated-test-sources/delombok
 
+effective-pom:
+	./mvnw help:effective-pom
+
 .DEFAULT_GOAL := build-run
 build-run: build run
