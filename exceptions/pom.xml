@@ -14,12 +14,6 @@
 
   <dependencies>
 
-    <dependency>
-      <groupId>com.epam.courses.java.fundamentals</groupId>
-      <artifactId>fp</artifactId>
-      <version>${revision}</version>
-    </dependency>
-
   </dependencies>
 
 </project>

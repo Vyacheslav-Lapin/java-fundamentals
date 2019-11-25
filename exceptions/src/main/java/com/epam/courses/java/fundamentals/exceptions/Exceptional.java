@@ -1,6 +1,6 @@
 package com.epam.courses.java.fundamentals.exceptions;
 
-import com.epam.courses.java.fundamentals.fp.CheckedFunction1;
+import io.vavr.CheckedFunction1;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 

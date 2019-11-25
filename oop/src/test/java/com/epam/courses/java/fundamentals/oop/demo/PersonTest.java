@@ -19,5 +19,8 @@ class PersonTest {
     assertThat(vasya.getAge())
         .isEqualTo(16);
 
+    assertThat(vasya.getContacts())
+        .containsAnyOf("222-33-22");
+
   }
 }

@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 public interface NotePad {
 
-  Note addNote(String title, String body);
+  Note addNote(@NotNull String title, @NotNull String body);
 
   default Note addNote(Note note) {
     return addNote(note.getTitle(), note.getBody());
@@ -26,5 +26,8 @@ public interface NotePad {
     return remove(note.getId());
   }
 
-
+  static void main(String... __) {
+//    new NotePadImpl().addNote(null);
+    new NotePadImpl().addNote(null, null);
+  }
 }

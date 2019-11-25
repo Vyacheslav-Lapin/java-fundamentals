@@ -1,6 +1,6 @@
 package com.epam.courses.java.fundamentals.fp;
 
-import common.exceptions.Exceptional;
+import com.epam.courses.java.fundamentals.exceptions.Exceptional;
 import io.vavr.CheckedConsumer;
 import java.util.function.Consumer;
 import lombok.SneakyThrows;

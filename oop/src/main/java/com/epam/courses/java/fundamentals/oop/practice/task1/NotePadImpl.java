@@ -3,6 +3,7 @@ package com.epam.courses.java.fundamentals.oop.practice.task1;
 import java.util.Arrays;
 import lombok.experimental.NonFinal;
 import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 public class NotePadImpl implements NotePad {
 
@@ -26,7 +27,7 @@ public class NotePadImpl implements NotePad {
   }
 
   @Override
-  public Note addNote(String title, String body) {
+  public Note addNote(@NotNull String title, @NotNull String body) {
 
     var note = new Note(index++)
                    .setTitle(title)
