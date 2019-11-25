@@ -40,11 +40,11 @@ public class StationeryApp {
       Scanner in = new Scanner(System.in);
       String choice = in.next();
       int id = in.nextInt();
-
+      Employee emp;
+      emp = find(id, people);
       switch (choice) {
 
         case "add":
-          Employee emp = find(id, people);
           System.out.println("What do you want to add? And how many?");
           String statChoice = in.next();
           int statQuantity = in.nextInt();
@@ -68,32 +68,30 @@ public class StationeryApp {
           break;
 
         case "remove":
-          Employee empl = find(id, people);
           System.out.println("What do you want to remove? And how many?");
           String choiceToRemove = in.next();
           int removeQuantity = in.nextInt();
           switch (choiceToRemove) {
             case "calculator":
-              empl.removeStationery(calc, removeQuantity);
+              emp.removeStationery(calc, removeQuantity);
               break;
             case "paper":
-              empl.removeStationery(paper, removeQuantity);
+              emp.removeStationery(paper, removeQuantity);
               break;
             case "pen":
-              empl.removeStationery(pen, removeQuantity);
+              emp.removeStationery(pen, removeQuantity);
               break;
             case "pencil":
-              empl.removeStationery(pencil, removeQuantity);
+              emp.removeStationery(pencil, removeQuantity);
               break;
             default:
               System.out.println("We don't have this. Sorry:(");
           }
-          System.out.println(empl.getStationeries());
+          System.out.println(emp.getStationeries());
           break;
 
         case "calculate":
-          Employee employee = find(id, people);
-          System.out.println("Result is : " + employee.calculatePrice());
+          System.out.println("Result is : " + emp.calculatePrice());
           System.out.println();
           break;
       }

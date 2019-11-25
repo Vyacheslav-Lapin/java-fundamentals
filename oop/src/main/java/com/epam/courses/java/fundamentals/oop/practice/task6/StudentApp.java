@@ -46,24 +46,21 @@ public class StudentApp {
     people.add(st1);
     people.add(st2);
 
-    while (true) {
-
       System.out.print("Enter show and name to see student's subjects ");
       System.out.print("or compare and name to see student's best subject: ");
 
       Scanner in = new Scanner(System.in);
       String choice = in.next();
       String name = in.next();
+      Student stud;
+      stud = find(name, people);
       switch (choice) {
         case "show":
-          Student stud = find(name, people);
           System.out.println(stud.getSubjects());
           break;
         case "compare":
-          Student student = find(name,people);
-          student.compareMarks();
+          stud.compareMarks();
           break;
-      }
     }
   }
 }
