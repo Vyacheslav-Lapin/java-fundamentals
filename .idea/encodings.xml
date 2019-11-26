@@ -10,6 +10,9 @@
     <file url="file://$PROJECT_DIR$/jdbc" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/oop" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/strings" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/strings/src/main/resources/res__en_US.properties" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/strings/src/main/resources/res_default.properties" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/strings/src/main/resources/res_ru_RU.properties" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/threads" charset="UTF-8" />
   </component>
 </project>
