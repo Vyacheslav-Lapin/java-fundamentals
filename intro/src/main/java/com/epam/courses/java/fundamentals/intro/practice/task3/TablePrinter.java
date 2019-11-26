@@ -3,6 +3,7 @@ package com.epam.courses.java.fundamentals.intro.practice.task3;
 import static java.lang.System.out;
 
 import java.io.PrintStream;
+import java.util.Locale;
 
 public class TablePrinter {
 

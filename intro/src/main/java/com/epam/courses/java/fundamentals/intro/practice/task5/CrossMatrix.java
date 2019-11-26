@@ -9,7 +9,7 @@ public class CrossMatrix {
   }
 
   public boolean get(int x, int y) {
-    if(x == y || (x == size - y - 1)
+    if(x == y || (x == size - y - 1))
       return true;
     return false;
   }
@@ -27,3 +27,4 @@ public class CrossMatrix {
     return result;
   }
 }
+

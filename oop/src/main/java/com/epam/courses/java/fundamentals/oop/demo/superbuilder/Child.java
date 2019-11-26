@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
 @Getter
-//@SuperBuilder
+@SuperBuilder
 public class Child extends Parent {
   String childName;
   int childAge;
