@@ -9,21 +9,12 @@ import java.sql.*;
 import java.util.ArrayList;
 
 @AllArgsConstructor
-public class Book_H2 implements AbstractBookDAO {
+public class Book_H2_DAO implements AbstractBookDAO {
 
   private Connection connection;
 
-  @SneakyThrows
-  public void setBasicLibrary() {
-    @Cleanup Statement statement = connection.createStatement();
-    statement.executeUpdate("insert into Books(Author, Title, genre, shelf) values " +
-        "('Solovyev', 'Hodga Nasreddin', 'fiction', '1')," +
-        " ('Hoking', 'Black Holes', 'popscience', '2'), " +
-        " ('Gumilev', 'Ethnogenesis', 'science', '3'), " +
-        " ('Dostoevskiy', 'Karamazoff Brothers', 'fiction', '1'), " +
-        " ('Markov', 'Birth of Complexity', 'popscience', '2'), " +
-        "('Bloch', 'Effective Java 3rd', 'programming', '4')");
-  }
+  public static String createStatement = "create table Books " +
+      "(id identity, Author varchar, Title varchar not null, genre varchar not null, shelf int)";
 
   @Override
   @SneakyThrows
