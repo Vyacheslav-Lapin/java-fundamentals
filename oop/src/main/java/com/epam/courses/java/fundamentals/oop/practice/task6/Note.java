@@ -51,8 +51,8 @@ public class Note {
   @Override
   public String toString() {
     return "Note{" + "title='" + title + '\'' +
-               ", body='" + body + '\'' +
-               ", id=" + id +
-               '}';
+        ", body='" + body + '\'' +
+        ", id=" + id +
+        '}';
   }
 }

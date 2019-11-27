@@ -24,17 +24,17 @@ public class NotePad {
 
   public Note addNote(String title, String body) {
     Note note = new Note(index++).setTitle(title).setBody(body);
-    return isPossibleToAdd() ? notes[note.getId()] = note :
-               null; // throw new RuntimeException("It`s impossible to add the Note - array already have a maximum size!");
+    if (!isPossibleToAdd())
+      throw new RuntimeException("It`s impossible to add the Note - array already have a maximum size!");
+    return notes[note.getId()] = note;
   }
 
   private boolean isPossibleToAdd() {
-    return index < notes.length || hasGrew();
+    return index < notes.length || increaseCapacity();
   }
 
-  private boolean hasGrew() {
-
-    int capacity = notes.length << 1; // * 2 with overflow insurance
+  private boolean increaseCapacity() {
+    int capacity = notes.length << 1; // multiplication by 2 with overflow safety
 
     if (capacity - index < 0) // is previous operation has overflow as a result?
       if (index - MAX_ARRAY_SIZE <= 0)
@@ -53,6 +53,7 @@ public class NotePad {
   }
 
   public Note[] getNotes() {
-    return Arrays.copyOf(notes, index); // better then clone for that case: result haven`t null`s at his tail
+    return Arrays.copyOf(notes, index); // better than clone for that case: result haven`t null`s at it's tail
   }
+
 }
