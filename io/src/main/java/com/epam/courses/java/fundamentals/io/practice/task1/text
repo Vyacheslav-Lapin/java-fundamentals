@@ -1,0 +1,38 @@
+import static java.lang.Math.pow;
+import static java.lang.System.out;
+
+public class MinFinder {
+
+  private double e;
+
+  private MinFinder(double e) {
+    this.e = e;
+  }
+
+  public static double findMin(double e) {
+    return new MinFinder(e).findMin();
+  }
+
+  private static double getA(int n) {
+    return 1 / pow(n + 1, 2);
+  }
+
+  public static void main(String... __) {
+    out.println("Минимальный индекс: " + findMin(0.1));
+  }
+
+
+  private boolean filter(double a) {
+    return a < e;
+  }
+
+  private int findMin() {
+    int n = 1;
+    double elem = getA(n);
+      while(!filter(elem)){
+        out.println(elem);
+       elem = getA(++n);
+      }
+    return n;
+  }
+}
