@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import lombok.Cleanup;
 import lombok.SneakyThrows;
-import lombok.val;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,10 +18,10 @@ class ConnectionPoolTest {
   @SneakyThrows
   @DisplayName("Get method works correctly")
   void get() {
-    @Cleanup val connectionPool = new ConnectionPool();
-    @Cleanup val connection = connectionPool.get();
-    @Cleanup val statement = connection.createStatement();
-    @Cleanup val resultSet = statement.executeQuery(SQL);
+    @Cleanup var connectionPool = new ConnectionPool();
+    @Cleanup var connection = connectionPool.get();
+    @Cleanup var statement = connection.createStatement();
+    @Cleanup var resultSet = statement.executeQuery(SQL);
     if (resultSet.next())
       assertThat(resultSet.getString("first_name"))
           .isEqualTo("Jose");

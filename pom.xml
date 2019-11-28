@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.epam.courses.java.fundamentals</groupId>
@@ -14,11 +15,12 @@
     <module>strings</module>
     <module>io</module>
     <module>exceptions</module>
+    <module>fp</module>
     <module>collections</module>
     <module>threads</module>
-    <module>fp</module>
     <module>jdbc</module>
-  <module>web</module></modules>
+    <module>web</module>
+  </modules>
 
   <developers>
     <developer>
@@ -44,7 +46,7 @@
     <!--endregion-->
 
     <!--region Libs -->
-    <manifold-version>2019.1.26</manifold-version>
+    <manifold-version>2019.1.29</manifold-version>
     <vavr.version>0.10.2</vavr.version>
     <lombok.version>1.18.10</lombok.version>
 
@@ -118,11 +120,11 @@
         <scope>import</scope>
       </dependency>
 
-      <!--<dependency>-->
-      <!--  <groupId>systems.manifold</groupId>-->
-      <!--  <artifactId>manifold-all</artifactId>-->
-      <!--  <version>${manifold-version}</version>-->
-      <!--</dependency>-->
+      <dependency>
+        <groupId>systems.manifold</groupId>
+        <artifactId>manifold-all</artifactId>
+        <version>${manifold-version}</version>
+      </dependency>
       <dependency>
         <groupId>io.vavr</groupId>
         <artifactId>vavr</artifactId>
@@ -173,7 +175,7 @@
       <scope>provided</scope>
       <optional>true</optional>
     </dependency>
-    <!--region systems.manifold:manifold-all -->
+    <!--region systems.manifold:manifold-all-->
     <!--<dependency>-->
     <!--  <groupId>systems.manifold</groupId>-->
     <!--  <artifactId>manifold-all</artifactId>-->
@@ -248,6 +250,7 @@
           <version>${maven-compiler-plugin.version}</version>
           <configuration>
             <compilerArgs>
+              <arg>-parameters</arg>
               <arg>--enable-preview</arg>
               <!--<arg>-Xlint:preview</arg>-->
               <!--<arg>-Xplugin:Manifold</arg>-->

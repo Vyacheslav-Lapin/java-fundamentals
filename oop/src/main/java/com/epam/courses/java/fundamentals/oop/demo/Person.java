@@ -7,15 +7,9 @@ import lombok.Value;
 import lombok.experimental.NonFinal;
 import lombok.experimental.SuperBuilder;
 
-//@Getter
-//@ToString
-//@EqualsAndHashCode
-//@AllArgsConstructor
-//@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-@Value//(staticConstructor = "of")
-//@Data
-@SuperBuilder
+@Value
 @NonFinal
+@SuperBuilder(toBuilder = true)
 public class Person {
 
   String name;

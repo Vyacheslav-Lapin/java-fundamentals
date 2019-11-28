@@ -18,26 +18,18 @@
 
   <dependencies>
 
-      <!--region H2 -->
-      <dependency>
-         <groupId>com.h2database</groupId>
-         <artifactId>h2</artifactId>
-         <version>${h2.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.zaxxer</groupId>
-        <artifactId>HikariCP</artifactId>
-        <version>${HikariCP.version}</version>
-      </dependency>
-      <!-- endregion -->
-
+    <!--region H2 -->
     <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>${lombok.version}</version>
-      <scope>provided</scope>
-      <optional>true</optional>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>${h2.version}</version>
     </dependency>
+    <dependency>
+      <groupId>com.zaxxer</groupId>
+      <artifactId>HikariCP</artifactId>
+      <version>${HikariCP.version}</version>
+    </dependency>
+    <!-- endregion -->
 
     <dependency>
       <groupId>com.epam.courses.java.fundamentals</groupId>

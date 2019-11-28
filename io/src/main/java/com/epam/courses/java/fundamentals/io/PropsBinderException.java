@@ -1,4 +1,4 @@
-package com.epam.courses.java.fundamentals.jdbc.cp;
+package com.epam.courses.java.fundamentals.io;
 
 class PropsBinderException extends RuntimeException {
   PropsBinderException(String message) {

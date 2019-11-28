@@ -1,4 +1,4 @@
-package com.epam.courses.java.fundamentals.jdbc.cp;
+package com.epam.courses.java.fundamentals.io;
 
 import io.vavr.Function1;
 import java.lang.reflect.Constructor;
@@ -63,26 +63,24 @@ public interface PropsBinder {
                                 .orElseThrow(() -> new PropsBinderException("Нету ни одного конструктора!"));
   }
 
-  @SuppressWarnings("unchecked")
   static Object resolveParameter(@NotNull Function1<String, String> getValue,
                                  @NotNull Parameter parameter) {
+    return resolveParameter(getValue, parameter.getName(), parameter.getType());
+  }
 
-    String name = parameter.getName();
-    String value = getValue.apply(name);
-    Class<?> type = parameter.getType();
+  static Object resolveParameter(@NotNull Function1<String, String> getValue, String name, Class<?> type) {
 
-    if (type == String.class) return value;
-    if (type == int.class || type == Integer.class) return Integer.parseInt(value);
-    if (type == double.class || type == Double.class) return Double.parseDouble(value);
-    if (type == long.class || type == Long.class) return Long.parseLong(value);
-    if (type == boolean.class || type == Boolean.class) return Boolean.parseBoolean(value);
-    if (type == char.class || type == Character.class) return value.charAt(0);
-    if (type == float.class || type == Float.class) return Float.parseFloat(value);
-    if (type == short.class || type == Short.class) return Short.parseShort(value);
-    if (type == byte.class || type == Byte.class) return Byte.parseByte(value);
+    if (type == String.class) return getValue.apply(name);
+    if (type == int.class || type == Integer.class) return Integer.parseInt(getValue.apply(name));
+    if (type == double.class || type == Double.class) return Double.parseDouble(getValue.apply(name));
+    if (type == long.class || type == Long.class) return Long.parseLong(getValue.apply(name));
+    if (type == boolean.class || type == Boolean.class) return Boolean.parseBoolean(getValue.apply(name));
+    if (type == char.class || type == Character.class) return getValue.apply(name).charAt(0);
+    if (type == float.class || type == Float.class) return Float.parseFloat(getValue.apply(name));
+    if (type == short.class || type == Short.class) return Short.parseShort(getValue.apply(name));
+    if (type == byte.class || type == Byte.class) return Byte.parseByte(getValue.apply(name));
 
-    String prefix = name + ".";
-    return from(propertyName -> getValue.apply(prefix + propertyName), type);
+    return resolveObjectParameter(getValue::apply, type, name);
   }
 
   @NotNull
