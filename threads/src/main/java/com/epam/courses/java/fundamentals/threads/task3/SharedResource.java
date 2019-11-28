@@ -8,14 +8,14 @@ class SharedResource {
   private List<Integer> list;
 
   SharedResource() {
-    list = new ArrayList<Integer>();
+    list = new ArrayList<>();
   }
 
   void setElement(Integer element) {
     list.add(element);
   }
 
-  Integer getELement() {
+  Integer getElement() {
     if (list.size() > 0) {
       return list.remove(0);
     }

@@ -16,6 +16,7 @@
   <module>threads</module>
     <module>jdbc</module>
     <module>collections</module>
+    <module>exceptions</module>
   </modules>
 
   <developers>

@@ -29,7 +29,7 @@ class IntegerSetterGetter extends Thread {
           setIntegersIntoResource();
         }
       }
-      System.out.println("Поток" + getName() + " завершил работу.");
+      System.out.println("Поток " + getName() + " завершил работу.");
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
@@ -38,12 +38,12 @@ class IntegerSetterGetter extends Thread {
     Integer number;
     synchronized (resource) {
       System.out.println("Поток " + getName() + " хочет извлечь число");
-      number = resource.getELement();
+      number = resource.getElement();
       while (number == null) {
         System.out.println("Поток " + getName() + " ждет, пока очередь заполнится.");
         resource.wait();
         System.out.println("Поток " + getName() + " возобновил работу.");
-        number = resource.getELement();
+        number = resource.getElement();
       }
       System.out.println("Поток " + getName() + " извлек число " + number);
     }
@@ -54,7 +54,7 @@ class IntegerSetterGetter extends Thread {
     synchronized (resource) {
       resource.setElement(number);
       System.out.println("Поток "  + getName() +" записал число " + number);
-      resource.notify();
+      resource.notifyAll();
     }
   }
 }

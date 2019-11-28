@@ -9,7 +9,7 @@ import java.util.Properties;
 
 public class SynchronizedReader {
 
-  private static Map<Object, Object> map = new HashMap<Object, Object>();
+  private static Map<Object, Object> map = new HashMap<>();
   private static final String PATH = "...";
 
   public static void main(String[] args) throws IOException {
