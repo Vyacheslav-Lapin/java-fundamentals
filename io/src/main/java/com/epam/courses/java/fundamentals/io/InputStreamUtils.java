@@ -28,7 +28,9 @@ public interface InputStreamUtils {
   @SneakyThrows
   static void withFileInputStream(@NotNull String fileName,
                                   @NotNull CheckedConsumer<InputStream> fisConsumer) {
-    @Cleanup val inputStream = InputStreamUtils.class.getResourceAsStream("/" + fileName);
+    if (!fileName.startsWith("/"))
+      fileName = "/" + fileName;
+    @Cleanup val inputStream = InputStreamUtils.class.getResourceAsStream(fileName);
     fisConsumer.accept(inputStream);
   }
 
@@ -39,15 +41,16 @@ public interface InputStreamUtils {
   }
 
   static Optional<Path> getPath(@NotNull String fileName) {
-    final URL resource = InputStreamUtils.class.getResource("/" + fileName);
-    return Optional.ofNullable(resource)
+    if (!fileName.startsWith("/"))
+      fileName = "/" + fileName;
+    return Optional.ofNullable(InputStreamUtils.class.getResource(fileName))
                .map(URL::getFile)
                .map(Paths::get);
   }
 
   @SneakyThrows
   static Optional<String> getFileAsString(String folder, String fileName) {
-    return getPath(String.format("/%s/%s", folder, fileName))
+    return getPath(String.format("%s/%s", folder, fileName))
                .map(InputStreamUtils::getFileAsString);
   }
 }
