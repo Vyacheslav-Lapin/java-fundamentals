@@ -1,4 +1,4 @@
-package com.epam.courses.java.fundamentals.threads;
+package com.epam.courses.java.fundamentals.threads.demo;
 
 import lombok.Getter;
 import lombok.experimental.NonFinal;

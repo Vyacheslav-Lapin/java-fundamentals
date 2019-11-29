@@ -1,4 +1,4 @@
-package com.epam.courses.java.fundamentals.threads.waitexample;
+package com.epam.courses.java.fundamentals.threads.demo.waitexample;
 
 import java.util.ArrayList;
 import java.util.List;

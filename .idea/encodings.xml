@@ -3,12 +3,21 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/exeptions" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/exeptions/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/exeptions/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/intro" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/intro/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/intro/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/io" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/io/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/jdbc" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/jdbc/src/main/resources/db.properties" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jdbc/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jdbc/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/oop" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/oop/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/strings" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/strings/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/threads" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/threads/src/main/java" charset="UTF-8" />
   </component>
 </project>

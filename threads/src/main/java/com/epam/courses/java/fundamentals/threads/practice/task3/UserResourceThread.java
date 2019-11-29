@@ -7,11 +7,12 @@ package com.epam.courses.java.fundamentals.threads.practice.task3;
 public class UserResourceThread {
   public static void main(String[] args) throws InterruptedException {
     SharedResource res = new SharedResource();
-    IntegerSetterGetter t1 = new IntegerSetterGetter("1", res);
-    IntegerSetterGetter t2 = new IntegerSetterGetter("2", res);
-    IntegerSetterGetter t3 = new IntegerSetterGetter("3", res);
-    IntegerSetterGetter t4 = new IntegerSetterGetter("4", res);
-    IntegerSetterGetter t5 = new IntegerSetterGetter("5", res);
+    RandomGenerator gen = new RandomGenerator();
+    IntegerSetterGetter t1 = new IntegerSetterGetter("1", res, gen);
+    IntegerSetterGetter t2 = new IntegerSetterGetter("2", res, gen);
+    IntegerSetterGetter t3 = new IntegerSetterGetter("3", res, gen);
+    IntegerSetterGetter t4 = new IntegerSetterGetter("4", res, gen);
+    IntegerSetterGetter t5 = new IntegerSetterGetter("5", res, gen);
 
     t1.start();
     t2.start();

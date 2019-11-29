@@ -1,4 +1,4 @@
-package com.epam.courses.java.fundamentals.threads;
+package com.epam.courses.java.fundamentals.threads.demo;
 
 public class PriorityDemo {
   public static void main(String... __) {
