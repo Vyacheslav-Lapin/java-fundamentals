@@ -8,7 +8,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public interface StringParser {
-  File source = new File("io/src/main/java/com/epam/courses/java/fundamentals/IO/practice/task1_2/Pen.java");
+  File source = new File("io/src/main/java/com/epam/courses/java/fundamentals/IO/practice/task1_2/PenClassAsExample.java");
   File templ = new File("io/src/main/java/com/epam/courses/java/fundamentals/IO/practice/task1_2/keywords.txt");
   File output = new File("io/src/main/java/com/epam/courses/java/fundamentals/IO/practice/task1_2/output.txt");
 

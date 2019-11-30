@@ -9,6 +9,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/collections/pom.xml" />
+        <option value="$PROJECT_DIR$/exceptions/pom.xml" />
       </set>
     </option>
   </component>

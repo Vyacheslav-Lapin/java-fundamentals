@@ -15,7 +15,7 @@
     <module>io</module>
     <module>threads</module>
     <module>jdbc</module>
-    <module>exeptions</module>
+    <module>exceptions</module>
   </modules>
 
   <developers>

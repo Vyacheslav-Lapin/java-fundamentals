@@ -2,13 +2,14 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="exeptions" />
         <module name="oop" />
         <module name="strings" />
+        <module name="exceptions" />
         <module name="intro" />
         <module name="jdbc" />
         <module name="threads" />
@@ -17,7 +18,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="collections" target="13" />
-      <module name="exeptions" target="13" />
+      <module name="exceptions" target="13" />
       <module name="intro" target="13" />
       <module name="io" target="13" />
       <module name="java-fundamentals" target="13" />
@@ -30,7 +31,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="collections" options="--enable-preview" />
-      <module name="exeptions" options="--enable-preview" />
+      <module name="exceptions" options="--enable-preview" />
       <module name="intro" options="--enable-preview" />
       <module name="io" options="--enable-preview" />
       <module name="jdbc" options="--enable-preview" />
