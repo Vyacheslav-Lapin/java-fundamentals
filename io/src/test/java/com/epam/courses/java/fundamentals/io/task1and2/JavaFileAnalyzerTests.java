@@ -25,7 +25,7 @@ public class JavaFileAnalyzerTests {
 
     Properties properties = new Properties();
     properties.putAll(keyWordsAsStringMap);
-    properties.store(new FileOutputStream(fileName + ".properties"), null);
+    properties.store(new FileOutputStream("tmp/"+fileName + ".properties"), null);
 
   }
 
