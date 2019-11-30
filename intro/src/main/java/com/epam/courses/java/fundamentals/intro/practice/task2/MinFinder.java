@@ -7,33 +7,42 @@ import org.jetbrains.annotations.Contract;
 
 public class MinFinder {
 
-  private double e;
+	private double e;
 
-  @Contract(pure = true)
-  private MinFinder(double e) {
-    this.e = e;
-  }
+	@Contract(pure = true)
+	private MinFinder(double e) {
+		this.e = e;
+	}
 
-  public static double findMin(double e) {
-    return new MinFinder(e).findMin();
-  }
+	public static double findMin(double e) {
+		return new MinFinder(e).findMin();
+	}
 
-  @Contract(pure = true)
-  private static double getA(int n) {
-    return 1 / pow(n + 1, 2);
-  }
+	@Contract(pure = true)
+	private static double getA(int n) {
+		return 1 / pow(n + 1, 2);
+	}
 
-  public static void main(String... __) {
-    out.println("Минимальный индекс: " + findMin(0.1));
-  }
+	public static void main(String... __) {
+		out.println("Минимальный индекс: " + findMin(0.1));
+	}
 
-  @Contract(pure = true)
-  private boolean filter(double a) {
-    return a < e;
-  }
+	@Contract(pure = true)
+	private boolean filter(double a) {
+		return a < e;
+	}
 
-  private int findMin() {
-    //todo реализовать
-    return 0;
-  }
+	private int findMin() {
+		int n = 1;
+		while (true) {
+
+			double a = getA(n);
+
+			if (filter(a))
+				return n;
+			out.println(a);
+			n++;
+		}
+
+	}
 }
