@@ -24,7 +24,7 @@ public class MovieLibraryTests {
 
     movieLibrary.persist();
   }
-  
+
   @Test
   void checkLibraryRestoresInfoOnStartup() throws IOException, ClassNotFoundException {
     populateAndPersistLibrary();

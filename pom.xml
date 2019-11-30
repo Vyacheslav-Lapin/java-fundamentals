@@ -14,6 +14,7 @@
     <module>oop</module>
     <module>info</module>
     <module>io</module>
+      <module>exceptions</module>
   </modules>
 
   <developers>
