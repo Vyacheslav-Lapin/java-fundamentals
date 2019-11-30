@@ -1,8 +1,8 @@
 package com.epam.courses.java.fundamentals.intro.practice.task3;
 
-import static java.lang.System.out;
-
 import java.io.PrintStream;
+
+import static java.lang.System.out;
 
 public class TablePrinter {
 
@@ -27,12 +27,22 @@ public class TablePrinter {
   }
 
   private void printBottom(int quantity, PrintStream out) {
-    out.print("+-------------------------+");
+    String strip = strip(quantity + 1);
+    out.printf("+%s-%s+\n", strip, strip);
+  }
+
+  private String strip(int quantity) {
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < quantity; i++)
+      sb.append("-");
+
+    return sb.toString();
   }
 
   private void printTop(int quantity, PrintStream out) {
-    out.println("+-------------------------+"); // TODO: Сделать ширину каждого заголовка равной quantity
+    String strip = strip(quantity + 1);
+    out.printf("+%s-%s+\n", strip, strip); // TODO: Сделать ширину каждого заголовка равной quantity
     out.println("|     x     |     f(x)    |");
-    out.println("+-------------------------+");
+    out.printf("+%s-%s+\n", strip, strip);
   }
 }
