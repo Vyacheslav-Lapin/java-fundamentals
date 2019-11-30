@@ -13,6 +13,7 @@
     <module>intro</module>
     <module>oop</module>
     <module>info</module>
+    <module>io</module>
   </modules>
 
   <developers>
