@@ -7,8 +7,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="collections" />
         <module name="oop" />
+        <module name="web" />
         <module name="strings" />
+        <module name="fp" />
         <module name="exceptions" />
         <module name="intro" />
         <module name="jdbc" />
@@ -19,6 +22,7 @@
     <bytecodeTargetLevel>
       <module name="collections" target="13" />
       <module name="exceptions" target="13" />
+      <module name="fp" target="13" />
       <module name="intro" target="13" />
       <module name="io" target="13" />
       <module name="java-fundamentals" target="13" />
@@ -26,18 +30,21 @@
       <module name="oop" target="13" />
       <module name="strings" target="13" />
       <module name="threads" target="13" />
+      <module name="web" target="13" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="collections" options="--enable-preview" />
-      <module name="exceptions" options="--enable-preview" />
-      <module name="intro" options="--enable-preview" />
-      <module name="io" options="--enable-preview" />
-      <module name="jdbc" options="--enable-preview" />
-      <module name="oop" options="--enable-preview" />
-      <module name="strings" options="--enable-preview" />
-      <module name="threads" options="--enable-preview" />
+      <module name="collections" options="-parameters --enable-preview" />
+      <module name="exceptions" options="-parameters --enable-preview" />
+      <module name="fp" options="-parameters --enable-preview" />
+      <module name="intro" options="-parameters --enable-preview" />
+      <module name="io" options="-parameters --enable-preview" />
+      <module name="jdbc" options="-parameters --enable-preview" />
+      <module name="oop" options="-parameters --enable-preview" />
+      <module name="strings" options="-parameters --enable-preview" />
+      <module name="threads" options="-parameters --enable-preview" />
+      <module name="web" options="-parameters --enable-preview" />
     </option>
   </component>
 </project>

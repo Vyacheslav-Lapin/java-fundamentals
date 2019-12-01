@@ -6,7 +6,7 @@
     <artifactId>java-fundamentals</artifactId>
     <version>${revision}</version>
   </parent>
-  <artifactId>io</artifactId>
+  <artifactId>collections</artifactId>
   <properties>
     <!--<maven-assembly-plugin.mainClass>ru.vlapin.courses.java.fundamentals.intro.Hello</maven-assembly-plugin.mainClass>-->
     <!--<assembly.skipAssembly>false</assembly.skipAssembly>-->
@@ -16,7 +16,7 @@
 
     <dependency>
       <groupId>com.epam.courses.java.fundamentals</groupId>
-      <artifactId>strings</artifactId>
+      <artifactId>fp</artifactId>
       <version>${revision}</version>
     </dependency>
 
