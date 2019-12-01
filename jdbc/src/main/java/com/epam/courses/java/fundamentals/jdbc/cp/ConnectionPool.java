@@ -17,7 +17,6 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
-import lombok.Cleanup;
 import lombok.SneakyThrows;
 import lombok.experimental.NonFinal;
 import lombok.val;
@@ -30,12 +29,7 @@ public class ConnectionPool implements Closeable, Supplier<Connection> {
   volatile boolean opened = true;
 
   public ConnectionPool() throws SQLException{
-    this("db");
-  }
 
-  public ConnectionPool(String fileName) throws SQLException{
-
-    //var connectionFactory = PropsBinder.from(fileName, ConnectionFactory.class);
     var connectionFactory = new ConnectionFactory("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1",
         "sa", "", 10, "");
 
@@ -115,13 +109,4 @@ public class ConnectionPool implements Closeable, Supplier<Connection> {
 
   private static String SQL =
       "select id, first_name as firstName, last_name as lastName, permission, dob, email, password, address, telephone from Person";
-
-  public static void main(String... __) throws SQLException {
-    @Cleanup val connectionPool = new ConnectionPool();
-    @Cleanup val connection = connectionPool.get();
-    @Cleanup val statement = connection.createStatement();
-    @Cleanup val resultSet = statement.executeQuery(SQL);
-    if (resultSet.next())
-      System.out.println(resultSet.getString("firstName").equals("Jose"));
-  }
 }
