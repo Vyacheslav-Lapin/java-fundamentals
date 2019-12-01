@@ -15,7 +15,7 @@
 PG=`cat pom.xml | xml sel -N pom=http://maven.apache.org/POM/4.0.0 -t -v /pom:project/pom:groupId`
 
 # Main package
-MP=`cat pom.xml | xml sel -N pom=http://maven.apache.org/POM/4.0.0 -t -v /pom:project/pom:groupId`
+MP=`cat pom.xml | xml sel -N pom=http://maven.apache.org/POM/4.0.0 -t -v /pom:project/pom:groupId | tr '.' '/'`
 
 # Project Artifact id
 PA=`cat pom.xml | xml sel -N pom=http://maven.apache.org/POM/4.0.0 -t -v /pom:project/pom:artifactId`
@@ -24,7 +24,7 @@ PA=`cat pom.xml | xml sel -N pom=http://maven.apache.org/POM/4.0.0 -t -v /pom:pr
 JV=`cat pom.xml | xml sel -N pom=http://maven.apache.org/POM/4.0.0 -t -v /pom:project/pom:properties/pom:java.version`
 
 # Maven Version
-MV=3.6.2
+MV=3.6.3
 
 # Lombok Version
 LV=`cat pom.xml | xml sel -N pom=http://maven.apache.org/POM/4.0.0 -t -v /pom:project/pom:properties/pom:lombok.version`
@@ -49,6 +49,9 @@ init:
 #	curl -O https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml
 	curl -O https://raw.githubusercontent.com/checkstyle/checkstyle/checkstyle-8.12/src/main/resources/google_checks.xml
 	echo "\n/google_checks.xml\n" >> .git/info/exclude
+
+effective-pom:
+	./mvnw help:effective-pom
 
 # usage: $ make module A=module-name
 module:
@@ -82,7 +85,7 @@ build:
 	./mvnw verify
 
 run:
-	java -jar --enable-preview intro/target/intro-0.0.1-SNAPSHOT-`cat pom.xml | xml sel -N pom=http://maven.apache.org/POM/4.0.0 -t -v /pom:project/pom:properties/pom:maven-assembly-plugin.descriptorRef`.jar
+	java -jar --enable-preview intro/target/intro-0.0.1-SNAPSHOT-`cat pom.xml | xml sel -N pom=http://maven.apache.org/POM/4.0.0 -t -v /pom:project/pom:properties/pom:maven-assembly-plugin.descriptorSuffix`.jar
 
 clear:
 	./mvnw clean
