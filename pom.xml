@@ -15,6 +15,7 @@
     <module>info</module>
     <module>io</module>
       <module>exceptions</module>
+      <module>jdbc</module>
   </modules>
 
   <developers>
