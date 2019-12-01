@@ -18,9 +18,9 @@ import java.util.stream.Collectors;
  */
 public class FileManager {
   @NonFinal
-  protected Path path;
+  Path path;
 
-  public FileManager(String startPath) {
+  FileManager(String startPath) {
     this.path = Path.of(startPath);
     while (!this.path.toFile().exists()&&this.path.getParent()!=null){
       this.path = this.path.getParent();

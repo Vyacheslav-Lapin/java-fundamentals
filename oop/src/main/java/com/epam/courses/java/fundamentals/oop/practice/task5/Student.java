@@ -7,19 +7,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Разработайте приложение, позволяющее формировать группы студентов по разным дисциплинам.
- * Состав групп может быть разным. Каждая дисциплина в отдельности определяет,
- * целыми или вещественными будут оценки по ней.
- * Необходимо найти группы, в которые входит студент X, и сравнить его оценки.
- * Для организации перечня дисциплин можно использовать перечисление.
- */
-
 class Student {
 
-  private String fullname;
+  String fullname;
 
-  private String courseGroup;
+  String courseGroup;
 
   Map<Group, List<Double>> allMarks;
 

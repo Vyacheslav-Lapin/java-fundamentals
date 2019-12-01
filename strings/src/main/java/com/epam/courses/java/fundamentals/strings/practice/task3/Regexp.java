@@ -9,17 +9,11 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Необходимо определить в тексте статьи* (html-файл), ссылается ли автор на рисунки последовательно или нет,
- * а также выделить все предложения, в которых встречаются ссылки на рисунки.
- * Для разбора текста использовать регулярные выражения.
- */
-
 public class Regexp {
 
-  private String filePath;
+  String filePath;
 
-  private String charSet;
+  String charSet;
 
   static String basicRegexp = "\\([Р|р]ис\\.\\s*[0-9]{1,2}";
 
@@ -48,12 +42,12 @@ public class Regexp {
     return refsInOrder;
   }
 
-  ArrayList<String> getPhrasesWithRefs() {
+  private ArrayList<String> getPhrasesWithRefs() {
     if (phrasesWithRefs == null) phrasesWithRefs = parseFile();
     return phrasesWithRefs;
   }
 
-  ArrayList<String> parseFile() {
+  private ArrayList<String> parseFile() {
     String allText = textFromFile();
     Matcher matcherBr = Pattern.compile(basicRegexp).matcher(allText);
     Matcher matcherFl = Pattern.compile(secondaryRegexp).matcher(allText);

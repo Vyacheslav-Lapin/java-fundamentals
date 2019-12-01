@@ -13,24 +13,24 @@ public class Employee {
   String fullname;
 
   long id;
-
+  @NonFinal
   ArrayList<Stationery> allStuff;
 
-  public Employee(String fullname, long id) {
+  Employee(String fullname, long id) {
     this.fullname = fullname;
     this.id = id;
     this.allStuff = new ArrayList<>();
   }
 
-  public void addStuff(Stationery stuff){
+  void addStuff(Stationery stuff){
     allStuff.add(stuff);
   }
 
-  public boolean removeStuff(Stationery stuff){
+  boolean removeStuff(Stationery stuff){
     return allStuff.remove(stuff);
   }
 
-  public double getTotalCost(){
+  double getTotalCost(){
     double cost = 0.0;
     for(Stationery stat:allStuff) cost+=stat.getPrice();
     return cost;

@@ -4,20 +4,20 @@ import lombok.SneakyThrows;
 import java.io.*;
 import java.util.*;
 
-class ResourceBundle implements Runnable {
+class QuestionSet implements Runnable {
 
   private static File rusFile = new File("strings/src/main/java/com/epam/courses/java/fundamentals/strings/practice/task2/FileRus.txt");
   private static File engFile = new File("strings/src/main/java/com/epam/courses/java/fundamentals/strings/practice/task2/FileEng.txt");
   private static File ansFile = new File("strings/src/main/java/com/epam/courses/java/fundamentals/strings/practice/task2/Answers.txt");
   private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-  HashMap<Integer, Question> questions;
+  Map<Integer, Question> questions;
 
   boolean isRussian = isLangRussian();
 
-  ResourceBundle() {
+  QuestionSet() {
     this.questions = new HashMap<>();
-    HashMap<String, Integer> questions = readFiles();
+    Map<String, Integer> questions = readFiles();
     for (String singleQues : questions.keySet()) {
       int endOfQuestionbody = singleQues.indexOf("\n", 3);
       int dotPosition = singleQues.indexOf(".", 1);
@@ -30,7 +30,7 @@ class ResourceBundle implements Runnable {
   }
 
   @SneakyThrows
-  private HashMap<String, Integer> readFiles() {
+  private Map<String, Integer> readFiles() {
     String[] splittedQuestions = readFile(isRussian ? rusFile : engFile, "&");
     String[] splittedAnswers = readFile(ansFile, "\n");
     HashMap<String, Integer> resultMap = new HashMap<>();

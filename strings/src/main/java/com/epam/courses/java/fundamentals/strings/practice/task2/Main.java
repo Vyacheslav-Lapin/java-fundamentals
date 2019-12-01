@@ -7,7 +7,7 @@ package com.epam.courses.java.fundamentals.strings.practice.task2;
  */
 public class Main {
   public static void main(String[] args) {
-    ResourceBundle bundle = new ResourceBundle();
-    bundle.run();
+    QuestionSet questionSet = new QuestionSet();
+    questionSet.run();
   }
 }

@@ -18,7 +18,7 @@ public class SSBN implements Runnable {
 
   public enum Type {MISSILE, ATTACKING;}
 
-  static class SSBN_PowerSupply {
+  class SSBN_PowerSupply {
 
     long totalPower;
 
@@ -30,9 +30,9 @@ public class SSBN implements Runnable {
     }
   }
 
-   SSBN(String name, SSBN_PowerSupply engine, Type type) {
+   SSBN(String name, long totalPower, int numberOfReactors, Type type) {
     this.name = name;
-    this.engine = engine;
+    this.engine = new SSBN_PowerSupply(totalPower, numberOfReactors);
     this.type = type;
   }
 
@@ -47,7 +47,7 @@ public class SSBN implements Runnable {
   }
 
   public static void main(String[] args) {
-    SSBN Moskva = new SSBN("Moskva", new SSBN_PowerSupply(5000, 2), Type.MISSILE);
+    SSBN Moskva = new SSBN("Moskva",5000, 2, Type.MISSILE);
     Moskva.run();
   }
 }

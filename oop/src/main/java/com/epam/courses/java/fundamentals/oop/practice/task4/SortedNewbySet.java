@@ -14,9 +14,9 @@ import java.util.Comparator;
 
 public class SortedNewbySet {
 
-  private static ArrayList<Stationery> basicList = StationerySet.getFullNewbySet();
+  static ArrayList<Stationery> basicList = StationerySet.getFullNewbySet();
 
-  private ArrayList<Stationery> sortedList;
+  ArrayList<Stationery> sortedList;
 
   enum SORTBY {PRICE, NAME, NAME_PRICE}
 
