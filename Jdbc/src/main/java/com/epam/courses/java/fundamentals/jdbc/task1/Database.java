@@ -7,9 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+
 public class Database {
 
   @SneakyThrows
+
   public static void add(Connection connection) {
     Statement statement = connection.createStatement();
     statement.addBatch("INSERT INTO table1 VALUES (121, 999999)");
@@ -66,4 +68,3 @@ public class Database {
     getAll(connection);
   }
 }
-
