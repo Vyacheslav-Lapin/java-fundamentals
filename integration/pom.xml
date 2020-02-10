@@ -6,19 +6,36 @@
     <artifactId>java-fundamentals</artifactId>
     <version>${revision}</version>
   </parent>
-  <artifactId>fp</artifactId>
+  <artifactId>integration</artifactId>
   <properties>
     <!--<maven-assembly-plugin.mainClass>ru.vlapin.courses.java.fundamentals.intro.Hello</maven-assembly-plugin.mainClass>-->
     <!--<assembly.skipAssembly>false</assembly.skipAssembly>-->
   </properties>
 
   <dependencies>
-
     <dependency>
       <groupId>com.epam.courses.java.fundamentals</groupId>
-      <artifactId>exceptions</artifactId>
+      <artifactId>io</artifactId>
       <version>${revision}</version>
     </dependency>
+    <dependency>
+      <groupId>com.epam.courses.java.fundamentals</groupId>
+      <artifactId>fp</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
 
+    <dependency>
+      <groupId>javax.json</groupId>
+      <artifactId>javax.json-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish</groupId>
+      <artifactId>javax.json</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>rest-assured</artifactId>
+    </dependency>
   </dependencies>
 </project>

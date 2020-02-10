@@ -31,7 +31,9 @@ public interface InputStreamUtils {
     if (!fileName.startsWith("/"))
       fileName = "/" + fileName;
     @Cleanup val inputStream = InputStreamUtils.class.getResourceAsStream(fileName);
-    fisConsumer.accept(inputStream);
+//    try (val inputStream = InputStreamUtils.class.getResourceAsStream(fileName)) {
+      fisConsumer.accept(inputStream);
+//    }
   }
 
   @SneakyThrows
@@ -51,6 +53,12 @@ public interface InputStreamUtils {
   @SneakyThrows
   static Optional<String> getFileAsString(String folder, String fileName) {
     return getPath(String.format("%s/%s", folder, fileName))
+               .map(InputStreamUtils::getFileAsString);
+  }
+
+  @SneakyThrows
+  static Optional<String> getFileAsString(String fileName) {
+    return getPath(String.format("/%s", fileName))
                .map(InputStreamUtils::getFileAsString);
   }
 }

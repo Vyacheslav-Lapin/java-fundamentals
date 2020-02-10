@@ -16,7 +16,7 @@
     <!--<maven-assembly-plugin.mainClass>ru.vlapin.courses.java.fundamentals.intro.Hello</maven-assembly-plugin.mainClass>-->
     <!--<assembly.skipAssembly>false</assembly.skipAssembly>-->
 
-    <tomcat.version>9.0.29</tomcat.version>
+    <tomcat.version>9.0.30</tomcat.version>
     <javaee-api.version>8.0.1</javaee-api.version>
   </properties>
 

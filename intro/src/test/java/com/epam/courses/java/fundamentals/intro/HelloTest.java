@@ -14,6 +14,16 @@ class HelloTest {
   @Disabled
   @DisplayName("main method works correctly")
   void main() {
+
+    //given
+    //when
+    //then
+
+    int a = 13;
+    int zero = 0;
+    a /= zero;
+
+
     assertThat(TestUtils.fromSystemOutPrintln(Hello::main))
         .endsWith("Hello, world!");
   }

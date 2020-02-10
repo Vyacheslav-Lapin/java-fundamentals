@@ -1,11 +1,7 @@
 package com.epam.courses.java.fundamentals.io;
 
-import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.function.Consumer;
-import lombok.Cleanup;
 import lombok.SneakyThrows;
-import lombok.val;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -13,23 +9,6 @@ public interface TestUtils {
 
   String LINE_SEPARATOR = System.lineSeparator();
   String TEST_RESOURCES_PATH = "./src/test/resources/";
-
-    @NotNull
-    static String fromPrintStream(@NotNull Consumer<PrintStream> printStreamConsumer) {
-//      return new String(
-  //
-  //        peekFrom(ByteArrayOutputStream::new,
-  //            baos -> peekAndClose(
-  //                map(baos, PrintStream::new),
-  //                printStreamConsumer))
-  //
-  //            .toByteArray()).intern();
-
-      val out = new ByteArrayOutputStream();
-      @Cleanup val printStream = new PrintStream(out);
-      printStreamConsumer.accept(printStream);
-      return new String(out.toByteArray()).intern();
-    }
 
   @NotNull
   @SneakyThrows
@@ -67,7 +46,7 @@ public interface TestUtils {
     //          __ -> task.run(),
     //          System::setOut)
 
-        return fromPrintStream(printStream -> {
+        return OutputStreamUtils.fromPrintStream(printStream -> {
           PrintStream realOut = System.out;
           System.setOut(printStream);
           task.run();

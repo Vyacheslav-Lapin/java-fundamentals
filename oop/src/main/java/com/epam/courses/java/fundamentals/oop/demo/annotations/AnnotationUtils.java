@@ -1,4 +1,4 @@
-package com.epam.courses.java.fundamentals.oop;
+package com.epam.courses.java.fundamentals.oop.demo.annotations;
 
 import io.vavr.CheckedFunction1;
 import io.vavr.Tuple;
@@ -9,19 +9,19 @@ import java.lang.reflect.Executable;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.lang.reflect.Proxy;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 import lombok.SneakyThrows;
+import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-public interface AnnotationUtils {
+@UtilityClass
+public class AnnotationUtils {
 
   @NotNull
-  static <T extends Annotation> Optional<T> getDeepAnnotation(@NotNull Class<?> targetClass,
+  public <T extends Annotation> Optional<T> getDeepAnnotation(@NotNull Class<?> targetClass,
                                                               @NotNull Class<T> annotationClass) {
     return getDeepAnnotation(annotationClass, targetClass.getAnnotations());
   }
@@ -30,13 +30,13 @@ public interface AnnotationUtils {
    * Works for methods and constructors
    */
   @NotNull
-  static <T extends Annotation> Optional<T> getDeepAnnotation(@NotNull Executable target,
+  public <T extends Annotation> Optional<T> getDeepAnnotation(@NotNull Executable target,
                                                               @NotNull Class<T> annotationClass) {
     return getDeepAnnotation(annotationClass, target.getAnnotations());
   }
 
   @NotNull
-  static <T extends Annotation> Optional<T> getDeepAnnotation(@NotNull Parameter target,
+  public <T extends Annotation> Optional<T> getDeepAnnotation(@NotNull Parameter target,
                                                               @NotNull Class<T> annotationClass) {
     return getDeepAnnotation(annotationClass, target.getAnnotations());
   }
@@ -44,29 +44,31 @@ public interface AnnotationUtils {
   @NotNull
   @Contract(pure = true)
   @SuppressWarnings("unchecked")
-  static <T extends Annotation> Optional<T> getDeepAnnotation(@NotNull Class<T> annotationClass,
-                                                              @NotNull Annotation... annotations) {
+  private <T extends Annotation> Optional<T> getDeepAnnotation(@NotNull Class<T> annotationClass,
+                                                               @NotNull Annotation... annotations) {
     //noinspection unchecked
-    return (Optional<T>) deepAnnotations(Arrays.stream(annotations))
+    return (Optional<T>) deepAnnotations(Arrays.stream(annotations), 1)
+                             .sorted((o1, o2) -> o2._2 - o1._2)
+                             .map(Tuple2::_1)
                              .filter(annotation -> annotation.annotationType().equals(annotationClass))
                              .findFirst();
   }
 
   @NotNull
   @Contract(pure = true)
-  static Stream<Annotation> deepAnnotations(@NotNull Stream<Annotation> annotations) {
+  public Stream<Tuple2<Annotation, Integer>> deepAnnotations(@NotNull Stream<Annotation> annotations, int deepLevel) {
     return annotations
                .flatMap(annotation -> Stream.concat(
-                   Stream.of(annotation),
+                   Stream.of(Tuple.of(annotation, deepLevel)),
                    deepAnnotations(
                        Stream.of(annotation.annotationType().getAnnotations())
-                           .filter(annotation1 ->
-                                       !annotation1.annotationType().getPackageName().equals("java.lang.annotation")))))
-               .distinct();
+                           .filter(anno ->
+                                       !anno.annotationType().getPackageName().equals("java.lang.annotation")),
+                       deepLevel + 1)));
   }
 
   @Contract(pure = true)
-  static @NotNull <T extends Annotation> T wrapAnnotationWithAliasForFunctionality(@NotNull T annotation) {
+  public @NotNull <T extends Annotation> T wrapAnnotationWithAliasForFunctionality(@NotNull T annotation) {
 
     Class<? extends Annotation> annotationType = annotation.annotationType();
 
@@ -95,7 +97,7 @@ public interface AnnotationUtils {
 
   @SneakyThrows
   @Contract(pure = true)
-  static boolean isPseudoNullValue(@NotNull Class<?> type, @NotNull Object result) {
+  public boolean isPseudoNullValue(@NotNull Class<?> type, @NotNull Object result) {
     if (type.equals(String.class))
       return result.equals("");
     if (type.isArray())
@@ -123,17 +125,4 @@ public interface AnnotationUtils {
     return !((boolean) result);
   }
 
-  static Stream<Tuple2<Class<Annotation>, Annotation>> getDeepAnnotations(@NotNull Class<?> targetClass,
-                                                                          @NotNull Class<? extends Annotation> annotationClass) {
-    List<? extends Annotation> annotations = new ArrayList<>();
-
-    // TODO: 2019-02-08 доделать
-//    for (Annotation annotation : targetClass.getAnnotations()) {
-//      if
-//    }
-
-    //noinspection unchecked
-    return annotations.stream()
-             .map(annotation -> Tuple.of((Class<Annotation>) annotation.getClass(), annotation));
-  }
 }

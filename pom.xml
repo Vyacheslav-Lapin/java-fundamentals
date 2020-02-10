@@ -20,6 +20,7 @@
     <module>threads</module>
     <module>jdbc</module>
     <module>web</module>
+    <module>integration</module>
   </modules>
 
   <developers>
@@ -28,6 +29,17 @@
       <url>http://vlapin.ru</url>
     </developer>
   </developers>
+
+  <prerequisites>
+    <maven>3.6.1</maven>
+  </prerequisites>
+
+  <!--<repositories>-->
+  <!--  <repository>-->
+  <!--    <id>projectlombok.org</id>-->
+  <!--    <url>https://projectlombok.org/edge-releases</url>-->
+  <!--  </repository>-->
+  <!--</repositories>-->
 
   <properties>
 
@@ -42,53 +54,59 @@
     <!--endregion-->
 
     <!--region BOMs -->
-    <spring-boot.version>2.2.1.RELEASE</spring-boot.version>
+    <spring-boot.version>2.2.4.RELEASE</spring-boot.version>
     <!--endregion-->
 
     <!--region Libs -->
-    <manifold-version>2019.1.29</manifold-version>
+    <!--<manifold-version>2019.1.29</manifold-version>-->
     <vavr.version>0.10.2</vavr.version>
-    <lombok.version>1.18.10</lombok.version>
+    <!--<lombok.version>edge-SNAPSHOT</lombok.version>-->
+    <lombok.version>1.18.12</lombok.version>
 
-    <checker.version>3.0.0</checker.version>
+    <javax.json-api.version>1.1.4</javax.json-api.version>
+    <javax.json.version>1.1.4</javax.json.version>
+
+    <checker.version>3.1.1</checker.version>
     <annotations.version>18.0.0</annotations.version>
     <jcip-annotations.version>1.0</jcip-annotations.version>
-    <spotbugs.version>4.0.0-beta4</spotbugs.version>
-    <error_prone_annotations.version>2.3.3</error_prone_annotations.version>
+    <spotbugs.version>4.0.0-RC3</spotbugs.version>
+    <error_prone_annotations.version>2.3.4</error_prone_annotations.version>
     <!--endregion-->
 
     <!--region Plugins-->
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
+    <!--<maven.compiler.source>${java.version}</maven.compiler.source>-->
+    <!--<maven.compiler.target>${java.version}</maven.compiler.target>-->
     <maven.compiler.parameters>true</maven.compiler.parameters>
-    <maven.compiler.forceJavacCompilerUse>true</maven.compiler.forceJavacCompilerUse>
-    <maven.compiler.failOnError>false</maven.compiler.failOnError>
+    <!--<maven.compiler.forceJavacCompilerUse>true</maven.compiler.forceJavacCompilerUse>-->
+    <!--<maven.compiler.failOnError>false</maven.compiler.failOnError>-->
 
-    <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
+    <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
     <!--<argLine>&#45;&#45;enable-preview -Xplugin:Manifold</argLine>-->
     <argLine>--enable-preview</argLine>
 
-    <maven-source-plugin.version>3.1.0</maven-source-plugin.version>
+    <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
     <origSourceDir>${project.basedir}/src/main/java</origSourceDir>
     <sourceDir>${origSourceDir}</sourceDir>
     <delombokedSourceDir>${project.build.directory}/delombok</delombokedSourceDir>
 
-    <maven-assembly-plugin.version>3.1.1</maven-assembly-plugin.version>
+    <maven-assembly-plugin.version>3.2.0</maven-assembly-plugin.version>
     <maven-assembly-plugin.descriptorSuffix>jar-with-dependencies</maven-assembly-plugin.descriptorSuffix>
     <maven-assembly-plugin.mainClass>${exec.mainClass}</maven-assembly-plugin.mainClass>
-    <maven-enforcer-plugin.version>3.0.0-M2</maven-enforcer-plugin.version>
+    <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
     <assembly.skipAssembly>true</assembly.skipAssembly>
 
     <versions-maven-plugin.version>2.7</versions-maven-plugin.version>
 
-    <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
-    <checkstyle.version>8.20</checkstyle.version>
+    <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
+    <checkstyle.version>8.29</checkstyle.version>
     <spotbugs-maven-plugin.version>3.1.11</spotbugs-maven-plugin.version>
     <maven-pmd-plugin.version>3.12.0</maven-pmd-plugin.version>
     <sonar-maven-plugin.version>2.7.1</sonar-maven-plugin.version>
-    <jacoco-maven-plugin.version>0.8.4</jacoco-maven-plugin.version>
+    <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
 
-    <lombok-maven-plugin.version>${lombok.version}.0</lombok-maven-plugin.version>
+    <lombok-maven-plugin.version>1.18.10.0</lombok-maven-plugin.version>
     <lombok.verbose>true</lombok.verbose>
     <lombok.addOutputDirectory>false</lombok.addOutputDirectory>
     <lombok.sourceDirectory>${project.basedir}/src/main/java</lombok.sourceDirectory>
@@ -98,6 +116,7 @@
     <exec.executable>java</exec.executable>
     <!--endregion-->
 
+    <rest-assured.version>4.2.0</rest-assured.version>
   </properties>
 
   <profiles>
@@ -121,15 +140,35 @@
       </dependency>
 
       <dependency>
-        <groupId>systems.manifold</groupId>
-        <artifactId>manifold-all</artifactId>
-        <version>${manifold-version}</version>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+        <scope>provided</scope>
+        <optional>true</optional>
       </dependency>
+      <!--<dependency>-->
+      <!--  <groupId>systems.manifold</groupId>-->
+      <!--  <artifactId>manifold-all</artifactId>-->
+      <!--  <version>${manifold-version}</version>-->
+      <!--</dependency>-->
       <dependency>
         <groupId>io.vavr</groupId>
         <artifactId>vavr</artifactId>
         <version>${vavr.version}</version>
       </dependency>
+
+      <!--region Java API for JSON Processing (JSR-353)-->
+      <dependency>
+        <groupId>javax.json</groupId>
+        <artifactId>javax.json-api</artifactId>
+        <version>${javax.json-api.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish</groupId>
+        <artifactId>javax.json</artifactId>
+        <version>${javax.json.version}</version>
+      </dependency>
+      <!--endregion-->
 
       <!--region Common Annotations (CheckerFramework, JetBrains, SpotBugs, ErrorProne) -->
       <dependency>
@@ -164,6 +203,13 @@
       </dependency>
       <!--endregion-->
 
+      <dependency>
+        <groupId>io.rest-assured</groupId>
+        <artifactId>rest-assured</artifactId>
+        <version>${rest-assured.version}</version>
+        <scope>test</scope>
+      </dependency>
+
     </dependencies>
   </dependencyManagement>
 
@@ -186,7 +232,6 @@
       <groupId>io.vavr</groupId>
       <artifactId>vavr</artifactId>
     </dependency>
-
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
@@ -249,26 +294,31 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>${maven-compiler-plugin.version}</version>
           <configuration>
+            <!--<encoding>UTF-8</encoding>-->
+            <!--<compilerId>javac</compilerId>-->
+            <!--<source>${java.version}</source>-->
+            <!--<target>${java.version}</target>-->
+            <!--<annotationProcessorPaths>-->
+            <!--  <processorPath>-->
+            <!--    <groupId>org.projectlombok</groupId>-->
+            <!--    <artifactId>lombok</artifactId>-->
+            <!--    <version>${lombok.version}</version>-->
+            <!--  </processorPath>-->
+            <!--  <processorPath>-->
+            <!--    <groupId>systems.manifold</groupId>-->
+            <!--    <artifactId>manifold-all</artifactId>-->
+            <!--    <version>${manifold-version}</version>-->
+            <!--  </processorPath>-->
+            <!--</annotationProcessorPaths>-->
             <compilerArgs>
               <arg>-parameters</arg>
               <arg>--enable-preview</arg>
               <!--<arg>-Xlint:preview</arg>-->
               <!--<arg>-Xplugin:Manifold</arg>-->
             </compilerArgs>
-            <!--<annotationProcessorPaths>-->
-            <!--<path>-->
-            <!--  <groupId>systems.manifold</groupId>-->
-            <!--  <artifactId>manifold-all</artifactId>-->
-            <!--  <version>${manifold-version}</version>-->
-            <!--</path>-->
-            <!--<path>-->
-            <!--  <groupId>org.projectlombok</groupId>-->
-            <!--  <artifactId>lombok</artifactId>-->
-            <!--  <version>${lombok.version}</version>-->
-            <!--</path>-->
-            <!--</annotationProcessorPaths>-->
             <!--<annotationProcessors>-->
             <!--  <annotationProcessor>lombok.launch.AnnotationProcessorHider$AnnotationProcessor</annotationProcessor>-->
+            <!--  <annotationProcessor>lombok.launch.AnnotationProcessorHider$ClaimingProcessor</annotationProcessor>-->
             <!--</annotationProcessors>-->
           </configuration>
         </plugin>

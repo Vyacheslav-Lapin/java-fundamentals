@@ -1,0 +1,1316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://openapis.org/2"
+        elementFormDefault="qualified"
+        version="1.0"
+        xmlns:tns="http://openapis.org/2">
+
+  <element name="root">
+    <complexType>
+      <sequence>
+        <element name="swagger" fixed="2.0"/>
+        <element name="info" type="tns:info"/>
+        <element name="paths" type="tns:paths"/>
+        <element name="definitions" type="tns:definitions"/>
+      </sequence>
+    </complexType>
+  </element>
+
+  <complexType name="info">
+    <sequence>
+      <element name="version" type="normalizedString"/>
+      <element name="title" type="normalizedString"/>
+      <element name="description" type="normalizedString"/>
+      <element name="termsOfService" type="normalizedString"/>
+      <element name="contact">
+        <complexType>
+          <sequence>
+            <element name="name" type="normalizedString"/>
+            <element name="email" type="normalizedString"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="license">
+        <complexType>
+          <sequence>
+            <element name="name" type="normalizedString"/>
+            <element name="url" type="anyURI"/>
+          </sequence>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+
+  <complexType name="paths">
+    <sequence>
+      <element name="path" maxOccurs="unbounded">
+        <complexType>
+          <all>
+            <element name="value" type="token"/>
+            <element name="get" type="tns:endPoint" minOccurs="0"/>
+            <element name="post" type="tns:endPoint" minOccurs="0"/>
+            <element name="put" type="tns:endPoint" minOccurs="0"/>
+            <element name="patch" type="tns:endPoint" minOccurs="0"/>
+            <element name="delete" type="tns:endPoint" minOccurs="0"/>
+          </all>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+
+  <complexType name="endPoint">
+    <sequence>
+      <element name="tags">
+        <complexType>
+          <sequence>
+            <element name="tag" type="token" maxOccurs="unbounded"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="summary" type="normalizedString"/>
+      <element name="operationId" type="token"/>
+      <element name="consumes">
+        <complexType>
+          <sequence minOccurs="0" maxOccurs="unbounded">
+            <element name="consume" type="tns:mimeType"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="produces">
+        <complexType>
+          <sequence minOccurs="0">
+            <element name="produce" type="tns:mimeType" maxOccurs="unbounded"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="parameters">
+        <complexType>
+          <sequence>
+            <element name="parameter" minOccurs="0" maxOccurs="unbounded">
+              <complexType>
+                <all>
+                  <element name="schema" type="tns:schema" minOccurs="0"/>
+                  <element name="enum" minOccurs="0">
+                    <complexType>
+                      <sequence>
+                        <element name="item" type="double" maxOccurs="unbounded"/>
+                      </sequence>
+                    </complexType>
+                  </element>
+                  <element name="items" minOccurs="0">
+                    <complexType>
+                      <sequence>
+                        <element name="type" type="tns:type"/>
+                      </sequence>
+                    </complexType>
+                  </element>
+                  <element name="collectionFormat" minOccurs="0" type="tns:collectionFormat"/>
+                  <element name="uniqueItems" minOccurs="0" type="boolean" default="true"/>
+                  <element name="name" type="token" minOccurs="0"/>
+                  <element name="in" minOccurs="0">
+                    <simpleType>
+                      <restriction base="token">
+                        <enumeration value="path"/>
+                        <enumeration value="header"/>
+                        <enumeration value="body"/>
+                        <enumeration value="query"/>
+                      </restriction>
+                    </simpleType>
+                  </element>
+                  <element name="description" type="normalizedString" default="" minOccurs="0"/>
+                  <element name="required" type="boolean" default="false" minOccurs="0"/>
+                  <element name="type" type="tns:type" default="string" minOccurs="0"/>
+                  <element name="format" type="tns:format" default="" minOccurs="0"/>
+                  <element name="default" type="normalizedString" minOccurs="0"/>
+                </all>
+              </complexType>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="responses">
+        <complexType>
+          <sequence maxOccurs="unbounded">
+            <element name="response">
+              <complexType>
+                <sequence minOccurs="0">
+                  <element name="value" type="integer" minOccurs="0"/>
+                  <element name="description" type="normalizedString" minOccurs="0"/>
+                  <element name="schema" type="tns:schema" minOccurs="0"/>
+                </sequence>
+              </complexType>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="deprecated" type="boolean" default="false" minOccurs="0"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="definitions">
+    <sequence>
+      <element name="definition" maxOccurs="unbounded">
+        <complexType>
+          <all>
+            <element name="value" type="token" minOccurs="0"/>
+            <element name="description" type="normalizedString" minOccurs="0"/>
+            <element name="required" minOccurs="0">
+              <complexType>
+                <sequence>
+                  <element name="item" type="token" maxOccurs="unbounded"/>
+                </sequence>
+              </complexType>
+            </element>
+            <element name="type" type="tns:type" minOccurs="0"/>
+            <element name="properties" type="tns:properties" minOccurs="0"/>
+            <element name="additionalProperties" minOccurs="0">
+              <complexType>
+                <sequence>
+                  <element name="type" type="tns:type"/>
+                </sequence>
+              </complexType>
+            </element>
+          </all>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+
+  <complexType name="schema">
+    <all>
+      <element name="ref" type="token" minOccurs="0"/>
+      <element name="type" type="tns:type" minOccurs="0"/>
+      <element name="uniqueItems" type="boolean" minOccurs="0"/>
+      <element name="additionalProperties" minOccurs="0">
+        <complexType>
+          <sequence>
+            <element name="ref" type="token" minOccurs="0"/>
+            <element name="uniqueItems" type="boolean" default="true" minOccurs="0"/>
+            <element name="type" type="tns:type" minOccurs="0"/>
+            <element name="items" minOccurs="0">
+              <complexType>
+                <sequence>
+                  <element name="type" type="tns:type"/>
+                </sequence>
+              </complexType>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="items" minOccurs="0">
+        <complexType>
+          <sequence>
+            <element name="ref" type="token"/>
+          </sequence>
+        </complexType>
+      </element>
+    </all>
+  </complexType>
+
+  <complexType name="properties">
+    <sequence>
+      <element name="property" maxOccurs="unbounded">
+        <complexType>
+          <all>
+            <element name="name" type="token" minOccurs="0"/>
+            <element name="ref" type="token" minOccurs="0"/>
+            <element name="description" type="normalizedString" minOccurs="0"/>
+            <element name="type" type="tns:type" default="string" minOccurs="0"/>
+            <element name="format" type="tns:format" minOccurs="0"/>
+            <element name="uniqueItems" type="boolean" minOccurs="0"/>
+            <element name="maxLength" type="double" minOccurs="0"/>
+            <element name="minLength" type="double" minOccurs="0"/>
+            <element name="readOnly" type="boolean" minOccurs="0"/>
+            <element name="enum" minOccurs="0">
+              <complexType>
+                <sequence>
+                  <element name="item" type="token" maxOccurs="unbounded"/>
+                </sequence>
+              </complexType>
+            </element>
+            <element name="items" minOccurs="0">
+              <complexType>
+                <sequence minOccurs="0">
+                  <element name="ref" type="token" minOccurs="0"/>
+                  <element name="format" type="tns:format" minOccurs="0"/>
+                  <element name="enum" minOccurs="0">
+                    <complexType>
+                      <sequence minOccurs="0">
+                        <element name="item" type="token" minOccurs="0" maxOccurs="unbounded"/>
+                      </sequence>
+                    </complexType>
+                  </element>
+                  <element name="type" type="tns:type" minOccurs="0"/>
+                </sequence>
+              </complexType>
+            </element>
+            <element name="properties" type="tns:properties" minOccurs="0"/>
+            <element name="additionalProperties" minOccurs="0">
+              <complexType>
+                <sequence>
+                  <element name="ref" type="token" minOccurs="0"/>
+                  <element name="uniqueItems" type="boolean" minOccurs="0"/>
+                  <element name="type" type="tns:type" minOccurs="0"/>
+                  <element name="items" minOccurs="0">
+                    <complexType>
+                      <sequence>
+                        <element name="type" type="tns:type" minOccurs="0"/>
+                      </sequence>
+                    </complexType>
+                  </element>
+                </sequence>
+              </complexType>
+            </element>
+          </all>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+
+  <simpleType name="type">
+    <restriction base="token">
+      <enumeration value="object"/>
+      <enumeration value="array"/>
+      <enumeration value="string"/>
+      <enumeration value="integer"/>
+      <enumeration value="number"/>
+      <enumeration value="boolean"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="format">
+    <restriction base="token">
+      <enumeration value="int32"/>
+      <enumeration value="int64"/>
+      <enumeration value="double"/>
+      <enumeration value="date-time"/>
+      <enumeration value="byte"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="collectionFormat">
+    <restriction base="token">
+      <enumeration value="multi"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="mimeType">
+    <restriction base="token">
+      <enumeration value="application/json-patch+json"/>
+      <enumeration value="application/*+json"/>
+      <enumeration value="text/json"/>
+      <enumeration value="application/vnd.lotus-1-2-3"/>
+      <enumeration value="text/vnd.in3d.3dml"/>
+      <enumeration value="image/x-3ds"/>
+      <enumeration value="video/3gpp2"/>
+      <enumeration value="video/3gpp"/>
+      <enumeration value="application/x-7z-compressed"/>
+      <enumeration value="application/x-authorware-bin"/>
+      <enumeration value="audio/x-aac"/>
+      <enumeration value="application/x-authorware-map"/>
+      <enumeration value="application/x-authorware-seg"/>
+      <enumeration value="audio/x-mpeg"/>
+      <enumeration value="application/x-abiword"/>
+      <enumeration value="application/pkix-attr-cert"/>
+      <enumeration value="application/vnd.americandynamics.acc"/>
+      <enumeration value="application/x-ace-compressed"/>
+      <enumeration value="application/vnd.acucobol"/>
+      <enumeration value="application/vnd.acucorp"/>
+      <enumeration value="audio/adpcm"/>
+      <enumeration value="application/vnd.audiograph"/>
+      <enumeration value="application/x-font-type1"/>
+      <enumeration value="application/vnd.ibm.modcap"/>
+      <enumeration value="application/vnd.ahead.space"/>
+      <enumeration value="application/postscript"/>
+      <enumeration value="audio/x-aiff"/>
+      <enumeration value="audio/x-aiff"/>
+      <enumeration value="audio/x-aiff"/>
+      <enumeration value="application/x-aim"/>
+      <enumeration value="application/vnd.adobe.air-application-installer-package+zip"/>
+      <enumeration value="application/vnd.dvb.ait"/>
+      <enumeration value="application/vnd.amiga.ami"/>
+      <enumeration value="application/annodex"/>
+      <enumeration value="application/vnd.android.package-archive"/>
+      <enumeration value="text/cache-manifest"/>
+      <enumeration value="application/x-ms-application"/>
+      <enumeration value="application/vnd.lotus-approach"/>
+      <enumeration value="application/x-freearc"/>
+      <enumeration value="image/x-jg"/>
+      <enumeration value="application/pgp-signature"/>
+      <enumeration value="video/x-ms-asf"/>
+      <enumeration value="text/x-asm"/>
+      <enumeration value="application/vnd.accpac.simply.aso"/>
+      <enumeration value="video/x-ms-asf"/>
+      <enumeration value="application/vnd.acucorp"/>
+      <enumeration value="application/atom+xml"/>
+      <enumeration value="application/atomcat+xml"/>
+      <enumeration value="application/atomsvc+xml"/>
+      <enumeration value="application/vnd.antix.game-component"/>
+      <enumeration value="audio/basic"/>
+      <enumeration value="video/x-msvideo"/>
+      <enumeration value="video/x-rad-screenplay"/>
+      <enumeration value="application/applixware"/>
+      <enumeration value="audio/annodex"/>
+      <enumeration value="video/annodex"/>
+      <enumeration value="application/vnd.airzip.filesecure.azf"/>
+      <enumeration value="application/vnd.airzip.filesecure.azs"/>
+      <enumeration value="application/vnd.amazon.ebook"/>
+      <enumeration value="application/x-msdownload"/>
+      <enumeration value="application/x-bcpio"/>
+      <enumeration value="application/x-font-bdf"/>
+      <enumeration value="application/vnd.syncml.dm+wbxml"/>
+      <enumeration value="application/vnd.realvnc.bed"/>
+      <enumeration value="application/vnd.fujitsu.oasysprs"/>
+      <enumeration value="application/octet-stream"/>
+      <enumeration value="application/x-blorb"/>
+      <enumeration value="application/x-blorb"/>
+      <enumeration value="application/vnd.bmi"/>
+      <enumeration value="image/bmp"/>
+      <enumeration value="text/html"/>
+      <enumeration value="application/vnd.framemaker"/>
+      <enumeration value="application/vnd.previewsystems.box"/>
+      <enumeration value="application/x-bzip2"/>
+      <enumeration value="application/octet-stream"/>
+      <enumeration value="image/prs.btif"/>
+      <enumeration value="application/x-bzip"/>
+      <enumeration value="application/x-bzip2"/>
+      <enumeration value="text/x-c"/>
+      <enumeration value="application/vnd.cluetrust.cartomobile-config"/>
+      <enumeration value="application/vnd.cluetrust.cartomobile-config-pkg"/>
+      <enumeration value="application/vnd.clonk.c4group"/>
+      <enumeration value="application/vnd.clonk.c4group"/>
+      <enumeration value="application/vnd.clonk.c4group"/>
+      <enumeration value="application/vnd.clonk.c4group"/>
+      <enumeration value="application/vnd.clonk.c4group"/>
+      <enumeration value="application/vnd.ms-cab-compressed"/>
+      <enumeration value="audio/x-caf"/>
+      <enumeration value="application/vnd.tcpdump.pcap"/>
+      <enumeration value="application/vnd.curl.car"/>
+      <enumeration value="application/vnd.ms-pki.seccat"/>
+      <enumeration value="application/x-cbr"/>
+      <enumeration value="application/x-cbr"/>
+      <enumeration value="application/x-cbr"/>
+      <enumeration value="application/x-cbr"/>
+      <enumeration value="application/x-cbr"/>
+      <enumeration value="text/x-c"/>
+      <enumeration value="application/x-director"/>
+      <enumeration value="application/ccxml+xml"/>
+      <enumeration value="application/vnd.contact.cmsg"/>
+      <enumeration value="application/x-cdf"/>
+      <enumeration value="application/vnd.mediastation.cdkey"/>
+      <enumeration value="application/cdmi-capability"/>
+      <enumeration value="application/cdmi-container"/>
+      <enumeration value="application/cdmi-domain"/>
+      <enumeration value="application/cdmi-object"/>
+      <enumeration value="application/cdmi-queue"/>
+      <enumeration value="chemical/x-cdx"/>
+      <enumeration value="application/vnd.chemdraw+xml"/>
+      <enumeration value="application/vnd.cinderella"/>
+      <enumeration value="application/pkix-cert"/>
+      <enumeration value="application/x-cfs-compressed"/>
+      <enumeration value="image/cgm"/>
+      <enumeration value="application/x-chat"/>
+      <enumeration value="application/vnd.ms-htmlhelp"/>
+      <enumeration value="application/vnd.kde.kchart"/>
+      <enumeration value="chemical/x-cif"/>
+      <enumeration value="application/vnd.anser-web-certificate-issue-initiation"/>
+      <enumeration value="application/vnd.ms-artgalry"/>
+      <enumeration value="application/vnd.claymore"/>
+      <enumeration value="application/java"/>
+      <enumeration value="application/vnd.crick.clicker.keyboard"/>
+      <enumeration value="application/vnd.crick.clicker.palette"/>
+      <enumeration value="application/vnd.crick.clicker.template"/>
+      <enumeration value="application/vnd.crick.clicker.wordbank"/>
+      <enumeration value="application/vnd.crick.clicker"/>
+      <enumeration value="application/x-msclip"/>
+      <enumeration value="application/vnd.cosmocaller"/>
+      <enumeration value="chemical/x-cmdf"/>
+      <enumeration value="chemical/x-cml"/>
+      <enumeration value="application/vnd.yellowriver-custom-menu"/>
+      <enumeration value="image/x-cmx"/>
+      <enumeration value="application/vnd.rim.cod"/>
+      <enumeration value="application/x-msdownload"/>
+      <enumeration value="text/plain"/>
+      <enumeration value="application/x-cpio"/>
+      <enumeration value="text/x-c"/>
+      <enumeration value="application/mac-compactpro"/>
+      <enumeration value="application/x-mscardfile"/>
+      <enumeration value="application/pkix-crl"/>
+      <enumeration value="application/x-x509-ca-cert"/>
+      <enumeration value="application/vnd.rig.cryptonote"/>
+      <enumeration value="application/x-csh"/>
+      <enumeration value="chemical/x-csml"/>
+      <enumeration value="application/vnd.commonspace"/>
+      <enumeration value="text/css"/>
+      <enumeration value="application/x-director"/>
+      <enumeration value="text/csv"/>
+      <enumeration value="application/cu-seeme"/>
+      <enumeration value="text/vnd.curl"/>
+      <enumeration value="application/prs.cww"/>
+      <enumeration value="application/x-director"/>
+      <enumeration value="text/x-c"/>
+      <enumeration value="model/vnd.collada+xml"/>
+      <enumeration value="application/vnd.mobius.daf"/>
+      <enumeration value="application/vnd.dart"/>
+      <enumeration value="application/vnd.fdsn.seed"/>
+      <enumeration value="application/davmount+xml"/>
+      <enumeration value="application/docbook+xml"/>
+      <enumeration value="application/x-director"/>
+      <enumeration value="text/vnd.curl.dcurl"/>
+      <enumeration value="application/vnd.oma.dd2+xml"/>
+      <enumeration value="application/vnd.fujixerox.ddd"/>
+      <enumeration value="application/x-debian-package"/>
+      <enumeration value="text/plain"/>
+      <enumeration value="application/octet-stream"/>
+      <enumeration value="application/x-x509-ca-cert"/>
+      <enumeration value="application/vnd.dreamfactory"/>
+      <enumeration value="application/x-dgc-compressed"/>
+      <enumeration value="image/bmp"/>
+      <enumeration value="text/x-c"/>
+      <enumeration value="application/x-director"/>
+      <enumeration value="application/vnd.mobius.dis"/>
+      <enumeration value="application/octet-stream"/>
+      <enumeration value="application/octet-stream"/>
+      <enumeration value="image/vnd.djvu"/>
+      <enumeration value="image/vnd.djvu"/>
+      <enumeration value="application/x-msdownload"/>
+      <enumeration value="application/x-apple-diskimage"/>
+      <enumeration value="application/vnd.tcpdump.pcap"/>
+      <enumeration value="application/octet-stream"/>
+      <enumeration value="application/vnd.dna"/>
+      <enumeration value="application/msword"/>
+      <enumeration value="application/vnd.ms-word.document.macroenabled.12"/>
+      <enumeration value="application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
+      <enumeration value="application/msword"/>
+      <enumeration value="application/vnd.ms-word.template.macroenabled.12"/>
+      <enumeration value="application/vnd.openxmlformats-officedocument.wordprocessingml.template"/>
+      <enumeration value="application/vnd.osgi.dp"/>
+      <enumeration value="application/vnd.dpgraph"/>
+      <enumeration value="audio/vnd.dra"/>
+      <enumeration value="text/prs.lines.tag"/>
+      <enumeration value="application/dssc+der"/>
+      <enumeration value="application/x-dtbook+xml"/>
+      <enumeration value="application/xml-dtd"/>
+      <enumeration value="audio/vnd.dts"/>
+      <enumeration value="audio/vnd.dts.hd"/>
+      <enumeration value="application/octet-stream"/>
+      <enumeration value="video/x-dv"/>
+      <enumeration value="video/vnd.dvb.file"/>
+      <enumeration value="application/x-dvi"/>
+      <enumeration value="model/vnd.dwf"/>
+      <enumeration value="image/vnd.dwg"/>
+      <enumeration value="image/vnd.dxf"/>
+      <enumeration value="application/vnd.spotfire.dxp"/>
+      <enumeration value="application/x-director"/>
+      <enumeration value="audio/vnd.nuera.ecelp4800"/>
+      <enumeration value="audio/vnd.nuera.ecelp7470"/>
+      <enumeration value="audio/vnd.nuera.ecelp9600"/>
+      <enumeration value="application/ecmascript"/>
+      <enumeration value="application/vnd.novadigm.edm"/>
+      <enumeration value="application/vnd.novadigm.edx"/>
+      <enumeration value="application/vnd.picsel"/>
+      <enumeration value="application/vnd.pg.osasli"/>
+      <enumeration value="application/octet-stream"/>
+      <enumeration value="application/x-msmetafile"/>
+      <enumeration value="message/rfc822"/>
+      <enumeration value="application/emma+xml"/>
+      <enumeration value="application/x-msmetafile"/>
+      <enumeration value="audio/vnd.digital-winds"/>
+      <enumeration value="application/vnd.ms-fontobject"/>
+      <enumeration value="application/postscript"/>
+      <enumeration value="application/epub+zip"/>
+      <enumeration value="application/vnd.eszigno3+xml"/>
+      <enumeration value="application/vnd.osgi.subsystem"/>
+      <enumeration value="application/vnd.epson.esf"/>
+      <enumeration value="application/vnd.eszigno3+xml"/>
+      <enumeration value="text/x-setext"/>
+      <enumeration value="application/x-eva"/>
+      <enumeration value="application/x-envoy"/>
+      <enumeration value="application/octet-stream"/>
+      <enumeration value="application/exi"/>
+      <enumeration value="application/vnd.novadigm.ext"/>
+      <enumeration value="application/andrew-inset"/>
+      <enumeration value="application/vnd.ezpix-album"/>
+      <enumeration value="application/vnd.ezpix-package"/>
+      <enumeration value="text/x-fortran"/>
+      <enumeration value="video/x-f4v"/>
+      <enumeration value="text/x-fortran"/>
+      <enumeration value="text/x-fortran"/>
+      <enumeration value="image/vnd.fastbidsheet"/>
+      <enumeration value="application/vnd.adobe.formscentral.fcdt"/>
+      <enumeration value="application/vnd.isac.fcs"/>
+      <enumeration value="application/vnd.fdf"/>
+      <enumeration value="application/vnd.denovo.fcselayout-link"/>
+      <enumeration value="application/vnd.fujitsu.oasysgp"/>
+      <enumeration value="application/x-director"/>
+      <enumeration value="image/x-freehand"/>
+      <enumeration value="image/x-freehand"/>
+      <enumeration value="image/x-freehand"/>
+      <enumeration value="image/x-freehand"/>
+      <enumeration value="image/x-freehand"/>
+      <enumeration value="application/x-xfig"/>
+      <enumeration value="audio/flac"/>
+      <enumeration value="video/x-fli"/>
+      <enumeration value="application/vnd.micrografx.flo"/>
+      <enumeration value="video/x-flv"/>
+      <enumeration value="application/vnd.kde.kivio"/>
+      <enumeration value="text/vnd.fmi.flexstor"/>
+      <enumeration value="text/vnd.fly"/>
+      <enumeration value="application/vnd.framemaker"/>
+      <enumeration value="application/vnd.frogans.fnc"/>
+      <enumeration value="text/x-fortran"/>
+      <enumeration value="image/vnd.fpx"/>
+      <enumeration value="application/vnd.framemaker"/>
+      <enumeration value="application/vnd.fsc.weblaunch"/>
+      <enumeration value="image/vnd.fst"/>
+      <enumeration value="application/vnd.fluxtime.clip"/>
+      <enumeration value="application/vnd.anser-web-funds-transfer-initiation"/>
+      <enumeration value="video/vnd.fvt"/>
+      <enumeration value="application/vnd.adobe.fxp"/>
+      <enumeration value="application/vnd.adobe.fxp"/>
+      <enumeration value="application/vnd.fuzzysheet"/>
+      <enumeration value="application/vnd.geoplan"/>
+      <enumeration value="image/g3fax"/>
+      <enumeration value="application/vnd.geospace"/>
+      <enumeration value="application/vnd.groove-account"/>
+      <enumeration value="application/x-tads"/>
+      <enumeration value="application/rpki-ghostbusters"/>
+      <enumeration value="application/x-gca-compressed"/>
+      <enumeration value="model/vnd.gdl"/>
+      <enumeration value="application/vnd.dynageo"/>
+      <enumeration value="application/vnd.geometry-explorer"/>
+      <enumeration value="application/vnd.geogebra.file"/>
+      <enumeration value="application/vnd.geogebra.tool"/>
+      <enumeration value="application/vnd.groove-help"/>
+      <enumeration value="image/gif"/>
+      <enumeration value="application/vnd.groove-identity-message"/>
+      <enumeration value="application/gml+xml"/>
+      <enumeration value="application/vnd.gmx"/>
+      <enumeration value="application/x-gnumeric"/>
+      <enumeration value="application/vnd.flographit"/>
+      <enumeration value="application/gpx+xml"/>
+      <enumeration value="application/vnd.grafeq"/>
+      <enumeration value="application/vnd.grafeq"/>
+      <enumeration value="application/srgs"/>
+      <enumeration value="application/x-gramps-xml"/>
+      <enumeration value="application/vnd.geometry-explorer"/>
+      <enumeration value="application/vnd.groove-injector"/>
+      <enumeration value="application/srgs+xml"/>
+      <enumeration value="application/x-font-ghostscript"/>
+      <enumeration value="application/x-gtar"/>
+      <enumeration value="application/vnd.groove-tool-message"/>
+      <enumeration value="model/vnd.gtw"/>
+      <enumeration value="text/vnd.graphviz"/>
+      <enumeration value="application/gxf"/>
+      <enumeration value="application/vnd.geonext"/>
+      <enumeration value="application/x-gzip"/>
+      <enumeration value="text/x-c"/>
+      <enumeration value="video/h261"/>
+      <enumeration value="video/h263"/>
+      <enumeration value="video/h264"/>
+      <enumeration value="application/vnd.hal+xml"/>
+      <enumeration value="application/vnd.hbci"/>
+      <enumeration value="application/x-hdf"/>
+      <enumeration value="text/x-c"/>
+      <enumeration value="application/winhlp"/>
+      <enumeration value="application/vnd.hp-hpgl"/>
+      <enumeration value="application/vnd.hp-hpid"/>
+      <enumeration value="application/vnd.hp-hps"/>
+      <enumeration value="application/mac-binhex40"/>
+      <enumeration value="text/x-component"/>
+      <enumeration value="application/vnd.kenameaapp"/>
+      <enumeration value="text/html"/>
+      <enumeration value="text/html"/>
+      <enumeration value="application/vnd.yamaha.hv-dic"/>
+      <enumeration value="application/vnd.yamaha.hv-voice"/>
+      <enumeration value="application/vnd.yamaha.hv-script"/>
+      <enumeration value="application/vnd.intergeo"/>
+      <enumeration value="application/vnd.iccprofile"/>
+      <enumeration value="x-conference/x-cooltalk"/>
+      <enumeration value="application/vnd.iccprofile"/>
+      <enumeration value="image/x-icon"/>
+      <enumeration value="text/calendar"/>
+      <enumeration value="image/ief"/>
+      <enumeration value="text/calendar"/>
+      <enumeration value="application/vnd.shana.informed.formdata"/>
+      <enumeration value="model/iges"/>
+      <enumeration value="application/vnd.igloader"/>
+      <enumeration value="application/vnd.insors.igm"/>
+      <enumeration value="model/iges"/>
+      <enumeration value="application/vnd.micrografx.igx"/>
+      <enumeration value="application/vnd.shana.informed.interchange"/>
+      <enumeration value="application/vnd.accpac.simply.imp"/>
+      <enumeration value="application/vnd.ms-ims"/>
+      <enumeration value="text/plain"/>
+      <enumeration value="application/inkml+xml"/>
+      <enumeration value="application/inkml+xml"/>
+      <enumeration value="application/x-install-instructions"/>
+      <enumeration value="application/vnd.astraea-software.iota"/>
+      <enumeration value="application/ipfix"/>
+      <enumeration value="application/vnd.shana.informed.package"/>
+      <enumeration value="application/vnd.ibm.rights-management"/>
+      <enumeration value="application/vnd.irepository.package+xml"/>
+      <enumeration value="application/x-iso9660-image"/>
+      <enumeration value="application/vnd.shana.informed.formtemplate"/>
+      <enumeration value="application/vnd.immervision-ivp"/>
+      <enumeration value="application/vnd.immervision-ivu"/>
+      <enumeration value="text/vnd.sun.j2me.app-descriptor"/>
+      <enumeration value="application/vnd.jam"/>
+      <enumeration value="application/java-archive"/>
+      <enumeration value="text/x-java-source"/>
+      <enumeration value="application/vnd.jisp"/>
+      <enumeration value="application/vnd.hp-jlyt"/>
+      <enumeration value="application/x-java-jnlp-file"/>
+      <enumeration value="application/vnd.joost.joda-archive"/>
+      <enumeration value="image/jpeg"/>
+      <enumeration value="image/jpeg"/>
+      <enumeration value="image/jpeg"/>
+      <enumeration value="video/jpm"/>
+      <enumeration value="video/jpeg"/>
+      <enumeration value="video/jpm"/>
+      <enumeration value="application/javascript"/>
+      <enumeration value="text/plain"/>
+      <enumeration value="application/json"/>
+      <enumeration value="application/jsonml+json"/>
+      <enumeration value="text/plain"/>
+      <enumeration value="audio/midi"/>
+      <enumeration value="application/vnd.kde.karbon"/>
+      <enumeration value="application/vnd.kde.kformula"/>
+      <enumeration value="application/vnd.kidspiration"/>
+      <enumeration value="application/vnd.google-earth.kml+xml"/>
+      <enumeration value="application/vnd.google-earth.kmz"/>
+      <enumeration value="application/vnd.kinar"/>
+      <enumeration value="application/vnd.kinar"/>
+      <enumeration value="application/vnd.kde.kontour"/>
+      <enumeration value="application/vnd.kde.kpresenter"/>
+      <enumeration value="application/vnd.kde.kpresenter"/>
+      <enumeration value="application/vnd.ds-keypoint"/>
+      <enumeration value="application/vnd.kde.kspread"/>
+      <enumeration value="application/vnd.kahootz"/>
+      <enumeration value="image/ktx"/>
+      <enumeration value="application/vnd.kahootz"/>
+      <enumeration value="application/vnd.kde.kword"/>
+      <enumeration value="application/vnd.kde.kword"/>
+      <enumeration value="application/vnd.las.las+xml"/>
+      <enumeration value="application/x-latex"/>
+      <enumeration value="application/vnd.llamagraphics.life-balance.desktop"/>
+      <enumeration value="application/vnd.llamagraphics.life-balance.exchange+xml"/>
+      <enumeration value="application/vnd.hhe.lesson-player"/>
+      <enumeration value="application/x-lzh-compressed"/>
+      <enumeration value="application/vnd.route66.link66+xml"/>
+      <enumeration value="text/plain"/>
+      <enumeration value="application/vnd.ibm.modcap"/>
+      <enumeration value="application/vnd.ibm.modcap"/>
+      <enumeration value="application/x-ms-shortcut"/>
+      <enumeration value="text/plain"/>
+      <enumeration value="application/lost+xml"/>
+      <enumeration value="application/octet-stream"/>
+      <enumeration value="application/vnd.ms-lrm"/>
+      <enumeration value="application/vnd.frogans.ltf"/>
+      <enumeration value="audio/vnd.lucent.voice"/>
+      <enumeration value="application/vnd.lotus-wordpro"/>
+      <enumeration value="application/x-lzh-compressed"/>
+      <enumeration value="application/x-msmediaview"/>
+      <enumeration value="application/x-msmediaview"/>
+      <enumeration value="video/mpeg"/>
+      <enumeration value="application/mp21"/>
+      <enumeration value="audio/mpeg"/>
+      <enumeration value="video/mpeg"/>
+      <enumeration value="audio/mpeg"/>
+      <enumeration value="audio/x-mpegurl"/>
+      <enumeration value="application/vnd.apple.mpegurl"/>
+      <enumeration value="audio/mp4"/>
+      <enumeration value="audio/mp4"/>
+      <enumeration value="audio/mp4"/>
+      <enumeration value="video/vnd.mpegurl"/>
+      <enumeration value="video/mp4"/>
+      <enumeration value="application/mathematica"/>
+      <enumeration value="image/x-macpaint"/>
+      <enumeration value="application/mads+xml"/>
+      <enumeration value="application/vnd.ecowin.chart"/>
+      <enumeration value="application/vnd.framemaker"/>
+      <enumeration value="text/troff"/>
+      <enumeration value="application/octet-stream"/>
+      <enumeration value="application/mathml+xml"/>
+      <enumeration value="application/mathematica"/>
+      <enumeration value="application/vnd.mobius.mbk"/>
+      <enumeration value="application/mbox"/>
+      <enumeration value="application/vnd.medcalcdata"/>
+      <enumeration value="application/vnd.mcd"/>
+      <enumeration value="text/vnd.curl.mcurl"/>
+      <enumeration value="application/x-msaccess"/>
+      <enumeration value="image/vnd.ms-modi"/>
+      <enumeration value="text/troff"/>
+      <enumeration value="model/mesh"/>
+      <enumeration value="application/metalink4+xml"/>
+      <enumeration value="application/metalink+xml"/>
+      <enumeration value="application/mets+xml"/>
+      <enumeration value="application/vnd.mfmp"/>
+      <enumeration value="application/rpki-manifest"/>
+      <enumeration value="application/vnd.osgeo.mapguide.package"/>
+      <enumeration value="application/vnd.proteus.magazine"/>
+      <enumeration value="audio/midi"/>
+      <enumeration value="audio/midi"/>
+      <enumeration value="application/x-mie"/>
+      <enumeration value="application/x-mif"/>
+      <enumeration value="message/rfc822"/>
+      <enumeration value="video/mj2"/>
+      <enumeration value="video/mj2"/>
+      <enumeration value="video/x-matroska"/>
+      <enumeration value="audio/x-matroska"/>
+      <enumeration value="video/x-matroska"/>
+      <enumeration value="video/x-matroska"/>
+      <enumeration value="application/vnd.dolby.mlp"/>
+      <enumeration value="application/vnd.chipnuts.karaoke-mmd"/>
+      <enumeration value="application/vnd.smaf"/>
+      <enumeration value="image/vnd.fujixerox.edmics-mmr"/>
+      <enumeration value="video/x-mng"/>
+      <enumeration value="application/x-msmoney"/>
+      <enumeration value="application/x-mobipocket-ebook"/>
+      <enumeration value="application/mods+xml"/>
+      <enumeration value="video/quicktime"/>
+      <enumeration value="video/x-sgi-movie"/>
+      <enumeration value="audio/mpeg"/>
+      <enumeration value="audio/mpeg"/>
+      <enumeration value="application/mp21"/>
+      <enumeration value="audio/mpeg"/>
+      <enumeration value="audio/mpeg"/>
+      <enumeration value="video/mp4"/>
+      <enumeration value="audio/mp4"/>
+      <enumeration value="application/mp4"/>
+      <enumeration value="video/mp4"/>
+      <enumeration value="audio/mpeg"/>
+      <enumeration value="application/vnd.mophun.certificate"/>
+      <enumeration value="video/mpeg"/>
+      <enumeration value="video/mpeg"/>
+      <enumeration value="audio/x-mpeg"/>
+      <enumeration value="video/mpeg"/>
+      <enumeration value="video/mp4"/>
+      <enumeration value="audio/mpeg"/>
+      <enumeration value="application/vnd.apple.installer+xml"/>
+      <enumeration value="application/vnd.blueice.multipass"/>
+      <enumeration value="application/vnd.mophun.application"/>
+      <enumeration value="application/vnd.ms-project"/>
+      <enumeration value="application/vnd.ms-project"/>
+      <enumeration value="video/mpeg2"/>
+      <enumeration value="application/vnd.ibm.minipay"/>
+      <enumeration value="application/vnd.mobius.mqy"/>
+      <enumeration value="application/marc"/>
+      <enumeration value="application/marcxml+xml"/>
+      <enumeration value="text/troff"/>
+      <enumeration value="application/mediaservercontrol+xml"/>
+      <enumeration value="application/vnd.fdsn.mseed"/>
+      <enumeration value="application/vnd.mseq"/>
+      <enumeration value="application/vnd.epson.msf"/>
+      <enumeration value="model/mesh"/>
+      <enumeration value="application/x-msdownload"/>
+      <enumeration value="application/vnd.mobius.msl"/>
+      <enumeration value="application/vnd.muvee.style"/>
+      <enumeration value="model/vnd.mts"/>
+      <enumeration value="application/vnd.musician"/>
+      <enumeration value="application/vnd.recordare.musicxml+xml"/>
+      <enumeration value="application/x-msmediaview"/>
+      <enumeration value="application/vnd.mfer"/>
+      <enumeration value="application/mxf"/>
+      <enumeration value="application/vnd.recordare.musicxml"/>
+      <enumeration value="application/xv+xml"/>
+      <enumeration value="application/vnd.triscape.mxs"/>
+      <enumeration value="video/vnd.mpegurl"/>
+      <enumeration value="application/vnd.nokia.n-gage.symbian.install"/>
+      <enumeration value="text/n3"/>
+      <enumeration value="application/mathematica"/>
+      <enumeration value="application/vnd.wolfram.player"/>
+      <enumeration value="application/x-netcdf"/>
+      <enumeration value="application/x-dtbncx+xml"/>
+      <enumeration value="text/x-nfo"/>
+      <enumeration value="application/vnd.nokia.n-gage.data"/>
+      <enumeration value="application/vnd.nitf"/>
+      <enumeration value="application/vnd.neurolanguage.nlu"/>
+      <enumeration value="application/vnd.enliven"/>
+      <enumeration value="application/vnd.noblenet-directory"/>
+      <enumeration value="application/vnd.noblenet-sealer"/>
+      <enumeration value="application/vnd.noblenet-web"/>
+      <enumeration value="image/vnd.net-fpx"/>
+      <enumeration value="application/x-conference"/>
+      <enumeration value="application/vnd.lotus-notes"/>
+      <enumeration value="application/vnd.nitf"/>
+      <enumeration value="application/x-nzb"/>
+      <enumeration value="application/vnd.fujitsu.oasys2"/>
+      <enumeration value="application/vnd.fujitsu.oasys3"/>
+      <enumeration value="application/vnd.fujitsu.oasys"/>
+      <enumeration value="application/x-msbinder"/>
+      <enumeration value="application/x-tgif"/>
+      <enumeration value="application/oda"/>
+      <enumeration value="application/vnd.oasis.opendocument.database"/>
+      <enumeration value="application/vnd.oasis.opendocument.chart"/>
+      <enumeration value="application/vnd.oasis.opendocument.formula"/>
+      <enumeration value="application/vnd.oasis.opendocument.formula-template"/>
+      <enumeration value="application/vnd.oasis.opendocument.graphics"/>
+      <enumeration value="application/vnd.oasis.opendocument.image"/>
+      <enumeration value="application/vnd.oasis.opendocument.text-master"/>
+      <enumeration value="application/vnd.oasis.opendocument.presentation"/>
+      <enumeration value="application/vnd.oasis.opendocument.spreadsheet"/>
+      <enumeration value="application/vnd.oasis.opendocument.text"/>
+      <enumeration value="audio/ogg"/>
+      <enumeration value="audio/ogg"/>
+      <enumeration value="video/ogg"/>
+      <enumeration value="application/ogg"/>
+      <enumeration value="application/omdoc+xml"/>
+      <enumeration value="application/onenote"/>
+      <enumeration value="application/onenote"/>
+      <enumeration value="application/onenote"/>
+      <enumeration value="application/onenote"/>
+      <enumeration value="application/oebps-package+xml"/>
+      <enumeration value="text/x-opml"/>
+      <enumeration value="application/vnd.palm"/>
+      <enumeration value="application/vnd.lotus-organizer"/>
+      <enumeration value="application/vnd.yamaha.openscoreformat"/>
+      <enumeration value="application/vnd.yamaha.openscoreformat.osfpvg+xml"/>
+      <enumeration value="application/vnd.oasis.opendocument.chart-template"/>
+      <enumeration value="font/otf"/>
+      <enumeration value="application/vnd.oasis.opendocument.graphics-template"/>
+      <enumeration value="application/vnd.oasis.opendocument.text-web"/>
+      <enumeration value="application/vnd.oasis.opendocument.image-template"/>
+      <enumeration value="application/vnd.oasis.opendocument.presentation-template"/>
+      <enumeration value="application/vnd.oasis.opendocument.spreadsheet-template"/>
+      <enumeration value="application/vnd.oasis.opendocument.text-template"/>
+      <enumeration value="application/oxps"/>
+      <enumeration value="application/vnd.openofficeorg.extension"/>
+      <enumeration value="text/x-pascal"/>
+      <enumeration value="application/pkcs10"/>
+      <enumeration value="application/x-pkcs12"/>
+      <enumeration value="application/x-pkcs7-certificates"/>
+      <enumeration value="application/pkcs7-mime"/>
+      <enumeration value="application/pkcs7-mime"/>
+      <enumeration value="application/x-pkcs7-certreqresp"/>
+      <enumeration value="application/pkcs7-signature"/>
+      <enumeration value="application/pkcs8"/>
+      <enumeration value="text/x-pascal"/>
+      <enumeration value="application/vnd.pawaafile"/>
+      <enumeration value="application/vnd.powerbuilder6"/>
+      <enumeration value="image/x-portable-bitmap"/>
+      <enumeration value="application/vnd.tcpdump.pcap"/>
+      <enumeration value="application/x-font-pcf"/>
+      <enumeration value="application/vnd.hp-pcl"/>
+      <enumeration value="application/vnd.hp-pclxl"/>
+      <enumeration value="image/pict"/>
+      <enumeration value="application/vnd.curl.pcurl"/>
+      <enumeration value="image/x-pcx"/>
+      <enumeration value="application/vnd.palm"/>
+      <enumeration value="application/pdf"/>
+      <enumeration value="application/x-font-type1"/>
+      <enumeration value="application/x-font-type1"/>
+      <enumeration value="application/x-font-type1"/>
+      <enumeration value="application/font-tdpfr"/>
+      <enumeration value="application/x-pkcs12"/>
+      <enumeration value="image/x-portable-graymap"/>
+      <enumeration value="application/x-chess-pgn"/>
+      <enumeration value="application/pgp-encrypted"/>
+      <enumeration value="image/pict"/>
+      <enumeration value="image/pict"/>
+      <enumeration value="application/octet-stream"/>
+      <enumeration value="application/pkixcmp"/>
+      <enumeration value="application/pkix-pkipath"/>
+      <enumeration value="application/vnd.3gpp.pic-bw-large"/>
+      <enumeration value="application/vnd.mobius.plc"/>
+      <enumeration value="application/vnd.pocketlearn"/>
+      <enumeration value="audio/x-scpls"/>
+      <enumeration value="application/vnd.ctc-posml"/>
+      <enumeration value="image/png"/>
+      <enumeration value="image/x-portable-anymap"/>
+      <enumeration value="image/x-macpaint"/>
+      <enumeration value="application/vnd.macports.portpkg"/>
+      <enumeration value="application/vnd.ms-powerpoint"/>
+      <enumeration value="application/vnd.ms-powerpoint.template.macroenabled.12"/>
+      <enumeration value="application/vnd.openxmlformats-officedocument.presentationml.template"/>
+      <enumeration value="application/vnd.ms-powerpoint.addin.macroenabled.12"/>
+      <enumeration value="application/vnd.cups-ppd"/>
+      <enumeration value="image/x-portable-pixmap"/>
+      <enumeration value="application/vnd.ms-powerpoint"/>
+      <enumeration value="application/vnd.ms-powerpoint.slideshow.macroenabled.12"/>
+      <enumeration value="application/vnd.openxmlformats-officedocument.presentationml.slideshow"/>
+      <enumeration value="application/vnd.ms-powerpoint"/>
+      <enumeration value="application/vnd.ms-powerpoint.presentation.macroenabled.12"/>
+      <enumeration value="application/vnd.openxmlformats-officedocument.presentationml.presentation"/>
+      <enumeration value="application/vnd.palm"/>
+      <enumeration value="application/x-mobipocket-ebook"/>
+      <enumeration value="application/vnd.lotus-freelance"/>
+      <enumeration value="application/pics-rules"/>
+      <enumeration value="application/postscript"/>
+      <enumeration value="application/vnd.3gpp.pic-bw-small"/>
+      <enumeration value="image/vnd.adobe.photoshop"/>
+      <enumeration value="application/x-font-linux-psf"/>
+      <enumeration value="application/pskc+xml"/>
+      <enumeration value="application/vnd.pvi.ptid1"/>
+      <enumeration value="application/x-mspublisher"/>
+      <enumeration value="application/vnd.3gpp.pic-bw-var"/>
+      <enumeration value="application/vnd.3m.post-it-notes"/>
+      <enumeration value="audio/vnd.ms-playready.media.pya"/>
+      <enumeration value="video/vnd.ms-playready.media.pyv"/>
+      <enumeration value="application/vnd.epson.quickanime"/>
+      <enumeration value="application/vnd.intu.qbo"/>
+      <enumeration value="application/vnd.intu.qfx"/>
+      <enumeration value="application/vnd.publishare-delta-tree"/>
+      <enumeration value="video/quicktime"/>
+      <enumeration value="image/x-quicktime"/>
+      <enumeration value="image/x-quicktime"/>
+      <enumeration value="application/vnd.quark.quarkxpress"/>
+      <enumeration value="application/vnd.quark.quarkxpress"/>
+      <enumeration value="application/vnd.quark.quarkxpress"/>
+      <enumeration value="application/vnd.quark.quarkxpress"/>
+      <enumeration value="application/vnd.quark.quarkxpress"/>
+      <enumeration value="application/vnd.quark.quarkxpress"/>
+      <enumeration value="audio/x-pn-realaudio"/>
+      <enumeration value="audio/x-pn-realaudio"/>
+      <enumeration value="application/x-rar-compressed"/>
+      <enumeration value="image/x-cmu-raster"/>
+      <enumeration value="application/vnd.ipunplugged.rcprofile"/>
+      <enumeration value="application/rdf+xml"/>
+      <enumeration value="application/vnd.data-vision.rdz"/>
+      <enumeration value="application/vnd.businessobjects"/>
+      <enumeration value="application/x-dtbresource+xml"/>
+      <enumeration value="image/x-rgb"/>
+      <enumeration value="application/reginfo+xml"/>
+      <enumeration value="audio/vnd.rip"/>
+      <enumeration value="application/x-research-info-systems"/>
+      <enumeration value="application/resource-lists+xml"/>
+      <enumeration value="image/vnd.fujixerox.edmics-rlc"/>
+      <enumeration value="application/resource-lists-diff+xml"/>
+      <enumeration value="application/vnd.rn-realmedia"/>
+      <enumeration value="audio/midi"/>
+      <enumeration value="audio/x-pn-realaudio-plugin"/>
+      <enumeration value="application/vnd.jcp.javame.midlet-rms"/>
+      <enumeration value="application/vnd.rn-realmedia-vbr"/>
+      <enumeration value="application/relax-ng-compact-syntax"/>
+      <enumeration value="application/rpki-roa"/>
+      <enumeration value="text/troff"/>
+      <enumeration value="application/vnd.cloanto.rp9"/>
+      <enumeration value="application/vnd.nokia.radio-presets"/>
+      <enumeration value="application/vnd.nokia.radio-preset"/>
+      <enumeration value="application/sparql-query"/>
+      <enumeration value="application/rls-services+xml"/>
+      <enumeration value="application/rsd+xml"/>
+      <enumeration value="application/rss+xml"/>
+      <enumeration value="application/rtf"/>
+      <enumeration value="text/richtext"/>
+      <enumeration value="text/x-asm"/>
+      <enumeration value="audio/s3m"/>
+      <enumeration value="application/vnd.yamaha.smaf-audio"/>
+      <enumeration value="application/sbml+xml"/>
+      <enumeration value="application/vnd.ibm.secure-container"/>
+      <enumeration value="application/x-msschedule"/>
+      <enumeration value="application/vnd.lotus-screencam"/>
+      <enumeration value="application/scvp-cv-request"/>
+      <enumeration value="application/scvp-cv-response"/>
+      <enumeration value="text/vnd.curl.scurl"/>
+      <enumeration value="application/vnd.stardivision.draw"/>
+      <enumeration value="application/vnd.stardivision.calc"/>
+      <enumeration value="application/vnd.stardivision.impress"/>
+      <enumeration value="application/vnd.solent.sdkm+xml"/>
+      <enumeration value="application/vnd.solent.sdkm+xml"/>
+      <enumeration value="application/sdp"/>
+      <enumeration value="application/vnd.stardivision.writer"/>
+      <enumeration value="application/vnd.seemail"/>
+      <enumeration value="application/vnd.fdsn.seed"/>
+      <enumeration value="application/vnd.sema"/>
+      <enumeration value="application/vnd.semd"/>
+      <enumeration value="application/vnd.semf"/>
+      <enumeration value="application/java-serialized-object"/>
+      <enumeration value="application/set-payment-initiation"/>
+      <enumeration value="application/set-registration-initiation"/>
+      <enumeration value="application/vnd.hydrostatix.sof-data"/>
+      <enumeration value="application/vnd.spotfire.sfs"/>
+      <enumeration value="text/x-sfv"/>
+      <enumeration value="image/sgi"/>
+      <enumeration value="application/vnd.stardivision.writer-global"/>
+      <enumeration value="text/sgml"/>
+      <enumeration value="text/sgml"/>
+      <enumeration value="application/x-sh"/>
+      <enumeration value="application/x-shar"/>
+      <enumeration value="application/shf+xml"/>
+      <enumeration value="image/x-mrsid-image"/>
+      <enumeration value="application/pgp-signature"/>
+      <enumeration value="audio/silk"/>
+      <enumeration value="model/mesh"/>
+      <enumeration value="application/vnd.symbian.install"/>
+      <enumeration value="application/vnd.symbian.install"/>
+      <enumeration value="application/x-stuffit"/>
+      <enumeration value="application/x-stuffitx"/>
+      <enumeration value="application/vnd.koan"/>
+      <enumeration value="application/vnd.koan"/>
+      <enumeration value="application/vnd.koan"/>
+      <enumeration value="application/vnd.koan"/>
+      <enumeration value="application/vnd.ms-powerpoint.slide.macroenabled.12"/>
+      <enumeration value="application/vnd.openxmlformats-officedocument.presentationml.slide"/>
+      <enumeration value="application/vnd.epson.salt"/>
+      <enumeration value="application/vnd.stepmania.stepchart"/>
+      <enumeration value="application/vnd.stardivision.math"/>
+      <enumeration value="application/smil+xml"/>
+      <enumeration value="application/smil+xml"/>
+      <enumeration value="video/x-smv"/>
+      <enumeration value="application/vnd.stepmania.package"/>
+      <enumeration value="audio/basic"/>
+      <enumeration value="application/x-font-snf"/>
+      <enumeration value="application/octet-stream"/>
+      <enumeration value="application/x-pkcs7-certificates"/>
+      <enumeration value="application/vnd.yamaha.smaf-phrase"/>
+      <enumeration value="application/x-futuresplash"/>
+      <enumeration value="text/vnd.in3d.spot"/>
+      <enumeration value="application/scvp-vp-response"/>
+      <enumeration value="application/scvp-vp-request"/>
+      <enumeration value="audio/ogg"/>
+      <enumeration value="application/x-sql"/>
+      <enumeration value="application/x-wais-source"/>
+      <enumeration value="application/x-subrip"/>
+      <enumeration value="application/sru+xml"/>
+      <enumeration value="application/sparql-results+xml"/>
+      <enumeration value="application/ssdl+xml"/>
+      <enumeration value="application/vnd.kodak-descriptor"/>
+      <enumeration value="application/vnd.epson.ssf"/>
+      <enumeration value="application/ssml+xml"/>
+      <enumeration value="application/vnd.sailingtracker.track"/>
+      <enumeration value="application/vnd.sun.xml.calc.template"/>
+      <enumeration value="application/vnd.sun.xml.draw.template"/>
+      <enumeration value="application/vnd.wt.stf"/>
+      <enumeration value="application/vnd.sun.xml.impress.template"/>
+      <enumeration value="application/hyperstudio"/>
+      <enumeration value="application/vnd.ms-pki.stl"/>
+      <enumeration value="application/vnd.pg.format"/>
+      <enumeration value="application/vnd.sun.xml.writer.template"/>
+      <enumeration value="text/vnd.dvb.subtitle"/>
+      <enumeration value="application/vnd.sus-calendar"/>
+      <enumeration value="application/vnd.sus-calendar"/>
+      <enumeration value="application/x-sv4cpio"/>
+      <enumeration value="application/x-sv4crc"/>
+      <enumeration value="application/vnd.dvb.service"/>
+      <enumeration value="application/vnd.svd"/>
+      <enumeration value="image/svg+xml"/>
+      <enumeration value="image/svg+xml"/>
+      <enumeration value="application/x-director"/>
+      <enumeration value="application/x-shockwave-flash"/>
+      <enumeration value="application/vnd.aristanetworks.swi"/>
+      <enumeration value="application/vnd.sun.xml.calc"/>
+      <enumeration value="application/vnd.sun.xml.draw"/>
+      <enumeration value="application/vnd.sun.xml.writer.global"/>
+      <enumeration value="application/vnd.sun.xml.impress"/>
+      <enumeration value="application/vnd.sun.xml.math"/>
+      <enumeration value="application/vnd.sun.xml.writer"/>
+      <enumeration value="text/troff"/>
+      <enumeration value="application/x-t3vm-image"/>
+      <enumeration value="application/vnd.mynfc"/>
+      <enumeration value="application/vnd.tao.intent-module-archive"/>
+      <enumeration value="application/x-tar"/>
+      <enumeration value="application/vnd.3gpp2.tcap"/>
+      <enumeration value="application/x-tcl"/>
+      <enumeration value="application/vnd.smart.teacher"/>
+      <enumeration value="application/tei+xml"/>
+      <enumeration value="application/tei+xml"/>
+      <enumeration value="application/x-tex"/>
+      <enumeration value="application/x-texinfo"/>
+      <enumeration value="application/x-texinfo"/>
+      <enumeration value="text/plain"/>
+      <enumeration value="application/thraud+xml"/>
+      <enumeration value="application/x-tex-tfm"/>
+      <enumeration value="image/x-tga"/>
+      <enumeration value="application/vnd.ms-officetheme"/>
+      <enumeration value="image/tiff"/>
+      <enumeration value="image/tiff"/>
+      <enumeration value="application/vnd.tmobile-livetv"/>
+      <enumeration value="application/x-bittorrent"/>
+      <enumeration value="application/vnd.groove-tool-template"/>
+      <enumeration value="application/vnd.trid.tpt"/>
+      <enumeration value="text/troff"/>
+      <enumeration value="application/vnd.trueapp"/>
+      <enumeration value="application/x-msterminal"/>
+      <enumeration value="application/timestamped-data"/>
+      <enumeration value="text/tab-separated-values"/>
+      <enumeration value="font/collection"/>
+      <enumeration value="font/ttf"/>
+      <enumeration value="text/turtle"/>
+      <enumeration value="application/vnd.simtech-mindmapper"/>
+      <enumeration value="application/vnd.simtech-mindmapper"/>
+      <enumeration value="application/vnd.genomatix.tuxedo"/>
+      <enumeration value="application/vnd.mobius.txf"/>
+      <enumeration value="text/plain"/>
+      <enumeration value="application/x-authorware-bin"/>
+      <enumeration value="application/x-debian-package"/>
+      <enumeration value="application/vnd.ufdl"/>
+      <enumeration value="application/vnd.ufdl"/>
+      <enumeration value="audio/basic"/>
+      <enumeration value="application/x-glulx"/>
+      <enumeration value="application/vnd.umajin"/>
+      <enumeration value="application/vnd.unity"/>
+      <enumeration value="application/vnd.uoml+xml"/>
+      <enumeration value="text/uri-list"/>
+      <enumeration value="text/uri-list"/>
+      <enumeration value="text/uri-list"/>
+      <enumeration value="application/x-ustar"/>
+      <enumeration value="application/vnd.uiq.theme"/>
+      <enumeration value="text/x-uuencode"/>
+      <enumeration value="audio/vnd.dece.audio"/>
+      <enumeration value="application/vnd.dece.data"/>
+      <enumeration value="application/vnd.dece.data"/>
+      <enumeration value="image/vnd.dece.graphic"/>
+      <enumeration value="video/vnd.dece.hd"/>
+      <enumeration value="image/vnd.dece.graphic"/>
+      <enumeration value="video/vnd.dece.mobile"/>
+      <enumeration value="video/vnd.dece.pd"/>
+      <enumeration value="video/vnd.dece.sd"/>
+      <enumeration value="application/vnd.dece.ttml+xml"/>
+      <enumeration value="video/vnd.uvvu.mp4"/>
+      <enumeration value="video/vnd.dece.video"/>
+      <enumeration value="audio/vnd.dece.audio"/>
+      <enumeration value="application/vnd.dece.data"/>
+      <enumeration value="application/vnd.dece.data"/>
+      <enumeration value="image/vnd.dece.graphic"/>
+      <enumeration value="video/vnd.dece.hd"/>
+      <enumeration value="image/vnd.dece.graphic"/>
+      <enumeration value="video/vnd.dece.mobile"/>
+      <enumeration value="video/vnd.dece.pd"/>
+      <enumeration value="video/vnd.dece.sd"/>
+      <enumeration value="application/vnd.dece.ttml+xml"/>
+      <enumeration value="video/vnd.uvvu.mp4"/>
+      <enumeration value="video/vnd.dece.video"/>
+      <enumeration value="application/vnd.dece.unspecified"/>
+      <enumeration value="application/vnd.dece.zip"/>
+      <enumeration value="application/vnd.dece.unspecified"/>
+      <enumeration value="application/vnd.dece.zip"/>
+      <enumeration value="text/vcard"/>
+      <enumeration value="application/x-cdlink"/>
+      <enumeration value="text/x-vcard"/>
+      <enumeration value="application/vnd.groove-vcard"/>
+      <enumeration value="text/x-vcalendar"/>
+      <enumeration value="application/vnd.vcx"/>
+      <enumeration value="application/vnd.visionary"/>
+      <enumeration value="video/vnd.vivo"/>
+      <enumeration value="video/x-ms-vob"/>
+      <enumeration value="application/vnd.stardivision.writer"/>
+      <enumeration value="application/x-authorware-bin"/>
+      <enumeration value="model/vrml"/>
+      <enumeration value="application/vnd.visio"/>
+      <enumeration value="application/vnd.vsf"/>
+      <enumeration value="application/vnd.visio"/>
+      <enumeration value="application/vnd.visio"/>
+      <enumeration value="application/vnd.visio"/>
+      <enumeration value="model/vnd.vtu"/>
+      <enumeration value="application/voicexml+xml"/>
+      <enumeration value="application/x-director"/>
+      <enumeration value="application/x-doom"/>
+      <enumeration value="audio/x-wav"/>
+      <enumeration value="audio/x-ms-wax"/>
+      <enumeration value="image/vnd.wap.wbmp"/>
+      <enumeration value="application/vnd.criticaltools.wbs+xml"/>
+      <enumeration value="application/vnd.wap.wbxml"/>
+      <enumeration value="application/vnd.ms-works"/>
+      <enumeration value="application/vnd.ms-works"/>
+      <enumeration value="image/vnd.ms-photo"/>
+      <enumeration value="audio/webm"/>
+      <enumeration value="video/webm"/>
+      <enumeration value="image/webp"/>
+      <enumeration value="application/vnd.pmi.widget"/>
+      <enumeration value="application/widget"/>
+      <enumeration value="application/vnd.ms-works"/>
+      <enumeration value="video/x-ms-wm"/>
+      <enumeration value="audio/x-ms-wma"/>
+      <enumeration value="application/x-ms-wmd"/>
+      <enumeration value="application/x-msmetafile"/>
+      <enumeration value="text/vnd.wap.wml"/>
+      <enumeration value="application/vnd.wap.wmlc"/>
+      <enumeration value="text/vnd.wap.wmlscript"/>
+      <enumeration value="application/vnd.wap.wmlscriptc"/>
+      <enumeration value="video/x-ms-wmv"/>
+      <enumeration value="video/x-ms-wmx"/>
+      <enumeration value="application/x-msmetafile"/>
+      <enumeration value="font/woff"/>
+      <enumeration value="font/woff2"/>
+      <enumeration value="application/vnd.wordperfect"/>
+      <enumeration value="application/vnd.ms-wpl"/>
+      <enumeration value="application/vnd.ms-works"/>
+      <enumeration value="application/vnd.wqd"/>
+      <enumeration value="application/x-mswrite"/>
+      <enumeration value="model/vrml"/>
+      <enumeration value="application/wsdl+xml"/>
+      <enumeration value="application/wspolicy+xml"/>
+      <enumeration value="application/vnd.webturbo"/>
+      <enumeration value="video/x-ms-wvx"/>
+      <enumeration value="application/x-authorware-bin"/>
+      <enumeration value="model/x3d+xml"/>
+      <enumeration value="model/x3d+binary"/>
+      <enumeration value="model/x3d+binary"/>
+      <enumeration value="model/x3d+vrml"/>
+      <enumeration value="model/x3d+vrml"/>
+      <enumeration value="model/x3d+xml"/>
+      <enumeration value="application/xaml+xml"/>
+      <enumeration value="application/x-silverlight-app"/>
+      <enumeration value="application/vnd.xara"/>
+      <enumeration value="application/x-ms-xbap"/>
+      <enumeration value="application/vnd.fujixerox.docuworks.binder"/>
+      <enumeration value="image/x-xbitmap"/>
+      <enumeration value="application/xcap-diff+xml"/>
+      <enumeration value="application/vnd.syncml.dm+xml"/>
+      <enumeration value="application/vnd.adobe.xdp+xml"/>
+      <enumeration value="application/dssc+xml"/>
+      <enumeration value="application/vnd.fujixerox.docuworks"/>
+      <enumeration value="application/xenc+xml"/>
+      <enumeration value="application/patch-ops-error+xml"/>
+      <enumeration value="application/vnd.adobe.xfdf"/>
+      <enumeration value="application/vnd.xfdl"/>
+      <enumeration value="application/xhtml+xml"/>
+      <enumeration value="application/xhtml+xml"/>
+      <enumeration value="application/xv+xml"/>
+      <enumeration value="image/vnd.xiff"/>
+      <enumeration value="application/vnd.ms-excel"/>
+      <enumeration value="application/vnd.ms-excel.addin.macroenabled.12"/>
+      <enumeration value="application/vnd.ms-excel"/>
+      <enumeration value="application/x-xliff+xml"/>
+      <enumeration value="application/vnd.ms-excel"/>
+      <enumeration value="application/vnd.ms-excel"/>
+      <enumeration value="application/vnd.ms-excel.sheet.binary.macroenabled.12"/>
+      <enumeration value="application/vnd.ms-excel.sheet.macroenabled.12"/>
+      <enumeration value="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
+      <enumeration value="application/vnd.ms-excel"/>
+      <enumeration value="application/vnd.ms-excel.template.macroenabled.12"/>
+      <enumeration value="application/vnd.openxmlformats-officedocument.spreadsheetml.template"/>
+      <enumeration value="application/vnd.ms-excel"/>
+      <enumeration value="audio/xm"/>
+      <enumeration value="application/xml"/>
+      <enumeration value="application/vnd.olpc-sugar"/>
+      <enumeration value="application/xop+xml"/>
+      <enumeration value="application/x-xpinstall"/>
+      <enumeration value="application/xproc+xml"/>
+      <enumeration value="image/x-xpixmap"/>
+      <enumeration value="application/vnd.is-xpr"/>
+      <enumeration value="application/vnd.ms-xpsdocument"/>
+      <enumeration value="application/vnd.intercon.formnet"/>
+      <enumeration value="application/vnd.intercon.formnet"/>
+      <enumeration value="application/xml"/>
+      <enumeration value="application/xslt+xml"/>
+      <enumeration value="application/vnd.syncml+xml"/>
+      <enumeration value="application/xspf+xml"/>
+      <enumeration value="application/vnd.mozilla.xul+xml"/>
+      <enumeration value="application/xv+xml"/>
+      <enumeration value="application/xv+xml"/>
+      <enumeration value="image/x-xwindowdump"/>
+      <enumeration value="chemical/x-xyz"/>
+      <enumeration value="application/x-xz"/>
+      <enumeration value="application/yang"/>
+      <enumeration value="application/yin+xml"/>
+      <enumeration value="application/x-compress"/>
+      <enumeration value="application/x-compress"/>
+      <enumeration value="application/x-zmachine"/>
+      <enumeration value="application/x-zmachine"/>
+      <enumeration value="application/x-zmachine"/>
+      <enumeration value="application/x-zmachine"/>
+      <enumeration value="application/x-zmachine"/>
+      <enumeration value="application/x-zmachine"/>
+      <enumeration value="application/x-zmachine"/>
+      <enumeration value="application/x-zmachine"/>
+      <enumeration value="application/vnd.zzazz.deck+xml"/>
+      <enumeration value="application/zip"/>
+      <enumeration value="application/vnd.zul"/>
+      <enumeration value="application/vnd.zul"/>
+      <enumeration value="application/vnd.handheld-entertainment+xml"/>
+    </restriction>
+  </simpleType>
+
+</schema>

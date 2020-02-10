@@ -1,4 +1,4 @@
-package com.epam.courses.java.fundamentals.oop;
+package com.epam.courses.java.fundamentals.oop.demo.annotations;
 
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
