@@ -1,5 +1,10 @@
 package com.epam.courses.java.fundamentals.oop.demo.myjunit;
 
+import static com.epam.courses.java.fundamentals.oop.demo.annotations.AnnotationUtils.getDeepAnnotation;
+import static com.epam.courses.java.fundamentals.oop.demo.annotations.AnnotationUtils.isDeepAnnotationPresent;
+import static com.epam.courses.java.fundamentals.oop.demo.annotations.AnnotationUtils.isPseudoNullValue;
+import static lombok.AccessLevel.PRIVATE;
+
 import io.vavr.CheckedFunction1;
 import io.vavr.Tuple;
 import io.vavr.Tuple2;
@@ -8,7 +13,9 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.stream.Stream;
+import lombok.AccessLevel;
 import lombok.SneakyThrows;
+import lombok.experimental.FieldDefaults;
 import lombok.experimental.NonFinal;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +29,7 @@ import org.jetbrains.annotations.NotNull;
  */
 @Slf4j
 @UtilityClass
+@FieldDefaults(level = PRIVATE, makeFinal = true)
 public class Assertions {
 
   @NonFinal
@@ -34,11 +42,12 @@ public class Assertions {
   }
 
   private static void printResult(@NotNull Tuple2<Method, Either<Exception, Boolean>> tuple2) {
-    log.info("Test {} has {}",
-        tuple2._1.getDeclaredAnnotation(Test.class).value(),
-        tuple2._2.isRight() ?
-            (tuple2._2.get() ? "done." : "failed.") :
-            "threw exception: " + tuple2._2.getLeft() + ".");
+    getDeepAnnotation(tuple2._1, Test.class)
+        .ifPresent(test -> log.info("Test {} has {}",
+            isPseudoNullValue(test.value()) ? tuple2._1.getName() : test.value(),
+            tuple2._2.isRight() ?
+                (tuple2._2.get() ? "done." : "failed.") :
+                "threw exception: " + tuple2._2.getLeft() + "."));
   }
 
   @SuppressWarnings("unused")
@@ -50,11 +59,6 @@ public class Assertions {
     boolean result = isFailed;
     isFailed = false;
     return result;
-//    try {
-//      return isFailed;
-//    } finally {
-//      isFailed = false;
-//    }
   }
 
   @SneakyThrows
@@ -66,26 +70,26 @@ public class Assertions {
     // Сначала вызываем все статические методы для инициализации класса теста
     Arrays.stream(methods)
         .filter(method -> Modifier.isStatic(method.getModifiers()))
-        .filter(method -> method.isAnnotationPresent(BeforeAll.class))
-        .peek(method -> method.setAccessible(true))
-        .map(method -> CheckedFunction1.narrow(method::invoke).unchecked())
-        .forEach(method -> method.apply(null));
+        .filter(staticMethod -> isDeepAnnotationPresent(staticMethod, BeforeAll.class))
+        .peek(staticBeforeAllMethod -> staticBeforeAllMethod.setAccessible(true))
+        .map(staticBeforeAllMethod -> CheckedFunction1.narrow(staticBeforeAllMethod::invoke).unchecked())
+        .forEach(staticBeforeAllMethod -> staticBeforeAllMethod.apply(null));
 
     // Для динамических методов аннотированных @Test, выполняем метод initAndRun
     Stream<Tuple2<Method, Either<Exception, Boolean>>> result =
         Arrays.stream(methods)
             .filter(method -> !Modifier.isStatic(method.getModifiers()))
-            .filter(method -> method.isAnnotationPresent(Test.class))
-            .peek(method -> method.setAccessible(true))
-            .map(method -> Tuple.of(method, initAndRun(method)));
+            .filter(dynamicMethod -> isDeepAnnotationPresent(dynamicMethod, Test.class))
+            .peek(dynamicTestMethod -> dynamicTestMethod.setAccessible(true))
+            .map(dynamicTestMethod -> Tuple.of(dynamicTestMethod, initAndRun(dynamicTestMethod)));
 
     // В конце вызываем все статические методы для инициализации класса теста
     Arrays.stream(methods)
         .filter(method -> Modifier.isStatic(method.getModifiers()))
-        .filter(method -> method.isAnnotationPresent(AfterAll.class))
-        .peek(method -> method.setAccessible(true))
-        .map(method -> CheckedFunction1.narrow(method::invoke).unchecked())
-        .forEach(method -> method.apply(null));
+        .filter(staticMethod -> isDeepAnnotationPresent(staticMethod, AfterAll.class))
+        .peek(staticAfterAllMethod -> staticAfterAllMethod.setAccessible(true))
+        .map(staticAfterAllMethod -> CheckedFunction1.narrow(staticAfterAllMethod::invoke).unchecked())
+        .forEach(staticAfterAllMethod -> staticAfterAllMethod.apply(null));
 
     return result;
   }
@@ -101,7 +105,7 @@ public class Assertions {
 
     Arrays.stream(methods)
         .filter(method1 -> !Modifier.isStatic(method1.getModifiers()))
-        .filter(dynamicMethod -> dynamicMethod.isAnnotationPresent(Before.class))
+        .filter(dynamicMethod -> isDeepAnnotationPresent(dynamicMethod, Before.class))
         .map(beforeMethod -> CheckedFunction1.narrow(beforeMethod::invoke).unchecked())
         .forEach(beforeMethod -> beforeMethod.apply(instance));
 
@@ -113,7 +117,7 @@ public class Assertions {
 
     Arrays.stream(methods)
         .filter(method1 -> !Modifier.isStatic(method1.getModifiers()))
-        .filter(dynamicMethod -> dynamicMethod.isAnnotationPresent(After.class))
+        .filter(dynamicMethod -> isDeepAnnotationPresent(dynamicMethod, After.class))
         .map(beforeMethod -> CheckedFunction1.narrow(beforeMethod::invoke).unchecked())
         .forEach(beforeMethod -> beforeMethod.apply(instance));
 

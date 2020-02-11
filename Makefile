@@ -29,15 +29,15 @@ MV=3.6.3
 # Java Version
 JV=`cat pom.xml | xml sel -N pom=http://maven.apache.org/POM/4.0.0 -t -v /pom:project/pom:properties/pom:java.version`
 ifeq ($(JV), 11)
-J=openjdk64-11.0.2
+J=11.0
 else ifeq ($(JV), 13)
-J=openjdk64-13.0.1
+J=13.0
 else ifeq ($(JV), 14)
 J=14-ea
 else ifeq ($(JV),12)
-J=openjdk64-12.0.2
+J=12.0
 else
-J=oracle64-1.8.0.202
+J=1.8
 endif
 
 # Lombok Version

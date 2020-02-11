@@ -1,4 +1,4 @@
-# Module Artifact id
+java -cp `mvn dependency:build-classpath | grep -A1 'Dependencies classpath' | tail -1` lombok.launch.Main delombok src/main/java -d target/generated-sources/delombok# Module Artifact id
 A=`cat pom.xml | xml sel -N pom=http://maven.apache.org/POM/4.0.0 -t -v /pom:project/pom:artifactId`
 
 # Module Version

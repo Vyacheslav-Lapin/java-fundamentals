@@ -21,6 +21,7 @@ import org.jetbrains.annotations.NotNull;
 public class AnnotationUtils {
 
   @NotNull
+  @Contract(pure = true)
   public <T extends Annotation> Optional<T> getDeepAnnotation(@NotNull Class<?> targetClass,
                                                               @NotNull Class<T> annotationClass) {
     return getDeepAnnotation(annotationClass, targetClass.getAnnotations());
@@ -30,15 +31,46 @@ public class AnnotationUtils {
    * Works for methods and constructors
    */
   @NotNull
+  @Contract(pure = true)
   public <T extends Annotation> Optional<T> getDeepAnnotation(@NotNull Executable target,
                                                               @NotNull Class<T> annotationClass) {
     return getDeepAnnotation(annotationClass, target.getAnnotations());
   }
 
   @NotNull
-  public <T extends Annotation> Optional<T> getDeepAnnotation(@NotNull Parameter target,
+  @Contract(pure = true)
+  public <T extends Annotation> Optional<T> getDeepAnnotation(@NotNull Parameter targetParam,
                                                               @NotNull Class<T> annotationClass) {
-    return getDeepAnnotation(annotationClass, target.getAnnotations());
+    return getDeepAnnotation(annotationClass, targetParam.getAnnotations());
+  }
+
+  @Contract(pure = true)
+  public <T extends Annotation> boolean isDeepAnnotationPresent(@NotNull Class<?> targetClass,
+                                                                @NotNull Class<T> annotationClass) {
+    return isDeepAnnotationPresent(annotationClass, targetClass.getAnnotations());
+  }
+
+  /**
+   * Works for methods and constructors
+   */
+  @Contract(pure = true)
+  public <T extends Annotation> boolean isDeepAnnotationPresent(@NotNull Executable targetMethod,
+                                                                @NotNull Class<T> annotationClass) {
+    return isDeepAnnotationPresent(annotationClass, targetMethod.getAnnotations());
+  }
+
+  @Contract(pure = true)
+  public <T extends Annotation> boolean isDeepAnnotationPresent(@NotNull Parameter targetParam,
+                                                                @NotNull Class<T> annotationClass) {
+    return isDeepAnnotationPresent(annotationClass, targetParam.getAnnotations());
+  }
+
+  @Contract(pure = true)
+  private <T extends Annotation> boolean isDeepAnnotationPresent(@NotNull Class<T> annotationClass,
+                                                                 @NotNull Annotation... annotations) {
+    return deepAnnotations(Arrays.stream(annotations), 1)
+        .map(Tuple2::_1)
+        .anyMatch(annotation -> annotation.annotationType().equals(annotationClass));
   }
 
   @NotNull
@@ -95,33 +127,38 @@ public class AnnotationUtils {
         });
   }
 
+  @Contract(pure = true)
+  public boolean isPseudoNullValue(@NotNull Object result) {
+    return isPseudoNullValue(result.getClass(), result);
+  }
+
   @SneakyThrows
   @Contract(pure = true)
-  public boolean isPseudoNullValue(@NotNull Class<?> type, @NotNull Object result) {
-    if (type.equals(String.class))
+  public boolean isPseudoNullValue(@NotNull Class<?> paramType, @NotNull Object result) {
+    if (paramType.equals(String.class))
       return result.equals("");
-    if (type.isArray())
+    if (paramType.isArray())
       return Array.getLength(result) == 0;
-    if (type.equals(Class.class))
+    if (paramType.equals(Class.class))
       return result.equals(Object.class);
-    if (!type.isPrimitive())
+    if (!paramType.isPrimitive())
       return false; //enum - always false
 
-    if (type.equals(int.class))
+    if (paramType.equals(int.class))
       return ((int) result) == 0;
-    if (type.equals(long.class))
+    if (paramType.equals(long.class))
       return ((long) result) == 0L;
-    if (type.equals(double.class))
+    if (paramType.equals(double.class))
       return ((double) result) == 0.0;
-    if (type.equals(float.class))
+    if (paramType.equals(float.class))
       return ((float) result) == 0.0f;
-    if (type.equals(short.class))
+    if (paramType.equals(short.class))
       return ((short) result) == (short) 0;
-    if (type.equals(byte.class))
+    if (paramType.equals(byte.class))
       return ((byte) result) == (byte) 0;
-    if (type.equals(char.class))
+    if (paramType.equals(char.class))
       return ((char) result) == '\0';
-    //    if (type.equals(boolean.class))
+    //    if (paramType.equals(boolean.class))
     return !((boolean) result);
   }
 
