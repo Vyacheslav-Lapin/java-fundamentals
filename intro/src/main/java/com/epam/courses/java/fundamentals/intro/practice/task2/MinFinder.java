@@ -34,6 +34,11 @@ public class MinFinder {
 
   private int findMin() {
     //todo реализовать
-    return 0;
+    int n = 1;
+    while(getA(n) > e){
+      out.println(getA(n));
+      n++;
+    }
+    return n;
   }
 }
