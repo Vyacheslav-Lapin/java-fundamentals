@@ -12,8 +12,8 @@ public interface NotePad {
 
   default Note replace(Note note) {
     return note.getId() == 0 ?
-               addNote(note) :
-               addNote(remove(note.getId()));
+        addNote(note) :
+        addNote(remove(note.getId()));
   }
 
   Note getNote(int id);

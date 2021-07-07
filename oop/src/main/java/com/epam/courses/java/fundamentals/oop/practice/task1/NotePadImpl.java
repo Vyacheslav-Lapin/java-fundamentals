@@ -30,8 +30,8 @@ public class NotePadImpl implements NotePad {
   public Note addNote(@NotNull String title, @NotNull String body) {
 
     var note = new Note(index++)
-                   .setTitle(title)
-                   .setBody(body);
+        .setTitle(title)
+        .setBody(body);
 
     if (isPossibleToAdd())
       return notes[note.getId()] = note;
