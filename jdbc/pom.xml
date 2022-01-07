@@ -11,7 +11,7 @@
     <!--<maven-assembly-plugin.mainClass>ru.vlapin.courses.java.fundamentals.intro.Hello</maven-assembly-plugin.mainClass>-->
     <!--<assembly.skipAssembly>false</assembly.skipAssembly>-->
 
-    <h2.version>1.4.200</h2.version>
+    <h2.version>2.0.206</h2.version>
     <HikariCP.version>3.4.2</HikariCP.version>
     <lombok.version>1.18.10</lombok.version>
   </properties>
