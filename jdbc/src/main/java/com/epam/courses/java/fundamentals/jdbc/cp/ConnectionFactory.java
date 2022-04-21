@@ -1,6 +1,6 @@
 package com.epam.courses.java.fundamentals.jdbc.cp;
 
-import static lombok.AccessLevel.NONE;
+import static lombok.AccessLevel.*;
 
 import com.epam.courses.java.fundamentals.fp.CheckedFunction3;
 import com.epam.courses.java.fundamentals.io.InputStreamUtils;
@@ -41,7 +41,7 @@ public class ConnectionFactory implements Supplier<Stream<Connection>> {
             .supply(url, user, password);
 
     return Stream.generate(connectionSupplier)
-               .limit(poolSize);
+        .limit(poolSize);
   }
 
   @NotNull
@@ -51,12 +51,13 @@ public class ConnectionFactory implements Supplier<Stream<Connection>> {
   }
 
   public Stream<Path> getSqlInitFiles() {
+    //noinspection OptionalGetWithoutIsPresent
     return IntStream.iterate(1, operand -> operand + 1)
-               .mapToObj(String::valueOf)
-               .map(fileName -> String.format("/%s/%s.sql", initScriptsPath, fileName))
-               .map(InputStreamUtils::getPath)
-               .takeWhile(Optional::isPresent)
-               .map(Optional::get);
+        .mapToObj(String::valueOf)
+        .map(fileName -> String.format("/%s/%s.sql", initScriptsPath, fileName))
+        .map(InputStreamUtils::getPath)
+        .takeWhile(Optional::isPresent)
+        .map(Optional::get);
   }
 
 }

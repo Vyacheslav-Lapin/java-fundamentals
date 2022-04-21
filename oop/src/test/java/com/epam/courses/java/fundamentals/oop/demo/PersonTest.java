@@ -2,6 +2,7 @@ package com.epam.courses.java.fundamentals.oop.demo;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.epam.courses.java.fundamentals.oop.demo.superbuilder.Person;
 import lombok.val;
 import org.junit.jupiter.api.Test;
 

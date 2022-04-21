@@ -20,8 +20,8 @@ public interface InputStreamUtils {
   @SneakyThrows
   static <T> T mapFileInputStream(@NotNull String fileName,
                                   @NotNull CheckedFunction1<InputStream, T> fisMapper) {
-    @Cleanup val inputStream = InputStreamUtils.class
-                                   .getResourceAsStream("/" + fileName);
+    @Cleanup var inputStream = InputStreamUtils.class
+        .getResourceAsStream("/" + fileName);
     return fisMapper.apply(inputStream);
   }
 

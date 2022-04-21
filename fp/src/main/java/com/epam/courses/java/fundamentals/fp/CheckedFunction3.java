@@ -11,7 +11,6 @@ public interface CheckedFunction3<T1, T2, T3, R> extends io.vavr.CheckedFunction
     return cf3;
   }
 
-  @SuppressWarnings("Contract")
   @Contract(value = "_ -> param1", pure = true)
   static <T1, T2, T3, R> CheckedFunction3<T1, T2, T3, R> narrow(CheckedFunction3<? super T1, ? super T2, ? super T3, ? extends R> cf3) {
     //noinspection unchecked

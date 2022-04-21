@@ -6,6 +6,7 @@ import io.vavr.Function2;
 import java.io.Closeable;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.concurrent.BlockingQueue;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -16,17 +17,15 @@ import lombok.val;
 
 public class ConnectionPool implements Closeable, Supplier<Connection> {
 
+  private static final HashMap<String, ConnectionPool> instances = new HashMap<>();
+
   BlockingQueue<PooledConnection> connectionQueue;
 
   @NonFinal
   volatile boolean opened = true;
 
-  public ConnectionPool() {
-    this("db");
-  }
-
   @SneakyThrows
-  public ConnectionPool(String fileName) {
+  private ConnectionPool(String fileName) {
 
     var connectionFactory = PropsBinder.from(fileName, ConnectionFactory.class);
 
@@ -35,18 +34,30 @@ public class ConnectionPool implements Closeable, Supplier<Connection> {
             .apply(this::closePolledConnection);
 
     connectionQueue = connectionFactory.get()
-                          .map(pooledConnectionFactory)
-                          .collect(Collectors.toCollection(connectionFactory::getSizedBlockingQueue));
+        .map(pooledConnectionFactory)
+        .collect(Collectors.toCollection(connectionFactory::getSizedBlockingQueue));
 
     //init
     val sql = connectionFactory.getSqlInitFiles()
-                  .map(InputStreamUtils::getFileAsString)
-                  .collect(Collectors.joining());
+        .map(InputStreamUtils::getFileAsString)
+        .collect(Collectors.joining());
 
     try (val connection = get();
          val statement = connection.createStatement()) {
       statement.executeUpdate(sql);
     }
+  }
+
+  public static ConnectionPool getPoolFor(String dbConfig) {
+    return instances.computeIfAbsent(dbConfig, ConnectionPool::new);
+  }
+
+  public static Connection getConnection() {
+    return getPool().get();
+  }
+
+  public static ConnectionPool getPool() {
+    return getPoolFor("db");
   }
 
   @SneakyThrows

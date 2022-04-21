@@ -1,7 +1,5 @@
 package com.epam.courses.java.fundamentals.oop.demo;
 
-import java.util.function.Supplier;
-import lombok.SneakyThrows;
 import org.jetbrains.annotations.NotNull;
 
 public interface MyCoolInterface {
@@ -10,8 +8,7 @@ public interface MyCoolInterface {
 
   /* public */ void met();
 
-  @SneakyThrows
-  private @NotNull String m1(@NotNull int x) {
+  private @NotNull String m1(int x) {
     return "kjhsdkjhdssdg" + x + "kjhsdggkjdsg";
   }
 

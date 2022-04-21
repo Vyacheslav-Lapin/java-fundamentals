@@ -7,10 +7,14 @@ import lombok.experimental.NonFinal;
 import lombok.val;
 
 public class Foo {
+
   @NonFinal
   int x;
+
   String s;
+
   boolean b;
+
   List<String> strings;
 
   @Builder

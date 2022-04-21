@@ -14,7 +14,7 @@ public interface CheckedConsumer3<T1, T2, T3> extends Consumer3<T1, T2, T3> {
     return checkedConsumer3;
   }
 
-  @SuppressWarnings({"Contract", "unchecked"})
+  @SuppressWarnings("unchecked")
   @Contract(value = "_ -> param1", pure = true)
   static <T1, T2, T3> CheckedConsumer3<T1, T2, T3> narrow(CheckedConsumer3<? extends T1, ? extends T2, ? extends T3> checkedConsumer3) {
     return (CheckedConsumer3<T1, T2, T3>) checkedConsumer3;
@@ -33,22 +33,22 @@ public interface CheckedConsumer3<T1, T2, T3> extends Consumer3<T1, T2, T3> {
 
   @Override
   default CheckedConsumer1<Tuple3<T1, T2, T3>> tupled() {
-    return tuple3 -> this.put(tuple3._1, tuple3._2, tuple3._3);
+    return tuple3 -> put(tuple3._1, tuple3._2, tuple3._3);
   }
 
   @Override
   default CheckedConsumer2<Tuple2<T1, T2>, T3> tupled12() {
-    return (tuple12, t3) -> this.put(tuple12._1, tuple12._2, t3);
+    return (tuple12, t3) -> put(tuple12._1, tuple12._2, t3);
   }
 
   @Override
   default CheckedConsumer2<T1, Tuple2<T2, T3>> tupled23() {
-    return (t1, tuple23) -> this.put(t1, tuple23._1, tuple23._2);
+    return (t1, tuple23) -> put(t1, tuple23._1, tuple23._2);
   }
 
   @Override
   default CheckedConsumer2<Tuple2<T1, T3>, T2> tupled13() {
-    return (tuple13, t2) -> this.put(tuple13._1, t2, tuple13._2);
+    return (tuple13, t2) -> put(tuple13._1, t2, tuple13._2);
   }
 
   /**

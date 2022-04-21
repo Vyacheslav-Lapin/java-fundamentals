@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0">
-  <modelVersion>4.0.0</modelVersion>
+
   <parent>
-    <groupId>com.epam.courses.java.fundamentals</groupId>
+    <groupId>ru.vlapin.courses.java.fundamentals</groupId>
     <artifactId>java-fundamentals</artifactId>
     <version>${revision}</version>
   </parent>
+
   <artifactId>jdbc</artifactId>
+
   <properties>
     <!--<maven-assembly-plugin.mainClass>ru.vlapin.courses.java.fundamentals.intro.Hello</maven-assembly-plugin.mainClass>-->
     <!--<assembly.skipAssembly>false</assembly.skipAssembly>-->
 
-    <h2.version>1.4.200</h2.version>
-    <HikariCP.version>3.4.2</HikariCP.version>
-    <lombok.version>1.18.10</lombok.version>
+    <h2.version>2.1.212</h2.version>
+    <HikariCP.version>5.0.1</HikariCP.version>
   </properties>
 
   <dependencies>
@@ -32,15 +33,14 @@
     <!-- endregion -->
 
     <dependency>
-      <groupId>com.epam.courses.java.fundamentals</groupId>
+      <groupId>ru.vlapin.courses.java.fundamentals</groupId>
       <artifactId>fp</artifactId>
-      <version>${revision}</version>
     </dependency>
     <dependency>
-      <groupId>com.epam.courses.java.fundamentals</groupId>
+      <groupId>ru.vlapin.courses.java.fundamentals</groupId>
       <artifactId>io</artifactId>
-      <version>${revision}</version>
     </dependency>
 
   </dependencies>
+  <modelVersion>4.0.0</modelVersion>
 </project>

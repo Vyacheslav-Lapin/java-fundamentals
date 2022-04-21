@@ -1,9 +1,9 @@
 package com.epam.courses.java.fundamentals.oop.demo.myjunit;
 
-import static com.epam.courses.java.fundamentals.oop.demo.annotations.AnnotationUtils.getDeepAnnotation;
-import static com.epam.courses.java.fundamentals.oop.demo.annotations.AnnotationUtils.isDeepAnnotationPresent;
-import static com.epam.courses.java.fundamentals.oop.demo.annotations.AnnotationUtils.isPseudoNullValue;
-import static lombok.AccessLevel.PRIVATE;
+import static com.epam.courses.java.fundamentals.oop.annotations.AnnotationUtils.getDeepAnnotation;
+import static com.epam.courses.java.fundamentals.oop.annotations.AnnotationUtils.isDeepAnnotationPresent;
+import static com.epam.courses.java.fundamentals.oop.annotations.AnnotationUtils.isPseudoNullValue;
+import static java.lang.Boolean.*;
 
 import io.vavr.CheckedFunction1;
 import io.vavr.Tuple;
@@ -13,9 +13,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.stream.Stream;
-import lombok.AccessLevel;
 import lombok.SneakyThrows;
-import lombok.experimental.FieldDefaults;
 import lombok.experimental.NonFinal;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
@@ -23,30 +21,31 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * Usage (after compile and package):
- * java -jar otus-hw-junit.jar [class1 [class2 [class3...]]]
+ * java -jar hw-junit.jar [class1 [class2 [class3...]]]
  * Usage example:
- * java -jar otus-hw-junit.jar ru.otus.l9.hw.TestClass1 ru.otus.l9.hw.TestCless2
+ * java -jar hw-junit.jar ru.vlapin.courses.java.fundamentals.oop.demo.myjunit.hw.TestClass1 ru.vlapin.courses.java.fundamentals.oop.demo.myjunit.hw.TestCless2
  */
 @Slf4j
 @UtilityClass
-@FieldDefaults(level = PRIVATE, makeFinal = true)
 public class Assertions {
 
   @NonFinal
-  private boolean isFailed;
+  boolean isFailed;
 
+  @SuppressWarnings("java:S106")
   public void main(String... args) {
-    Arrays.stream(args)
-        .flatMap(Assertions::execTestClass)
-        .forEach(Assertions::printResult);
+    System.out.println(Arrays.stream(args)
+                           .flatMap(Assertions::execTestClass)
+                           .count());
+    //        .forEach(Assertions::printResult);
   }
 
   private static void printResult(@NotNull Tuple2<Method, Either<Exception, Boolean>> tuple2) {
-    getDeepAnnotation(tuple2._1, Test.class)
-        .ifPresent(test -> log.info("Test {} has {}",
+    getDeepAnnotation(tuple2._1, Test.class).ifPresent(
+        test -> log.info("Test {} has {}",
             isPseudoNullValue(test.value()) ? tuple2._1.getName() : test.value(),
             tuple2._2.isRight() ?
-                (tuple2._2.get() ? "done." : "failed.") :
+                (TRUE.equals(tuple2._2.get()) ? "done." : "failed.") :
                 "threw exception: " + tuple2._2.getLeft() + "."));
   }
 

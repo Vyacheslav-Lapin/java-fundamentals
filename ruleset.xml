@@ -17,9 +17,9 @@
   </rules>
 
   <ignoreVersions>
-    <ignoreVersion type="regex">.*alpha.*</ignoreVersion>
-    <ignoreVersion type="regex">.*beta.*</ignoreVersion>
-    <ignoreVersion type="regex">.*\.M\d</ignoreVersion>
+    <!--<ignoreVersion type="regex">.*alpha.*</ignoreVersion>-->
+    <!--<ignoreVersion type="regex">.*beta.*</ignoreVersion>-->
+    <!--<ignoreVersion type="regex">.*\.M\d</ignoreVersion>-->
   </ignoreVersions>
 
 </ruleset>

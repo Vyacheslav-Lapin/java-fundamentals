@@ -1,7 +1,7 @@
 package com.epam.courses.java.fundamentals.intro.practice.task2;
 
-import static java.lang.Math.pow;
-import static java.lang.System.out;
+import static java.lang.Math.*;
+import static java.lang.System.*;
 
 import org.jetbrains.annotations.Contract;
 

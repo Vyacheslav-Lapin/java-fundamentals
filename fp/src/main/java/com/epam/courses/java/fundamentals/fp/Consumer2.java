@@ -12,7 +12,7 @@ public interface Consumer2<T, U> extends java.util.function.BiConsumer<T, U> {
     return consumer2;
   }
 
-  @SuppressWarnings({"Contract", "unchecked"})
+  @SuppressWarnings("unchecked")
   @Contract(value = "_ -> param1", pure = true)
   static <T, U> Consumer2<T, U> narrow(Consumer2<? extends T, ? extends U> consumer2) {
     return (Consumer2<T, U>) consumer2;

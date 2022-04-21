@@ -1,25 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0">
+
   <modelVersion>4.0.0</modelVersion>
+
   <parent>
-    <groupId>com.epam.courses.java.fundamentals</groupId>
+    <groupId>ru.vlapin.courses.java.fundamentals</groupId>
     <artifactId>java-fundamentals</artifactId>
     <version>${revision}</version>
   </parent>
+
   <artifactId>integration</artifactId>
+
   <properties>
     <!--<maven-assembly-plugin.mainClass>ru.vlapin.courses.java.fundamentals.intro.Hello</maven-assembly-plugin.mainClass>-->
     <!--<assembly.skipAssembly>false</assembly.skipAssembly>-->
+    <jaxb-ri.version>4.0.0-M4</jaxb-ri.version>
+    <!--<jaxb-ri.version>4.0.0-M4</jaxb-ri.version>-->
   </properties>
+
+  <dependencyManagement>
+    <dependencies>
+
+      <dependency>
+        <groupId>com.sun.xml.bind</groupId>
+        <artifactId>jaxb-ri</artifactId>
+        <version>${jaxb-ri.version}</version>
+        <type>pom</type>
+      </dependency>
+
+    </dependencies>
+  </dependencyManagement>
 
   <dependencies>
     <dependency>
-      <groupId>com.epam.courses.java.fundamentals</groupId>
+      <groupId>ru.vlapin.courses.java.fundamentals</groupId>
       <artifactId>io</artifactId>
       <version>${revision}</version>
     </dependency>
     <dependency>
-      <groupId>com.epam.courses.java.fundamentals</groupId>
+      <groupId>ru.vlapin.courses.java.fundamentals</groupId>
       <artifactId>fp</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
@@ -32,10 +51,22 @@
       <groupId>org.glassfish</groupId>
       <artifactId>javax.json</artifactId>
     </dependency>
-
     <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>rest-assured</artifactId>
     </dependency>
+    <dependency>
+      <groupId>com.jayway.jsonpath</groupId>
+      <artifactId>json-path</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.xml.bind</groupId>
+      <artifactId>jakarta.xml.bind-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
   </dependencies>
+
 </project>

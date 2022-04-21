@@ -11,7 +11,7 @@ public interface CheckedFunction1<T, R> extends io.vavr.CheckedFunction1<T, R> {
     return checkedFunction1;
   }
 
-  @SuppressWarnings({"Contract", "unchecked"})
+  @SuppressWarnings("unchecked")
   @Contract(value = "_ -> param1", pure = true)
   static <T, R> CheckedFunction1<T, R> narrow(CheckedFunction1<? extends T, ? extends R> checkedFunction1) {
     return (CheckedFunction1<T, R>) checkedFunction1;
@@ -23,5 +23,9 @@ public interface CheckedFunction1<T, R> extends io.vavr.CheckedFunction1<T, R> {
     try (obj) {
       return function1.apply(obj);
     }
+  }
+
+  default CheckedFunction0<R> supply(T t) {
+    return () -> apply(t);
   }
 }

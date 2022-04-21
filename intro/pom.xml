@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.epam.courses.java.fundamentals</groupId>
+    <groupId>ru.vlapin.courses.java.fundamentals</groupId>
     <artifactId>java-fundamentals</artifactId>
     <version>${revision}</version>
   </parent>

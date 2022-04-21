@@ -1,0 +1,15 @@
+@startuml
+
+interface CharSequence {
+  char charAt(int index)
+  int length()
+  CharSequence subSequence(int start,int end)
+  IntStream chars()
+  IntStream codePoints()
+}
+
+CharSequence <|-- String
+CharSequence <|-- StringBuffer
+CharSequence <|-- StringBuilder
+
+@enduml

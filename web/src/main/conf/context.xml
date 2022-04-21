@@ -18,14 +18,23 @@
 <!-- The contents of this file will be loaded for each web application -->
 <Context>
 
-    <!-- Default set of monitored resources. If one of these changes, the    -->
-    <!-- web application will be reloaded.                                   -->
-    <WatchedResource>WEB-INF/web.xml</WatchedResource>
-    <WatchedResource>WEB-INF/tomcat-web.xml</WatchedResource>
-    <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
+  <!-- Default set of monitored resources. If one of these changes, the    -->
+  <!-- web application will be reloaded.                                   -->
+  <WatchedResource>WEB-INF/web.xml</WatchedResource>
+  <WatchedResource>WEB-INF/tomcat-web.xml</WatchedResource>
+  <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
 
-    <!-- Uncomment this to disable session persistence across Tomcat restarts -->
-    <!--
-    <Manager pathname="" />
-    -->
+  <!-- Uncomment this to disable session persistence across Tomcat restarts -->
+  <!--
+  <Manager pathname="" />
+  -->
+
+  <Resource name="jdbc/appname" auth="Container"
+            type="javax.sql.DataSource" maxActive="100"
+            maxIdle="30" maxWait="10000"
+            username="username"
+            password="password"
+            driverClassName="jdbc.driver.name"
+            url="jdbc:protocol://hostname:port/dbname"/>
+
 </Context>

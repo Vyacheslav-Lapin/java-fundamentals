@@ -1,19 +1,19 @@
 package com.epam.courses.java.fundamentals.intro.practice.task1;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 import com.epam.courses.java.fundamentals.intro.commons.TestUtils;
-import org.junit.jupiter.api.Disabled;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class MainTest {
 
   @Test
-  @Disabled
-  @DisplayName("Main method works correctly")
-  void main() {
-    assertThat(TestUtils.fromSystemOutPrintln(Main::main))
-        .isEqualTo("I am string in Logic class.");
+  @SneakyThrows
+  @DisplayName("example")
+  void exampleTest() {
+    assertThat(TestUtils.fromLog(Main::main))
+        .isEqualTo("logic.method(): I am string in Logic class.");
   }
 }

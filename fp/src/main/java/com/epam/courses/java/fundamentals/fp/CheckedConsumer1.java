@@ -17,7 +17,7 @@ public interface CheckedConsumer1<T> extends Consumer<T> {
   }
 
   @NotNull
-  @SuppressWarnings({"Contract", "unchecked"})
+  @SuppressWarnings("unchecked")
   @Contract(value = "_ -> param1", pure = true)
   static <T> CheckedConsumer1<T> narrow(@NotNull CheckedConsumer1<? extends T> consumer) {
     return (CheckedConsumer1<T>) consumer;
@@ -42,7 +42,7 @@ public interface CheckedConsumer1<T> extends Consumer<T> {
     return of(consumer).unchecked();
   }
 
-  void put(T t) throws Throwable;
+  void put(T t) throws Exception;
 
   @Override
   @SneakyThrows

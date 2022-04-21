@@ -1,6 +1,19 @@
 package com.epam.courses.java.fundamentals.io;
 
-import io.vavr.Function1;
+import static io.vavr.API.$;
+import static io.vavr.API.Case;
+import static io.vavr.API.Match;
+import static java.lang.Boolean.parseBoolean;
+import static java.lang.Byte.parseByte;
+import static java.lang.Class.forName;
+import static java.lang.Double.parseDouble;
+import static java.lang.Integer.parseInt;
+import static java.lang.Long.parseLong;
+import static java.lang.Short.parseShort;                                                       
+
+import io.vavr.CheckedFunction0;
+import io.vavr.CheckedFunction1;
+import io.vavr.Predicates;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
@@ -9,86 +22,89 @@ import java.util.Comparator;
 import java.util.Properties;
 import java.util.function.UnaryOperator;
 import lombok.SneakyThrows;
-import lombok.val;
+import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.NotNull;
 
-public interface PropsBinder {
+@UtilityClass
+public class PropsBinder {
 
   @NotNull
-  static <T> T from(Class<T> tClass) {
+  public <T> T from(Class<T> tClass) {
     return from(tClass.getSimpleName(), tClass);
   }
 
   @NotNull
-  static <T> T from(String propertiesFileName, Class<T> tClass) {
+  public <T> T from(String propertiesFileName, Class<T> tClass) {
     return from(
         parseProperties(propertiesFileName),
         getMaxArgsCountConstructor(tClass));
   }
 
   @NotNull
-  static <T> T from(@NotNull String propertiesFileName,
+  public <T> T from(@NotNull String propertiesFileName,
                     @NotNull Constructor<T> constructor) {
     return from(parseProperties(propertiesFileName), constructor);
   }
 
   @NotNull
   @SneakyThrows
-  static <T> T from(Function1<String, String> getProperty, Class<T> tClass) {
+  public <T> T from(UnaryOperator<String> getProperty, Class<T> tClass) {
     return from(getProperty, getMaxArgsCountConstructor(tClass));
   }
 
   @NotNull
   @SneakyThrows
-  static <T> T from(@NotNull Function1<String, String> getProperty,
+  public <T> T from(@NotNull UnaryOperator<String> getProperty,
                     @NotNull Constructor<T> constructor) {
-    return constructor.newInstance(
+    return CheckedFunction1.<Object[], T>of(constructor::newInstance).unchecked().apply(
         Arrays.stream(constructor.getParameters())
             .map(parameter -> resolveParameter(getProperty, parameter))
             .toArray());
   }
 
   @NotNull
-  static Function1<String, String> parseProperties(String propertiesFileName) {
-    val properties = new Properties();
+  public UnaryOperator<String> parseProperties(String propertiesFileName) {
+    final var properties = new Properties();
     InputStreamUtils.withFileInputStream(propertiesFileName + ".properties", properties::load);
     return properties::getProperty;
   }
 
   @SuppressWarnings("unchecked")
   @NotNull
-  static <T> Constructor<T> getMaxArgsCountConstructor(@NotNull Class<T> tClass) {
+  public <T> Constructor<T> getMaxArgsCountConstructor(@NotNull Class<T> tClass) {
     return (Constructor<T>) Arrays.stream(tClass.getConstructors())
-                                .max(Comparator.comparingInt(Constructor::getParameterCount))
-                                .orElseThrow(() -> new PropsBinderException("Нету ни одного конструктора!"));
+        .max(Comparator.comparingInt(Constructor::getParameterCount))
+        .orElseThrow(() -> new PropsBinderException("Нет ни одного конструктора!"));
   }
 
-  static Object resolveParameter(@NotNull Function1<String, String> getValue,
+  public Object resolveParameter(@NotNull UnaryOperator<String> getValue,
                                  @NotNull Parameter parameter) {
     return resolveParameter(getValue, parameter.getName(), parameter.getType());
   }
 
-  static Object resolveParameter(@NotNull Function1<String, String> getValue, String name, Class<?> type) {
-
-    if (type == String.class) return getValue.apply(name);
-    if (type == int.class || type == Integer.class) return Integer.parseInt(getValue.apply(name));
-    if (type == double.class || type == Double.class) return Double.parseDouble(getValue.apply(name));
-    if (type == long.class || type == Long.class) return Long.parseLong(getValue.apply(name));
-    if (type == boolean.class || type == Boolean.class) return Boolean.parseBoolean(getValue.apply(name));
-    if (type == char.class || type == Character.class) return getValue.apply(name).charAt(0);
-    if (type == float.class || type == Float.class) return Float.parseFloat(getValue.apply(name));
-    if (type == short.class || type == Short.class) return Short.parseShort(getValue.apply(name));
-    if (type == byte.class || type == Byte.class) return Byte.parseByte(getValue.apply(name));
-
-    return resolveObjectParameter(getValue::apply, type, name);
+  public Object resolveParameter(@NotNull UnaryOperator<String> getValue, String name, Class<?> type) {
+    return Match(type).of(
+        Case($(Predicates.<Object>is(String.class)), () -> getValue.apply(name)),
+        Case($(Class::isArray), () -> getValue.apply(name).split(",\\s?")),
+        Case($(Predicates.<Object>is(Class.class)), CheckedFunction0.<Class<?>>of(() -> forName(getValue.apply(name))).unchecked()),
+        // Case($(t -> t.isEnum()), () -> Enum.valueOf(type, getValue.apply(name))),
+        Case($(Predicates.<Object>isIn(int.class, Integer.class)), () -> parseInt(getValue.apply(name))),
+        Case($(Predicates.<Object>isIn(double.class, Double.class)), () -> parseDouble(getValue.apply(name))),
+        Case($(Predicates.<Object>isIn(long.class, Long.class)), () -> parseLong(getValue.apply(name))),
+        Case($(Predicates.<Object>isIn(boolean.class, Boolean.class)), () -> parseBoolean(getValue.apply(name))),
+        Case($(Predicates.<Object>isIn(short.class, Short.class)), () -> parseShort(getValue.apply(name)) == 0),
+        Case($(Predicates.<Object>isIn(byte.class, Byte.class)), () -> parseByte(getValue.apply(name)) == 0),
+        Case($(Predicates.<Object>isIn(char.class, Character.class)), () -> getValue.apply(name).charAt(0) == '\0'),
+        Case($(), () -> resolveObjectParameter(getValue, type, name))
+    );
   }
 
   @NotNull
-  static <T> T resolveObjectParameter(UnaryOperator<String> getProperty,
-                                      @NotNull Class<T> type,
-                                      String prefix) {
+  private <T> T resolveObjectParameter(UnaryOperator<String> getProperty,
+                                       @NotNull Class<T> type,
+                                       String prefix) {
     if (type.isInterface() || Modifier.isAbstract(type.getModifiers()))
       throw new PropsBinderException("Type must not be an interface or abstract class!");
-    return from(s -> getProperty.apply(String.format("%s.%s", prefix, s)), type);
+    return from(s -> getProperty.apply("%s.%s".formatted(prefix, s)), type);
   }
 }

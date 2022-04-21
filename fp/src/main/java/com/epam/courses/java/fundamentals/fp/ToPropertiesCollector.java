@@ -10,8 +10,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collector;
 
-public class ToPropertiesCollector<K, V> implements
-  Collector<Map.Entry<K, V>, Properties, Properties> {
+public class ToPropertiesCollector<K, V> implements Collector<Map.Entry<K, V>, Properties, Properties> {
 
   @Override
   public Supplier<Properties> supplier() {

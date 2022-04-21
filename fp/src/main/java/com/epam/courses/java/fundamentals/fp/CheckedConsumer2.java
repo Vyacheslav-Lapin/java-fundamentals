@@ -13,7 +13,6 @@ public interface CheckedConsumer2<T, U> extends Consumer2<T, U> {
     return checkedBiConsumer;
   }
 
-  @SuppressWarnings("Contract")
   @Contract(value = "_ -> param1", pure = true)
   static <T, U> CheckedConsumer2<T, U> narrow(CheckedConsumer2<? extends T, ? extends U> checkedBiConsumer) {
     //noinspection unchecked

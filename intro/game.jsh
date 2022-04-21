@@ -10,5 +10,3 @@ if ($3 == $4 && $3 == $5)
   printf("Выпало %d, %d, %d. Вы проиграли!\n", $3, $4, $5)
 
 /ex
-//!/usr/bin/env sh
-//tail -n +4 "$0" | jshell -v --start PRINTING "$@"; exit $?

@@ -1,7 +1,7 @@
 package com.epam.courses.java.fundamentals.intro.practice.task2;
 
-import static com.epam.courses.java.fundamentals.intro.commons.TestUtils.fromSystemOutPrintln;
-import static org.assertj.core.api.Assertions.assertThat;
+import static com.epam.courses.java.fundamentals.intro.commons.TestUtils.*;
+import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -12,7 +12,7 @@ class MinFinderTest {
   @Test
   @Disabled
   @DisplayName("Main method works correctly")
-  void Main() {
+  void mainMethodWorksCorrectlyTest() {
     assertThat(fromSystemOutPrintln(MinFinder::main))
         .isEqualTo("""
             0.25

@@ -11,19 +11,10 @@ public interface OutputStreamUtils {
 
   @NotNull
   static String fromPrintStream(@NotNull CheckedConsumer<PrintStream> printStreamConsumer) {
-//      return new String(
-//
-//        peekFrom(ByteArrayOutputStream::new,
-//            baos -> peekAndClose(
-//                map(baos, PrintStream::new),
-//                printStreamConsumer))
-//
-//            .toByteArray()).intern();
-
     val out = new ByteArrayOutputStream();
     @Cleanup val printStream = new PrintStream(out);
     printStreamConsumer.unchecked().accept(printStream);
-    return new String(out.toByteArray()).intern();
+    return out.toString().intern();
   }
 
 }

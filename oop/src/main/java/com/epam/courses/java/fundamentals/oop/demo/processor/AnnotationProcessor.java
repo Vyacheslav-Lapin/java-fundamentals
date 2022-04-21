@@ -1,6 +1,6 @@
 package com.epam.courses.java.fundamentals.oop.demo.processor;
 
-import static javax.lang.model.SourceVersion.RELEASE_13;
+import static javax.lang.model.SourceVersion.*;
 
 import java.util.Set;
 import javax.annotation.processing.AbstractProcessor;
@@ -15,11 +15,13 @@ import org.jetbrains.annotations.NotNull;
  * javac -d target/classes -cp src/main/java src/main/java/common/oop/annotations/processor/AnnotationProcessor.java
  * javac -d target/classes -cp target/classes -processor common.oop.annotations.processor.AnnotationProcessor common/oop/annotations/processor/DataClass.java
  */
-@SupportedSourceVersion(RELEASE_13)
+@SuppressWarnings("unused")
+@SupportedSourceVersion(RELEASE_14)
 @SupportedAnnotationTypes("common.oop.annotations.processor.ClassAnnotation")
 public class AnnotationProcessor extends AbstractProcessor {
 
   @Override
+  @SuppressWarnings("java:S106")
   public boolean process(@NotNull Set<? extends TypeElement> annotations,
                          RoundEnvironment roundEnv) {
 
@@ -28,7 +30,7 @@ public class AnnotationProcessor extends AbstractProcessor {
 
     Set<? extends Element> elements = roundEnv.getElementsAnnotatedWith(ClassAnnotation.class);
 
-    System.out.printf("Total elements annotated with %s: %d\n",
+    System.out.printf("Total elements annotated with %s: %d%n",
         ClassAnnotation.class.getCanonicalName(),
         elements.size());
 

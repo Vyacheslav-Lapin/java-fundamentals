@@ -1,9 +1,9 @@
 package com.epam.courses.java.fundamentals.intro.practice.task3;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 import com.epam.courses.java.fundamentals.intro.commons.TestUtils;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,10 +12,12 @@ class TablePrinterTest {
 
   @Test
   @Disabled
-  @DisplayName("PrintTable method works correctly")
-  void PrintTable() {
+  @SneakyThrows
+  @DisplayName("print table works correctly")
+  void printTableWorksCorrectlyTest() {
     assertThat(TestUtils.fromSystemOutPrintln(
-        () -> new TablePrinter(0, 10, 1).printTable(11)))
+        () -> new TablePrinter(0, 10, 1)
+                  .printTable(11)))
         .isEqualTo("""
             +-------------------------+
             |     x     |     f(x)    |
