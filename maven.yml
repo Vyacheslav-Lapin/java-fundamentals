@@ -1,0 +1,31 @@
+project:
+  build.sourceEncoding: UTF-8
+  reporting.outputEncoding: UTF-8
+
+maven.compiler:
+  forceJavacCompilerUse: true
+  showWarnings: true
+  showDeprecation: true
+
+maven.surefire.argLine: --enable-preview
+exec:
+  mainClass: com.epam.courses.java.fundamentals.intro.Hello
+  executable: java
+
+jar.name: ${project.name}-${revision}
+
+assembly.skipAssembly: true
+maven-assembly-plugin:
+  descriptorSuffix: jar-with-dependencies
+  mainClass: ${exec.mainClass}
+lombok:
+  verbose: true
+  addOutputDirectory: false
+  sourceDirectory: ${project.basedir}/src/main/java
+  testSourceDirectory: ${project.basedir}/src/test/java
+
+delombokedSourceDir: ${project.build.directory}/delombok
+origSourceDir: ${project.basedir}/src/main/java
+
+sourceDir: ${origSourceDir}
+argLine: ${maven.surefire.argLine}

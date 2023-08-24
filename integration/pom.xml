@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0">
-
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="
+          http://maven.apache.org/POM/4.0.0
+          http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <parent>
     <groupId>ru.vlapin.courses.java.fundamentals</groupId>
@@ -14,20 +16,15 @@
   <properties>
     <!--<maven-assembly-plugin.mainClass>ru.vlapin.courses.java.fundamentals.intro.Hello</maven-assembly-plugin.mainClass>-->
     <!--<assembly.skipAssembly>false</assembly.skipAssembly>-->
-    <jaxb-ri.version>4.0.0-M4</jaxb-ri.version>
-    <!--<jaxb-ri.version>4.0.0-M4</jaxb-ri.version>-->
   </properties>
 
   <dependencyManagement>
     <dependencies>
-
       <dependency>
         <groupId>com.sun.xml.bind</groupId>
-        <artifactId>jaxb-ri</artifactId>
-        <version>${jaxb-ri.version}</version>
-        <type>pom</type>
+        <artifactId>jaxb-impl</artifactId>
+        <version>${jakarta-xml-bind.version}</version>
       </dependency>
-
     </dependencies>
   </dependencyManagement>
 
@@ -35,21 +32,23 @@
     <dependency>
       <groupId>ru.vlapin.courses.java.fundamentals</groupId>
       <artifactId>io</artifactId>
-      <version>${revision}</version>
     </dependency>
     <dependency>
       <groupId>ru.vlapin.courses.java.fundamentals</groupId>
       <artifactId>fp</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
     </dependency>
 
+    <dependency>
+      <groupId>org.glassfish</groupId>
+      <artifactId>javax.json</artifactId>
+    </dependency>
     <dependency>
       <groupId>javax.json</groupId>
       <artifactId>javax.json-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.glassfish</groupId>
-      <artifactId>javax.json</artifactId>
+      <groupId>com.sun.xml.bind</groupId>
+      <artifactId>jaxb-impl</artifactId>
     </dependency>
     <dependency>
       <groupId>io.rest-assured</groupId>
@@ -68,5 +67,7 @@
       <artifactId>jackson-databind</artifactId>
     </dependency>
   </dependencies>
+
+  <modelVersion>4.0.0</modelVersion>
 
 </project>

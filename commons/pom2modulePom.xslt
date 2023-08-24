@@ -40,7 +40,7 @@
       <artifactId><xslt:value-of select="$artifactId"/></artifactId>
 
       <properties>
-        <xslt:comment>&lt;maven-assembly-plugin.mainClass&gt;ru.vlapin.courses.java.fundamentals.intro.Hello&lt;/maven-assembly-plugin.mainClass&gt;</xslt:comment>
+        <xslt:comment>&lt;maven-assembly-plugin.mainClass&gt;pro.vlapin.courses.java.fundamentals.intro.Hello&lt;/maven-assembly-plugin.mainClass&gt;</xslt:comment>
         <xslt:comment>&lt;assembly.skipAssembly&gt;false&lt;/assembly.skipAssembly&gt;</xslt:comment>
       </properties>
     </project>

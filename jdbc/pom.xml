@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="
+          http://maven.apache.org/POM/4.0.0
+          http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <parent>
     <groupId>ru.vlapin.courses.java.fundamentals</groupId>
     <artifactId>java-fundamentals</artifactId>
+    <!--<version>0.0.1-SNAPSHOT</version>-->
     <version>${revision}</version>
   </parent>
 
@@ -12,25 +17,9 @@
   <properties>
     <!--<maven-assembly-plugin.mainClass>ru.vlapin.courses.java.fundamentals.intro.Hello</maven-assembly-plugin.mainClass>-->
     <!--<assembly.skipAssembly>false</assembly.skipAssembly>-->
-
-    <h2.version>2.1.212</h2.version>
-    <HikariCP.version>5.0.1</HikariCP.version>
   </properties>
 
   <dependencies>
-
-    <!--region H2 -->
-    <dependency>
-      <groupId>com.h2database</groupId>
-      <artifactId>h2</artifactId>
-      <version>${h2.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.zaxxer</groupId>
-      <artifactId>HikariCP</artifactId>
-      <version>${HikariCP.version}</version>
-    </dependency>
-    <!-- endregion -->
 
     <dependency>
       <groupId>ru.vlapin.courses.java.fundamentals</groupId>
@@ -41,6 +30,19 @@
       <artifactId>io</artifactId>
     </dependency>
 
+    <!--region H2 -->
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.zaxxer</groupId>
+      <artifactId>HikariCP</artifactId>
+    </dependency>
+    <!-- endregion -->
+
   </dependencies>
+
   <modelVersion>4.0.0</modelVersion>
+
 </project>

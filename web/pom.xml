@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="
+          http://maven.apache.org/POM/4.0.0
+          http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <parent>
     <groupId>ru.vlapin.courses.java.fundamentals</groupId>
     <artifactId>java-fundamentals</artifactId>
+    <!--<version>0.0.1-SNAPSHOT</version>-->
     <version>${revision}</version>
   </parent>
 
@@ -15,12 +19,15 @@
   <properties>
     <!--<maven-assembly-plugin.mainClass>ru.vlapin.courses.java.fundamentals.intro.Hello</maven-assembly-plugin.mainClass>-->
     <!--<assembly.skipAssembly>false</assembly.skipAssembly>-->
-
   </properties>
 
   <dependencies>
 
     <!--region Tomcat-->
+    <dependency>
+      <groupId>javax</groupId>
+      <artifactId>javaee-api</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.apache.tomcat</groupId>
       <artifactId>tomcat-catalina</artifactId>
@@ -29,17 +36,10 @@
       <groupId>org.apache.tomcat</groupId>
       <artifactId>tomcat-jasper</artifactId>
     </dependency>
-    <dependency>
-      <groupId>javax</groupId>
-      <artifactId>javaee-api</artifactId>
-    </dependency>
     <!--endregion-->
 
   </dependencies>
 
-  <build>
+  <modelVersion>4.0.0</modelVersion>
 
-    <defaultGoal>verify</defaultGoal>
-
-  </build>
 </project>
