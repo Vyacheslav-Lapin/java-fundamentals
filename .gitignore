@@ -2,4 +2,7 @@
 
 /**/target/
 /**/pom.xml.versionsBackup
+/*/.flattened-pom.xml
+/.flattened-pom.xml
+
 /google_checks.xml
